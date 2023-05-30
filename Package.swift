@@ -22,7 +22,6 @@ let package = Package(
         .library(
             name: "NetworkManager",
             targets: ["NetworkManager"]),
-        
         .library(
             name: "PermissionManager",
             targets: ["PermissionManager"]),
@@ -32,14 +31,25 @@ let package = Package(
         .library(
             name: "StepView",
             targets: ["StepView"]),
+        .library(
+            name: "Utils",
+            targets: ["Utils"]),
+        .library(
+            name: "Banner",
+            targets: ["Banner"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.0.0")),
+        .package(url: "https://github.com/Alamofire/Alamofire.git",
+                 .upToNextMajor(from: "5.0.0")),
         .package(
           url: "https://github.com/apple/swift-collections.git",
-          .upToNextMajor(from: "1.0.3") // or `.upToNextMinor
+          .upToNextMajor(from: "1.0.4") // or `.upToNextMinor
+        ),
+        .package(
+          url: "https://github.com/onevcat/Kingfisher",
+          .upToNextMajor(from: "7.6.2") // or `.upToNextMinor
         ),
     ],
     targets: [
@@ -72,5 +82,16 @@ let package = Package(
         .target(
             name: "StepView",
             dependencies: [],path: "StepView/Sources"),
+        .target(
+            name: "Utils",
+            dependencies: [], path: "Utils/Sources"),
+        .target(
+            name: "Banner",
+            dependencies: [
+                "Utils",
+                "Kingfisher"
+            ],
+            path:"Banner/Sources"
+        ),
     ]
 )
