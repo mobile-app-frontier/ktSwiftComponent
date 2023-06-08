@@ -37,6 +37,9 @@ let package = Package(
         .library(
             name: "Banner",
             targets: ["Banner"]),
+        .library(
+            name: "CryptoUtils",
+            targets: ["CryptoUtils"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -93,5 +96,7 @@ let package = Package(
             ],
             path:"Banner/Sources"
         ),
+        .target(name: "CryptoUtils",
+                path:"CryptoUtils/Sources"),
     ]
 )
