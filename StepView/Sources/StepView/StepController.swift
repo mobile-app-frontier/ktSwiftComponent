@@ -25,14 +25,12 @@ public class StepController<T>: ObservableObject {
     /// current content
     @Published
     public private(set) var currentContent: StepContent<T>
+    
+    @Published
+    public private(set) var stepState: StepViewState 
 
     
-    /// 마지막 페이지에서 nextContent 호출 시 호출
-    private var didFinishedStepProcess: () -> Void = {}
-    
-    /// 처음 페이지에서 prevContent를 호출 시 호출
-    private var exitStepProcess: () -> Void = {}
-    
+
     /// 페이지 이동시 호출
     private var willStepSwitch: (StepContent<T>, StepContent<T>) -> Void = {_,_ in }
     
@@ -43,6 +41,7 @@ public class StepController<T>: ObservableObject {
         self.currentContent = contents[initialIndex]
         self.index = initialIndex
         self.config = config
+        self.stepState = .start
     }
     
     func getContentIndex(content: StepContent<T>) -> Int? {
@@ -68,7 +67,7 @@ public extension StepController {
                 switchContentIndex(nextIndex: 0)
                 return
             } else {
-                didFinishedStepProcess()
+                stepState = .complete
                 return
             }
         }
@@ -84,7 +83,7 @@ public extension StepController {
                 switchContentIndex(nextIndex: contents.endIndex - 1)
                 return
             } else {
-                exitStepProcess()
+                stepState = .exit
                 return
             }
         }
@@ -100,6 +99,8 @@ extension StepController {
     
     private func switchContentIndex(nextIndex: Int) {
         Task {
+            stepState = .inprogress
+            
             await MainActor.run {
                 index = nextIndex
                 let nextContent = contents[index]
@@ -113,19 +114,6 @@ extension StepController {
 
 //MARK: - closure
 public extension StepController {
-
-    func didFinishedStepProcess(perform: @escaping () -> Void) -> StepController {
-        let controller = self
-        controller.didFinishedStepProcess = perform
-        return controller
-    }
-    
-    func exitStepProcess (perform: @escaping () -> Void) -> StepController {
-        let controller = self
-        controller.exitStepProcess = perform
-        return controller
-    }
-    
     
     /**
      param
