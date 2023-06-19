@@ -99,9 +99,9 @@ extension StepController {
     
     private func switchContentIndex(nextIndex: Int) {
         Task {
-            stepState = .inprogress
-            
             await MainActor.run {
+                stepState = .inprogress
+                
                 index = nextIndex
                 let nextContent = contents[index]
                 willStepSwitch(currentContent, nextContent)
