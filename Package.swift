@@ -14,6 +14,9 @@ let package = Package(
             name: "IndexedScrollView",
             targets: ["IndexedScrollView"]),
         .library(
+            name: "AnimationView",
+            targets: ["AnimationView"]),
+        .library(
             name: "NavRouter",
             targets: ["NavRouter"]),
         .library(
@@ -64,6 +67,11 @@ let package = Package(
                 .product(name: "Collections", package: "swift-collections")
             ],
             path: "IndexedScrollView/Sources"
+        ),
+        .target(
+            name: "AnimationView",
+            dependencies: [],
+            path: "AnimationView/Sources"
         ),
         .target(
             name: "NavRouter",
