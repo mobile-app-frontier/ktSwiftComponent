@@ -48,18 +48,36 @@ extension AlamofireRestfulService: RestfulService {
                  requestInterceptor: NetworkRequestInterceptor?,
                  responseInterceptor: NetworkResponseInterceptor?
     ) async -> Result<Data, NetworkRestfulError> {
-        var preprocessedRequest:NetworkRequest
-        if let task = await requestInterceptor?.preprocessor(request: request) {
-            preprocessedRequest = task
-        } else {
-            preprocessedRequest = request
-        }
+        
+        let requestTask: DataRequest
+        
+        switch requestInterceptor {
+            /// if intercepter is alamofire protocol
+            /// set alamofire interceptor
+        case let requestInterceptor as AlamofireNetworkRequestInterceptor:
+            requestTask = networkSession.request(url,
+                                                 method: request.method.toHttpMethod(),
+                                                 parameters: request.params,
+                                                 headers: HTTPHeaders(request.header),
+                                                 interceptor: requestInterceptor
+            )
+            break
+        default:
+            var preprocessedRequest:NetworkRequest
+            if let task = await requestInterceptor?.preprocessor(request: request) {
+                preprocessedRequest = task
+            } else {
+                preprocessedRequest = request
+            }
             
-        let requestTask = networkSession.request(url,
+            requestTask = networkSession.request(url,
                                                  method: preprocessedRequest.method.toHttpMethod(),
                                                  parameters: request.params,
                                                  headers: HTTPHeaders(preprocessedRequest.header)
-        )
+            )
+            break
+        }
+        
         
         
         if let canceler = canceler {
