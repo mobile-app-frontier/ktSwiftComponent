@@ -58,6 +58,7 @@ extension AlamofireRestfulService: RestfulService {
             requestTask = networkSession.request(url,
                                                  method: request.method.toHttpMethod(),
                                                  parameters: request.params,
+                                                 encoding: convertRequestEncoding(encoding: request.encoding),
                                                  headers: HTTPHeaders(request.header),
                                                  interceptor: requestInterceptor
             )
@@ -73,6 +74,7 @@ extension AlamofireRestfulService: RestfulService {
             requestTask = networkSession.request(url,
                                                  method: preprocessedRequest.method.toHttpMethod(),
                                                  parameters: request.params,
+                                                 encoding: convertRequestEncoding(encoding: request.encoding),
                                                  headers: HTTPHeaders(preprocessedRequest.header)
             )
             break
@@ -136,6 +138,16 @@ extension AlamofireRestfulService {
         } catch {
             debugPrint("[Error] [\(type)] parsingError")
             return .failure(NetworkRestfulError.parsingError(rawError: error))
+        }
+    }
+    
+    
+    private func convertRequestEncoding(encoding: NetworkRequestEncoding) -> ParameterEncoding{
+        switch encoding {
+        case .url:
+            return URLEncoding.default
+        case .json:
+            return JSONEncoding.default
         }
     }
 }
