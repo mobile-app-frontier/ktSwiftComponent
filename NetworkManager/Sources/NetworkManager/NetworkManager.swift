@@ -34,13 +34,14 @@ extension NetworkManager {
                             method: NetworkMethod,
                             header: [String: String] = [:],
                             param: [String: Any] = [:],
+                            encoding: NetworkRequestEncoding = .url,
                             cancelToken: NetworkCancelToken? = nil,
                             requestInterceptor: NetworkRequestInterceptor? = nil,
                             responseInterceptor: NetworkResponseInterceptor? = nil
     ) async -> Result<T, NetworkRestfulError> where T : Codable {
         return await restfulService.request(url,
                                             type: T.self,
-                                            request: NetworkRequest(method: method, header: header, params: param),
+                                            request: NetworkRequest(method: method, header: header, params: param,encoding: encoding),
                                             canceler: cancelToken,
                                             requestInterceptor: requestInterceptor,
                                             responseInterceptor: responseInterceptor
@@ -51,12 +52,13 @@ extension NetworkManager {
                         method: NetworkMethod,
                         header: [String: String] = [:],
                         param: [String: Any] = [:],
+                        encoding: NetworkRequestEncoding = .url,
                         cancelToken: NetworkCancelToken? = nil,
                         requestInterceptor: NetworkRequestInterceptor? = nil,
                         responseInterceptor: NetworkResponseInterceptor? = nil
     ) async -> Result<Data, NetworkRestfulError>{
         return await restfulService.request(url,
-                                            request: NetworkRequest(method: method, header: header, params: param),
+                                            request: NetworkRequest(method: method, header: header, params: param, encoding: encoding),
                                             canceler: cancelToken,
                                             requestInterceptor: requestInterceptor,
                                             responseInterceptor: responseInterceptor
