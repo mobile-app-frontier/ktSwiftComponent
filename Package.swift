@@ -43,6 +43,9 @@ let package = Package(
         .library(
             name: "CryptoUtils",
             targets: ["CryptoUtils"]),
+        .library(
+            name: "Log",
+            targets: ["Log"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -111,5 +114,7 @@ let package = Package(
         ),
         .target(name: "CryptoUtils",
                 path:"CryptoUtils/Sources"),
+        .target(name: "Log",
+                path:"Log/Sources"),
     ]
 )
