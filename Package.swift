@@ -46,6 +46,9 @@ let package = Package(
         .library(
             name: "Log",
             targets: ["Log"]),
+        .library(
+            name: "InfiniteScrollModifier",
+            targets: ["InfiniteScrollModifier"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -116,5 +119,9 @@ let package = Package(
                 path:"CryptoUtils/Sources"),
         .target(name: "Log",
                 path:"Log/Sources"),
+        .target(
+            name: "InfiniteScrollModifier",
+            path: "InfiniteScrollModifier/Sources"
+        ),
     ]
 )
