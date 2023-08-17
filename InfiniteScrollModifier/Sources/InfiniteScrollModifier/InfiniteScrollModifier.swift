@@ -16,6 +16,12 @@ public struct InfiniteScrollModifier: ViewModifier {
     @State
     var screenTopEdge: CGFloat = 0
     
+    @State
+    var prevOffset: CGFloat = 0
+    
+    @State
+    var refreshingChecked: Bool = false
+    
     let scrollGeometry: String = "scroll"
     
     let delegate: InfiniteScrollDelegate
@@ -29,7 +35,7 @@ public struct InfiniteScrollModifier: ViewModifier {
             ScrollView {
                 VStack(spacing: 0) {
                     VStack {
-                        if bloc.isRefreshing {
+                        if refreshingChecked {
                             refreshProgressView()
                         }
                     }
@@ -42,7 +48,8 @@ public struct InfiniteScrollModifier: ViewModifier {
                             )
                     })
                     .onPreferenceChange(PullToRefreshKey.self) {
-                        if $0 > screenTopEdge && bloc.canRefresh {
+                        if !refreshingChecked && prevOffset > $0 && $0 > screenTopEdge && bloc.canRefresh {
+                            refreshingChecked = true
                             guard let pullToRefresh = delegate.pullToRefresh else {
                                 return
                             }
@@ -51,6 +58,10 @@ public struct InfiniteScrollModifier: ViewModifier {
                                 await pullToRefresh()
                                 bloc.setIdle()
                             }
+                        }
+                        prevOffset = $0
+                        if $0 == 0 {
+                            refreshingChecked = false
                         }
                     }
                     
