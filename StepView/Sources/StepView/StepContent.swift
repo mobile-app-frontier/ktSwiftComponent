@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-
+/// 스탭의 내부 컨텐츠 항목
 public struct StepContent<T>: Identifiable {
     public let step: T
     
@@ -23,7 +23,7 @@ public struct StepContent<T>: Identifiable {
     }
 }
 
-////MARK: - equatable
+//MARK: - equatable
 extension StepContent: Equatable {
     public static func == (lhs: StepContent, rhs: StepContent) -> Bool {
         return lhs.id == rhs.id

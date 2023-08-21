@@ -17,7 +17,10 @@ public struct StepView<T> {
     var controller: StepController<T>
     
     let useAnimation: Bool
-    
+    ///
+    /// - Parameters:
+    ///  - controller: Step Controller
+    ///  - useAnimation: content변경시 animation을 사용할 지 말 지 에 대한 요소
     public init(controller: StepController<T>, useAnimation: Bool = true) {
         self.controller = controller
         self.currentIndex = controller.index
