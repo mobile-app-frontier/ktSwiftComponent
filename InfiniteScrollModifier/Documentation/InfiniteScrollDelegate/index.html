@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfiniteScrollModifier - InfiniteScrollDelegate</title>
+    <link rel="stylesheet" type="text/css" href="/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="/">
+            <strong>
+                InfiniteScrollModifier
+            </strong>
+            <span>Documentation</span>
+        </a>
+    </header>
+
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
+
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol><li><a href="#initializers">Initializers</a><ul><li class="initializer"><a href="#infinitescrolldelegate.init(pulltorefresh:fetchmore:refreshprogressview:infiniteprogressview:)">init(pull​ToRefresh:​fetch​More:​refresh​Progress​View:​infinite​Progress​View:​)</a></li></ul></li></ol>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+            <h1>
+    <small>Structure</small>
+    <code class="name">Infinite​Scroll​Delegate</code>
+</h1>
+
+<div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">struct</span> <span class="type">InfiniteScrollDelegate</span>  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>InfiniteScrollModifier 생성 시에 속성을 정의합니다.</p>
+
+</div>
+
+    <section id="initializers">
+        <h2>Initializers</h2>
+
+        <div role="article" class="initializer" id="infinitescrolldelegate.init(pulltorefresh:fetchmore:refreshprogressview:infiniteprogressview:)">
+    <h3>
+        <code><a href="#infinitescrolldelegate.init(pulltorefresh:fetchmore:refreshprogressview:infiniteprogressview:)">init(pull​ToRefresh:​fetch​More:​refresh​Progress​View:​infinite​Progress​View:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">init</span>(
+        <span class="variable">pullToRefresh</span>: ( () <span class="type">async</span>-&gt; <span class="type">Void</span>)? = <span class="keyword">nil</span>,
+        <span class="variable">fetchMore</span>: ( () <span class="type">async</span>-&gt; <span class="type">Void</span>)? = <span class="keyword">nil</span>,
+        <span class="variable">refreshProgressView</span>: (() -&gt; <span class="type">any</span> <span class="type">View</span>)? = <span class="keyword">nil</span>,
+        <span class="variable">infiniteProgressView</span>: (() -&gt; <span class="type">any</span> <span class="type">View</span>)? = <span class="keyword">nil</span>
+    )  </body></html></code></pre>
+</div>
+</div>
+    </section>
+
+
+
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2023-08-21T10:36:36+0900">August 21, 2023</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-rc.1</span>.
+</p>
+    </footer>
+</body>
+</html>

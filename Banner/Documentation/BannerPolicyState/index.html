@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banner - BannerPolicyState</title>
+    <link rel="stylesheet" type="text/css" href="/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="/">
+            <strong>
+                Banner
+            </strong>
+            <span>Documentation</span>
+        </a>
+    </header>
+
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
+
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol><li><a href="#enumeration cases">Enumeration Cases</a><ul><li class="case"><a href="#bannerpolicystate.initial">initial</a></li><li class="case"><a href="#bannerpolicystate.fetched">fetched</a></li><li class="case"><a href="#bannerpolicystate.success">success</a></li><li class="case"><a href="#bannerpolicystate.fail">fail</a></li></ul></li><li><a href="#properties">Properties</a><ul><li class="variable"><a href="#bannerpolicystate.willshowbanner">will​Show​Banner</a></li></ul></li></ol>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+            <h1>
+    <small>Enumeration</small>
+    <code class="name">Banner​Policy​State</code>
+</h1>
+
+<div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">enum</span> <span class="type">BannerPolicyState</span>  </body></html></code></pre>
+</div>
+
+    <section id="enumeration cases">
+        <h2>Enumeration Cases</h2>
+
+        <div role="article" class="case" id="bannerpolicystate.initial">
+    <h3>
+        <code><a href="#bannerpolicystate.initial">initial</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">case</span> <span class="variable">initial</span></body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p><code>initial</code>: 초기 상태</p>
+
+</div>
+</div>
+<div role="article" class="case" id="bannerpolicystate.fetched">
+    <h3>
+        <code><a href="#bannerpolicystate.fetched">fetched</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">case</span> <span class="variable">fetched</span>(<span class="variable">remoteBanner</span>: <a href="/BannerPolicy"><span class="type">BannerPolicy</span></a>, <span class="variable">localBanner</span>: <span class="type">LocalBannerPolicy</span>) </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p><code>fetched</code>: remoteBannerPolicy 와 localBannerPolicy 를 fetch 완료한 상태.</p>
+
+</div>
+</div>
+<div role="article" class="case" id="bannerpolicystate.success">
+    <h3>
+        <code><a href="#bannerpolicystate.success">success</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">case</span> <span class="variable">success</span>(<span class="variable">willShowBanner</span>: <a href="/BannerPolicy"><span class="type">BannerPolicy</span></a>) </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p><code>success</code>: remoteBannerPolicy 와 localBannerPolicy 를 비교하여 보여줄 배너를 filtering 완료한 상태.</p>
+
+</div>
+</div>
+<div role="article" class="case" id="bannerpolicystate.fail">
+    <h3>
+        <code><a href="#bannerpolicystate.fail">fail</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">case</span> <span class="variable">fail</span>(<span class="type">Error</span>) </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p><code>fail</code>: errpr 가 발생하여 fail 한 상태.</p>
+
+</div>
+</div>
+    </section>
+    <section id="properties">
+        <h2>Properties</h2>
+
+        <div role="article" class="variable" id="bannerpolicystate.willshowbanner">
+    <h3>
+        <code><a href="#bannerpolicystate.willshowbanner">will​Show​Banner</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">var</span> <span class="variable">willShowBanner</span>: <a href="/BannerPolicy"><span class="type">BannerPolicy</span></a>?  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p><code>success</code> 상태에서만 willShowBanner return. 이외의 상태에서는 nil 을 return.</p>
+
+</div>
+</div>
+    </section>
+
+
+
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2023-08-21T10:36:36+0900">August 21, 2023</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-rc.1</span>.
+</p>
+    </footer>
+</body>
+</html>

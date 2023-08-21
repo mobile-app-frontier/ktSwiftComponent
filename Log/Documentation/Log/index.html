@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log - Log</title>
+    <link rel="stylesheet" type="text/css" href="/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="/">
+            <strong>
+                Log
+            </strong>
+            <span>Documentation</span>
+        </a>
+    </header>
+
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
+
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol><li><a href="#methods">Methods</a><ul><li class="function"><a href="#log.initialize(option:)">initialize(option:​)</a></li><li class="function"><a href="#log.log(_:level:file:_:_:customfilter:)">log(_:​level:​file:​_:​_:​custom​Filter:​)</a></li><li class="function"><a href="#log.i(_:file:_:_:customfilter:)">i(_:​file:​_:​_:​custom​Filter:​)</a></li><li class="function"><a href="#log.d(_:file:_:_:customfilter:)">d(_:​file:​_:​_:​custom​Filter:​)</a></li><li class="function"><a href="#log.e(_:file:_:_:customfilter:)">e(_:​file:​_:​_:​custom​Filter:​)</a></li></ul></li></ol>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+            <h1>
+    <small>Class</small>
+    <code class="name">Log</code>
+</h1>
+
+<div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">class</span> <span class="type">Log</span>  </body></html></code></pre>
+</div>
+
+    <section id="methods">
+        <h2>Methods</h2>
+
+        <div role="article" class="function" id="log.initialize(option:)">
+    <h3>
+        <code><a href="#log.initialize(option:)">initialize(option:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">initialize</span>(<span class="variable">option</span>: <a href="/LogFilter"><span class="type">LogFilter</span></a>)  </body></html></code></pre>
+</div>
+</div>
+<div role="article" class="function" id="log.log(_:level:file:_:_:customfilter:)">
+    <h3>
+        <code><a href="#log.log(_:level:file:_:_:customfilter:)">log(_:​level:​file:​_:​_:​custom​Filter:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">log</span>&lt;<span class="variable">T</span>&gt;(
+        <span class="keyword">_</span> <span class="variable">message</span>: <span class="type">T</span>,
+        <span class="variable">level</span>: <a href="/LogLevel"><span class="type">LogLevel</span></a>,
+        <span class="variable">file</span>: <span class="type">String</span> = <span class="keyword">#file</span>,
+        <span class="keyword">_</span> <span class="variable">line</span>: <span class="type">Int</span> = <span class="keyword">#line</span>,
+        <span class="keyword">_</span> <span class="variable">funcname</span>: <span class="type">String</span> = <span class="keyword">#function</span>,
+        <span class="variable">customFilter</span>: <a href="/LogFilter"><span class="type">LogFilter</span></a>? = <span class="keyword">nil</span>
+    )  </body></html></code></pre>
+</div>
+</div>
+<div role="article" class="function" id="log.i(_:file:_:_:customfilter:)">
+    <h3>
+        <code><a href="#log.i(_:file:_:_:customfilter:)">i(_:​file:​_:​_:​custom​Filter:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">i</span>&lt;<span class="variable">T</span>&gt;(
+        <span class="keyword">_</span> <span class="variable">message</span>: <span class="type">T</span>,
+        <span class="variable">file</span>: <span class="type">String</span> = <span class="keyword">#file</span>,
+        <span class="keyword">_</span> <span class="variable">line</span>: <span class="type">Int</span> = <span class="keyword">#line</span>,
+        <span class="keyword">_</span> <span class="variable">funcname</span>: <span class="type">String</span> = <span class="keyword">#function</span>,
+        <span class="variable">customFilter</span>: <a href="/LogFilter"><span class="type">LogFilter</span></a>? = <span class="keyword">nil</span>
+    )  </body></html></code></pre>
+</div>
+</div>
+<div role="article" class="function" id="log.d(_:file:_:_:customfilter:)">
+    <h3>
+        <code><a href="#log.d(_:file:_:_:customfilter:)">d(_:​file:​_:​_:​custom​Filter:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">d</span>&lt;<span class="variable">T</span>&gt;(
+        <span class="keyword">_</span> <span class="variable">message</span>: <span class="type">T</span>,
+        <span class="variable">file</span>: <span class="type">String</span> = <span class="keyword">#file</span>,
+        <span class="keyword">_</span> <span class="variable">line</span>: <span class="type">Int</span> = <span class="keyword">#line</span>,
+        <span class="keyword">_</span> <span class="variable">funcname</span>: <span class="type">String</span> = <span class="keyword">#function</span>,
+        <span class="variable">customFilter</span>: <a href="/LogFilter"><span class="type">LogFilter</span></a>? = <span class="keyword">nil</span>)  </body></html></code></pre>
+</div>
+</div>
+<div role="article" class="function" id="log.e(_:file:_:_:customfilter:)">
+    <h3>
+        <code><a href="#log.e(_:file:_:_:customfilter:)">e(_:​file:​_:​_:​custom​Filter:​)</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">e</span>&lt;<span class="variable">T</span>&gt;(
+        <span class="keyword">_</span> <span class="variable">message</span>: <span class="type">T</span>,
+        <span class="variable">file</span>: <span class="type">String</span> = <span class="keyword">#file</span>,
+        <span class="keyword">_</span> <span class="variable">line</span>: <span class="type">Int</span> = <span class="keyword">#line</span>,
+        <span class="keyword">_</span> <span class="variable">funcname</span>: <span class="type">String</span> = <span class="keyword">#function</span>,
+        <span class="variable">customFilter</span>: <a href="/LogFilter"><span class="type">LogFilter</span></a>? = <span class="keyword">nil</span>)  </body></html></code></pre>
+</div>
+</div>
+    </section>
+
+
+
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2023-08-21T10:36:37+0900">August 21, 2023</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-rc.1</span>.
+</p>
+    </footer>
+</body>
+</html>

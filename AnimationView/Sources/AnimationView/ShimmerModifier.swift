@@ -80,36 +80,3 @@ public struct ShimmerModifier: ViewModifier {
     }
 }
 
-public extension View {
-    /// Adds an animated shimmering effect to any view, typically to show that
-    /// an operation is in progress.
-    /// - Parameters:
-    ///   - active: Convenience parameter to conditionally enable the effect. Defaults to `true`.
-    ///   - duration: The duration of a shimmer cycle in seconds. Default: `1.5`.
-    ///   - bounce: Whether to bounce (reverse) the animation back and forth. Defaults to `false`.
-    ///   - delay:A delay in seconds. Defaults to `0`.
-    @ViewBuilder func shimmering(
-        active: Bool = true, duration: Double = 1.5, bounce: Bool = false, delay: Double = 0
-    ) -> some View {
-        if active {
-            modifier(ShimmerModifier(duration: duration, bounce: bounce, delay: delay))
-        } else {
-            self
-        }
-    }
-
-    /// Adds an animated shimmering effect to any view, typically to show that
-    /// an operation is in progress.
-    /// - Parameters:
-    ///   - active: Convenience parameter to conditionally enable the effect. Defaults to `true`.
-    ///   - animation: A custom animation. The default animation is
-    ///   `.linear(duration: 1.5).repeatForever(autoreverses: false)`.
-    @ViewBuilder func shimmering(active: Bool = true, animation: Animation = ShimmerModifier.defaultAnimation) -> some View {
-        if active {
-            modifier(ShimmerModifier(animation: animation))
-        } else {
-            self
-        }
-    }
-}
-
