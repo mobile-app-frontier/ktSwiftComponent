@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NavRouter - NavRouterAction</title>
+    <link rel="stylesheet" type="text/css" href="/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="/">
+            <strong>
+                NavRouter
+            </strong>
+            <span>Documentation</span>
+        </a>
+    </header>
+
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
+
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol><li><a href="#enumeration cases">Enumeration Cases</a><ul><li class="case"><a href="#navrouteraction.start">start</a></li><li class="case"><a href="#navrouteraction.pushroute">push​Route</a></li><li class="case"><a href="#navrouteraction.poproute">pop​Route</a></li><li class="case"><a href="#navrouteraction.poptoroot">pop​ToRoot</a></li><li class="case"><a href="#navrouteraction.poptoview">pop​ToView</a></li><li class="case"><a href="#navrouteraction.presentroutemodal">present​Route​Modal</a></li><li class="case"><a href="#navrouteraction.presentroutesheet">present​Route​Sheet</a></li><li class="case"><a href="#navrouteraction.dimissroute">dimiss​Route</a></li><li class="case"><a href="#navrouteraction.replaceroute">replace​Route</a></li></ul></li></ol>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+            <h1>
+    <small>Enumeration</small>
+    <code class="name">Nav​Router​Action</code>
+</h1>
+
+<div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">enum</span> <span class="type">NavRouterAction</span></body></html></code></pre>
+</div>
+
+    <section id="enumeration cases">
+        <h2>Enumeration Cases</h2>
+
+        <div role="article" class="case" id="navrouteraction.start">
+    <h3>
+        <code><a href="#navrouteraction.start">start</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">case</span> <span class="variable">start</span></body></html></code></pre>
+</div>
+</div>
+<div role="article" class="case" id="navrouteraction.pushroute">
+    <h3>
+        <code><a href="#navrouteraction.pushroute">push​Route</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">case</span> <span class="variable">pushRoute</span>(<span class="variable">pushedRoute</span>: <span class="type">any</span> <a href="/NavRoute"><span class="type">NavRoute</span></a>) </body></html></code></pre>
+</div>
+</div>
+<div role="article" class="case" id="navrouteraction.poproute">
+    <h3>
+        <code><a href="#navrouteraction.poproute">pop​Route</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">case</span> <span class="variable">popRoute</span></body></html></code></pre>
+</div>
+</div>
+<div role="article" class="case" id="navrouteraction.poptoroot">
+    <h3>
+        <code><a href="#navrouteraction.poptoroot">pop​ToRoot</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">case</span> <span class="variable">popToRoot</span></body></html></code></pre>
+</div>
+</div>
+<div role="article" class="case" id="navrouteraction.poptoview">
+    <h3>
+        <code><a href="#navrouteraction.poptoview">pop​ToView</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">case</span> <span class="variable">popToView</span>(<span class="variable">restorationIdentifier</span>: <span class="type">String</span>) </body></html></code></pre>
+</div>
+</div>
+<div role="article" class="case" id="navrouteraction.presentroutemodal">
+    <h3>
+        <code><a href="#navrouteraction.presentroutemodal">present​Route​Modal</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">case</span> <span class="variable">presentRouteModal</span>(<span class="variable">presentedRoute</span>: <span class="type">any</span> <a href="/NavRoute"><span class="type">NavRoute</span></a>) </body></html></code></pre>
+</div>
+</div>
+<div role="article" class="case" id="navrouteraction.presentroutesheet">
+    <h3>
+        <code><a href="#navrouteraction.presentroutesheet">present​Route​Sheet</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">case</span> <span class="variable">presentRouteSheet</span>(<span class="variable">presentedRoute</span>: <span class="type">any</span> <a href="/NavRoute"><span class="type">NavRoute</span></a>) </body></html></code></pre>
+</div>
+</div>
+<div role="article" class="case" id="navrouteraction.dimissroute">
+    <h3>
+        <code><a href="#navrouteraction.dimissroute">dimiss​Route</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">case</span> <span class="variable">dimissRoute</span></body></html></code></pre>
+</div>
+</div>
+<div role="article" class="case" id="navrouteraction.replaceroute">
+    <h3>
+        <code><a href="#navrouteraction.replaceroute">replace​Route</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">case</span> <span class="variable">replaceRoute</span>(<span class="variable">replaced</span>: <span class="type">any</span> <a href="/NavRoute"><span class="type">NavRoute</span></a>) </body></html></code></pre>
+</div>
+</div>
+    </section>
+
+
+
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2023-08-21T10:09:14+0900">August 21, 2023</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-rc.1</span>.
+</p>
+    </footer>
+</body>
+</html>

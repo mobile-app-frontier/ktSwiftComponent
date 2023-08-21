@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModalManager - ModalPresentableState</title>
+    <link rel="stylesheet" type="text/css" href="/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="/">
+            <strong>
+                ModalManager
+            </strong>
+            <span>Documentation</span>
+        </a>
+    </header>
+
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
+
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol><li><a href="#enumeration cases">Enumeration Cases</a><ul><li class="case"><a href="#modalpresentablestate.initstate">init​State</a></li><li class="case"><a href="#modalpresentablestate.onpresent">on​Present</a></li><li class="case"><a href="#modalpresentablestate.ondismiss">on​Dismiss</a></li></ul></li></ol>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+            <h1>
+    <small>Enumeration</small>
+    <code class="name">Modal​Presentable​State</code>
+</h1>
+
+<div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">enum</span> <span class="type">ModalPresentableState</span>  </body></html></code></pre>
+</div>
+
+    <section id="enumeration cases">
+        <h2>Enumeration Cases</h2>
+
+        <div role="article" class="case" id="modalpresentablestate.initstate">
+    <h3>
+        <code><a href="#modalpresentablestate.initstate">init​State</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">case</span> <span class="variable">initState</span></body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>present / dismiss 작업을 수행하지 않는 상태</p>
+
+</div>
+</div>
+<div role="article" class="case" id="modalpresentablestate.onpresent">
+    <h3>
+        <code><a href="#modalpresentablestate.onpresent">on​Present</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">case</span> <span class="variable">onPresent</span></body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>someController.present 호출되어 작업이 수행되고 있는 상태</p>
+
+</div>
+</div>
+<div role="article" class="case" id="modalpresentablestate.ondismiss">
+    <h3>
+        <code><a href="#modalpresentablestate.ondismiss">on​Dismiss</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">case</span> <span class="variable">onDismiss</span></body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>someController.dismiss 호출되어 작업이 수행되고 있는 상태</p>
+
+</div>
+</div>
+    </section>
+
+
+
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2023-08-21T10:09:13+0900">August 21, 2023</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-rc.1</span>.
+</p>
+    </footer>
+</body>
+</html>
