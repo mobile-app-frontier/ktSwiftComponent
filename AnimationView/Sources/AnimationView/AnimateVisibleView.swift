@@ -7,18 +7,7 @@
 
 import SwiftUI
 
-
-public extension View {
-    @ViewBuilder
-    func animateVisible(visible: Bool) -> some View {
-        AnimateVisibleView(content: {
-            self
-        }, visible: visible)
-    }
-}
-
-
-public struct AnimateVisibleView<Content: View> {
+internal struct AnimateVisibleView<Content: View> {
     
     /// visible == true시 나오는.view
     @ViewBuilder
@@ -35,7 +24,7 @@ public struct AnimateVisibleView<Content: View> {
     public init(content: @escaping () -> Content, visible: Bool) {
         self.content = content
         self.visible = visible
-        self.showContent = false
+        self.showContent = visible
     }
     
 }
