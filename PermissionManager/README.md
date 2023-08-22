@@ -63,7 +63,7 @@ struct ContentView: View {
 
 - [PermissionManager](#PermissionManager)
 - Models
-> ** NOTE:_ **
+> **NOTE:_**
  * [PermissionCondition](#PermissionCondition)
  * [PermissionType](#PermissionType)
  * [PMPermissionCheck](#PMPermissionCheck)
