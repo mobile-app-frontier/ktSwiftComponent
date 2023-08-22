@@ -170,45 +170,31 @@ StepView의 어떤 Content 를 노출 시킬지 제어 하는 class
  
 init(contents: [StepContent<T>], initialIndex: Int, config: StepControllerOptions = StepControllerOptions.defaultOption )
 
-*
-StepControllerOptions: StepController의 옵션으로 내부 동작을 정의해 줄 수 있다
-제공 기능
-cycleBehavior: 끝에 도달했을 시 자동으로 처음으로 인덱스를 변경해주는 기능.
-*
+> **NOTE:** \
+ StepControllerOptions: StepController의 옵션으로 내부 동작을 정의해 줄 수 있다 \
+ > > cycleBehavior: 끝에 도달했을 시 자동으로 처음으로 인덱스를 변경해주는 기능. 
+
 
 #### functions
 
-- getContentIndex(content: StepContent<T>): Int?
-descrption
-특정 StepContent의 index를 return하는 function
+| function name | parameters | return | description |
+| :--- | :--- | :--- | :--- |
+| getContentIndex | StepContent<T> | Int? | 특정 StepContent의 index를 return하는 function (리스트에 없을시 nil을 리턴한다)|
+| appendContent | StepContent<T> | void | 초기화에 설정된 StepContent가 아닌 신규 StepContent를 추가 하는 기능으로, 추가시 맨 마지막에 추가가 된다. |
+| nextContent | | void | 이전 Content 노출 |
+| prevContent | | void | 다음 Content 노출 |
 
-param: 
-- content: 조회할 content의 index
-return: content의 index (list에 content가 없다면, nil을 return)
-
-- appendContent(content: StepContent<T>)
-descrption
-초기화에 설정된 StepContent가 아닌 신규 StepContent를 추가 하는 기능으로, 추가시 맨 마지막에 추가가 된다.
-
-param: 
-- content: 신규로 추가 할 StepContent
-
-- nextContent()
-descrption
-이전 Content 노출
-
-- prevContent()
-descrption
-다음 Content 노출
 
 ### StepViewState
 
-StepView 의 상태로
-start : 시작상태
-inprogress: 동작중인 상태
-complete: 마지막 content 에서 다음 Content로 이동 요청시
-exit : 처음 Content에서 이전 content로 이동 요청시
+| state name | description |
+| :--- | :--- |
+| start | 시작상태 |
+| inprogress | 동작중인 상태 |
+| complete | 마지막 content 에서 다음 Content로 이동 요청시 |
+| exit | 처음 Content에서 이전 content로 이동 요청시 |
 
 
 ### StepContent
+
 StepView에서 Content의 구분을 위한 객체

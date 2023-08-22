@@ -5,13 +5,14 @@
 - [plist 설정](#plist_설정)
 - [Example](#Example)
 - [구성](#구성)
-
  
 ## plist 설정
 
 앱에서 특정 권한에 대한 요청 및 제어를 위해서는 plist에 해당 권한에 대한 설명을 명시해야 한다.
-> **NOTE:_** 
-project > target > build settings > info.plist values에 해당 권한 사용에 대한 설명을 명시 해야 함.
+> **NOTE:** \
+ project > target > build settings > info.plist values \
+ 에 해당 권한 사용에 대한 설명을 명시 해야 함.
+
 
 | permission | key |
 | :--- | :--- |
@@ -63,10 +64,10 @@ struct ContentView: View {
 
 - [PermissionManager](#PermissionManager)
 - Models
- - [PermissionCondition](#PermissionCondition)
- - [PermissionType](#PermissionType)
- - [PMPermissionCheck](#PMPermissionCheck)
- - [PMPermissionRequest](#PMPermissionRequest)
+    - [PermissionCondition](#PermissionCondition)
+    - [PermissionType](#PermissionType)
+    - [PMPermissionCheck](#PMPermissionCheck)
+    - [PMPermissionRequest](#PMPermissionRequest)
 
 ### PermissionManager
 
@@ -134,6 +135,7 @@ notSupport 의 경우 해당 권한을 요청 할 수 있없는 상태 인경우
 
 > **NOTE:_**  
  PHPhotoLibraryRequest :  addOnly, readWrite 를 지원하고, 읽기 전용인지 읽고쓰기 전용인지에 대한 권한이다.
- os14 부터는 해당 옵션을 명시 해야 한다. 
- UNAuthorizationOptions : notification에 대한 옵션으로 badge, sound, alarm등을 포함할 수 있다. [AppleDocument](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions)
- 
+ os14 부터는 해당 옵션이 동작하며, default는 readOnly로 설정된다. 
+ > 
+ > UNAuthorizationOptions : notification에 대한 옵션으로 badge, sound, alarm등을 포함할 수 있다. \
+ > [AppleDocument](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions)
