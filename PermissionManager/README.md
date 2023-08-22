@@ -35,7 +35,8 @@
  - undetermined: 아직 권한이 사용자로부터 노출되지 않은 상태
  - notSupport(reason:String?): 지원을 하지 않는 권한인 경우에 대한 상태
  
-> **NOTE:_** notSupport 의 경우 해당 권한을 요청 할 수 있없는 상태 인경우에 해당한다.  
+> **NOTE:_** 
+notSupport 의 경우 해당 권한을 요청 할 수 있없는 상태 인경우에 해당한다.  
 
 #### PermissionType
 
@@ -63,8 +64,6 @@
 | contact | 연락처 | 
 
 
-
-
 #### PMPermissionRequest
 
 | type | description |
@@ -85,7 +84,8 @@
 ## plist 설정
 
 앱에서 특정 권한에 대한 요청 및 제어를 위해서는 plist에 해당 권한에 대한 설명을 명시해야 한다.
-> **NOTE:_** project > target > build settings > info.plist values에 해당 권한 사용에 대한 설명을 명시 해야 함.
+> **NOTE:_** 
+project > target > build settings > info.plist values에 해당 권한 사용에 대한 설명을 명시 해야 함.
 
 | permission | key |
 | :--- | :--- |
@@ -105,5 +105,29 @@ project > target > capability > +capability > push notificaion 추가
 
 ``` Swift
 
+import SwiftUI
+import PermissionManager
+
+struct ContentView: View {
+    var body: some View {
+        VStack {
+            Button {
+                Task {
+                    let result = await PermissionManager.instance.currentPermissionCondition(.camera)
+                }
+            } label: {
+                Text("CheckPermission")
+            }
+            
+            Button {
+                Task {
+                    await PermissionManager.instance.requestPermission(.camera)
+                }
+            } label: {
+                Text("RequestPermission")
+            }
+        }
+    }
+}
 
 ```

@@ -32,7 +32,7 @@ let package = Package(
                 .portraitUpsideDown(.when(deviceFamilies: [.pad]))
             ],
             capabilities: [
-                .camera(purposeString: "Unknown Usage Description")
+                .camera(purposeString: "앱에서 카메라에 대한 권한을 요청 합니다.")
             ]
         )
     ],
