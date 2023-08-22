@@ -1,7 +1,7 @@
 <details>
 <summary>Types</summary>
 
-  - [ShimmerModifier](/Documentation/AnimationView/ShimmerModifier)
+  - [ShimmerModifier](./ShimmerModifier.md)
 
 </details>
 

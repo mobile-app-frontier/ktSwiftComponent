@@ -40,7 +40,7 @@ camera
 case camera
 ```
 
-### `alwaysLocation`
+### `whenInUseLocation`
 
 location
 
@@ -48,7 +48,7 @@ location
 case alwaysLocation, whenInUseLocation
 ```
 
-### `whenInUseLocation`
+### `alwaysLocation`
 
 location
 
