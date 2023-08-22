@@ -61,13 +61,13 @@ struct ContentView: View {
 
 ## 구성
 
-- PermissionManager
+- [PermissionManager](#PermissionManager)
 - Models
 > ** NOTE:_ **
- 2.1 PermissionCondition
- 2.2 PermissionType
- 2.3 PMPermissionCheck
- 2.4 PMPermissionRequest
+ * [PermissionCondition](#PermissionCondition)
+ * [PermissionType](#PermissionType)
+ * [PMPermissionCheck](#PMPermissionCheck)
+ * [PMPermissionRequest](#PMPermissionRequest)
 
 ### PermissionManager
 
@@ -86,7 +86,7 @@ struct ContentView: View {
 - PermissionCondition
 특정 권한에 대한 앱의 상태
 
-#### category
+#### PermissionCondition
  - granted(PermissionType): 권한이 승인 된 상태
  - denied: 권한이 거절된 상태 
  - undetermined: 아직 권한이 사용자로부터 노출되지 않은 상태
