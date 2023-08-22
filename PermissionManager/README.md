@@ -2,9 +2,9 @@
 
 앱에서 runtime에 필요한 권한을 확인 및 요청 할 수 있는 컴포넌트
 
-- [plist 설정](#Plist)
-- [Example](#Example Code)
-- [구성](#structure)
+- [plist 설정](#plist_설정)
+- [Example](#Example)
+- [구성](#구성)
 
  
 ## plist 설정
