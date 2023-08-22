@@ -1,6 +1,6 @@
 # Types
 
-  - [Log](/Documentation/Log/Log)
-  - [LogLevel](/Documentation/Log/LogLevel)
-  - [LogFilter](/Documentation/Log/LogFilter):
+  - [Log](/Documentation/Log/Log.md)
+  - [LogLevel](/Documentation/Log/LogLevel.md)
+  - [LogFilter](/Documentation/Log/LogFilter.md):
     Log Filter

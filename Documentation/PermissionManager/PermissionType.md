@@ -40,14 +40,6 @@ camera
 case camera
 ```
 
-### `whenInUseLocation`
-
-location
-
-``` swift
-case alwaysLocation, whenInUseLocation
-```
-
 ### `alwaysLocation`
 
 location
@@ -56,7 +48,15 @@ location
 case alwaysLocation, whenInUseLocation
 ```
 
-### `photoLibrary`
+### `whenInUseLocation`
+
+location
+
+``` swift
+case alwaysLocation, whenInUseLocation
+```
+
+### `photoLibraryLimited`
 
 photo
 
@@ -64,7 +64,7 @@ photo
 case photoLibrary, photoLibraryLimited
 ```
 
-### `photoLibraryLimited`
+### `photoLibrary`
 
 photo
 

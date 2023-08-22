@@ -1,21 +1,21 @@
 # Types
 
-  - [ModalManager](/Documentation/ModalManager/ModalManager)
-  - [ModalController](/Documentation/ModalManager/ModalController)
-  - [StackOrder](/Documentation/ModalManager/StackOrder)
-  - [ModalPresentableState](/Documentation/ModalManager/ModalPresentableState)
-  - [ModalOrderPriority](/Documentation/ModalManager/ModalOrderPriority)
-  - [ModalOrderOptions](/Documentation/ModalManager/ModalOrderOptions):
+  - [ModalManager](/Documentation/ModalManager/ModalManager.md)
+  - [ModalController](/Documentation/ModalManager/ModalController.md)
+  - [StackOrder](/Documentation/ModalManager/StackOrder.md)
+  - [ModalPresentableState](/Documentation/ModalManager/ModalPresentableState.md)
+  - [ModalOrderPriority](/Documentation/ModalManager/ModalOrderPriority.md)
+  - [ModalOrderOptions](/Documentation/ModalManager/ModalOrderOptions.md):
     TODO
-  - [DefaultModalStyle](/Documentation/ModalManager/DefaultModalStyle)
-  - [ResizableModalWindowStyle](/Documentation/ModalManager/ResizableModalWindowStyle)
+  - [DefaultModalStyle](/Documentation/ModalManager/DefaultModalStyle.md)
+  - [ResizableModalWindowStyle](/Documentation/ModalManager/ResizableModalWindowStyle.md)
 
 # Protocols
 
-  - [ModalOrder](/Documentation/ModalManager/ModalOrder)
-  - [ModalStyle](/Documentation/ModalManager/ModalStyle)
-  - [ModalWindowStyle](/Documentation/ModalManager/ModalWindowStyle)
+  - [ModalOrder](/Documentation/ModalManager/ModalOrder.md)
+  - [ModalStyle](/Documentation/ModalManager/ModalStyle.md)
+  - [ModalWindowStyle](/Documentation/ModalManager/ModalWindowStyle.md)
 
 # Global Variables
 
-  - [body](/Documentation/ModalManager/body)
+  - [body](/Documentation/ModalManager/body.md)

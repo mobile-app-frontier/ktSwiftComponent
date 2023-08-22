@@ -1,56 +1,56 @@
 <details>
 <summary>Types</summary>
 
-  - [Banner](/Documentation/Banner/Banner)
-  - [BannerCloseType](/Documentation/Banner/BannerCloseType)
-  - [BannerLandingType](/Documentation/Banner/BannerLandingType)
-  - [BannerPolicy](/Documentation/Banner/BannerPolicy)
-  - [BannerPolicyItemModel](/Documentation/Banner/BannerPolicyItemModel)
-  - [BannerPolicyItemModel.CodingKeys](/Documentation/Banner/BannerPolicyItemModel.CodingKeys)
-  - [BannerPolicyState](/Documentation/Banner/BannerPolicyState)
-  - [DefaultBannerPolicyItem](/Documentation/Banner/DefaultBannerPolicyItem)
-  - [DefaultBannerPolicyItem.Content](/Documentation/Banner/DefaultBannerPolicyItem.Content)
-  - [DefaultBannerView](/Documentation/Banner/DefaultBannerView)
-  - [Heap](/Documentation/Banner/Heap)
-  - [PopupBannerPolicyItem](/Documentation/Banner/PopupBannerPolicyItem)
-  - [PopupBannerPolicyItem.Content](/Documentation/Banner/PopupBannerPolicyItem.Content)
-  - [PopupBannerView](/Documentation/Banner/PopupBannerView)
-  - [PriorityQueue](/Documentation/Banner/PriorityQueue)
+  - [Banner](/Documentation/Banner/Banner.md)
+  - [BannerCloseType](/Documentation/Banner/BannerCloseType.md)
+  - [BannerLandingType](/Documentation/Banner/BannerLandingType.md)
+  - [BannerPolicy](/Documentation/Banner/BannerPolicy.md)
+  - [BannerPolicyItemModel](/Documentation/Banner/BannerPolicyItemModel.md)
+  - [BannerPolicyItemModel.CodingKeys](/Documentation/Banner/BannerPolicyItemModel.CodingKeys.md)
+  - [BannerPolicyState](/Documentation/Banner/BannerPolicyState.md)
+  - [DefaultBannerPolicyItem](/Documentation/Banner/DefaultBannerPolicyItem.md)
+  - [DefaultBannerPolicyItem.Content](/Documentation/Banner/DefaultBannerPolicyItem.Content.md)
+  - [DefaultBannerView](/Documentation/Banner/DefaultBannerView.md)
+  - [Heap](/Documentation/Banner/Heap.md)
+  - [PopupBannerPolicyItem](/Documentation/Banner/PopupBannerPolicyItem.md)
+  - [PopupBannerPolicyItem.Content](/Documentation/Banner/PopupBannerPolicyItem.Content.md)
+  - [PopupBannerView](/Documentation/Banner/PopupBannerView.md)
+  - [PriorityQueue](/Documentation/Banner/PriorityQueue.md)
 
 </details>
 
 <details>
 <summary>Global Typealiases</summary>
 
-  - [DefaultBannerPolicy](/Documentation/Banner/DefaultBannerPolicy)
-  - [LocalBannerPolicy](/Documentation/Banner/LocalBannerPolicy)
-  - [PopupBannerPolicy](/Documentation/Banner/PopupBannerPolicy)
+  - [DefaultBannerPolicy](/Documentation/Banner/DefaultBannerPolicy.md)
+  - [LocalBannerPolicy](/Documentation/Banner/LocalBannerPolicy.md)
+  - [PopupBannerPolicy](/Documentation/Banner/PopupBannerPolicy.md)
 
 </details>
 
 <details>
 <summary>Global Variables</summary>
 
-  - [dataSource](/Documentation/Banner/dataSource)
-  - [instance](/Documentation/Banner/instance)
-  - [landingPublisher](/Documentation/Banner/landingPublisher)
-  - [state](/Documentation/Banner/state)
+  - [dataSource](/Documentation/Banner/dataSource.md)
+  - [instance](/Documentation/Banner/instance.md)
+  - [landingPublisher](/Documentation/Banner/landingPublisher.md)
+  - [state](/Documentation/Banner/state.md)
 
 </details>
 
 <details>
 <summary>Global Functions</summary>
 
-  - [buildDefaultBannerView(category:)](/Documentation/Banner/buildDefaultBannerView\(category_\))
-  - [fetch()](/Documentation/Banner/fetch\(\))
-  - [getBannerPolicy()](/Documentation/Banner/getBannerPolicy\(\))
-  - [start()](/Documentation/Banner/start\(\))
+  - [buildDefaultBannerView(category:)](/Documentation/Banner/buildDefaultBannerView\(category_\).md)
+  - [fetch()](/Documentation/Banner/fetch\(\).md)
+  - [getBannerPolicy()](/Documentation/Banner/getBannerPolicy\(\).md)
+  - [start()](/Documentation/Banner/start\(\).md)
 
 </details>
 
 <details>
 <summary>Extensions</summary>
 
-  - [PopupBannerPolicy](/Documentation/Banner/PopupBannerPolicy)
+  - [PopupBannerPolicy](/Documentation/Banner/PopupBannerPolicy.md)
 
 </details>

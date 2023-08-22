@@ -1,7 +1,7 @@
 # Types
 
-  - [NavRouterAction](/Documentation/NavRouter/NavRouterAction)
-  - [NavRoutePresentOptions](/Documentation/NavRouter/NavRoutePresentOptions):
+  - [NavRouterAction](/Documentation/NavRouter/NavRouterAction.md)
+  - [NavRoutePresentOptions](/Documentation/NavRouter/NavRoutePresentOptions.md):
     present option
     default color : black with alpha 0.2
     default transitionStyle : crossDissolve
@@ -9,5 +9,5 @@
 
 # Protocols
 
-  - [NavRoute](/Documentation/NavRouter/NavRoute)
-  - [NavRouter](/Documentation/NavRouter/NavRouter)
+  - [NavRoute](/Documentation/NavRouter/NavRoute.md)
+  - [NavRouter](/Documentation/NavRouter/NavRouter.md)
