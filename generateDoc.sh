@@ -8,7 +8,7 @@ for f in */;
     dir=$(echo $f | tr "/" "\n")
     echo "--------"
     echo "gen doc $dir"
-    swift doc generate ./$dir/Sources --module-name $dir --output ./$dir/Documentation --format html
+    swift doc generate ./$dir/Sources --module-name $dir --output ./Documentation/$dir --base-url ./ --format commonmark
     echo "--------"
  done
 
