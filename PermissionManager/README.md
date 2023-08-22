@@ -2,15 +2,72 @@
 
 앱에서 runtime에 필요한 권한을 확인 및 요청 할 수 있는 컴포넌트
 
+- [plist 설정](#Plist)
+- [Example](#Example Code)
+- [구성](#structure)
+
+ 
+## plist 설정
+
+앱에서 특정 권한에 대한 요청 및 제어를 위해서는 plist에 해당 권한에 대한 설명을 명시해야 한다.
+> **NOTE:_** 
+project > target > build settings > info.plist values에 해당 권한 사용에 대한 설명을 명시 해야 함.
+
+| permission | key |
+| :--- | :--- |
+| camera | INFOPLIST_KEY_NSCameraUsageDescription |
+| contact | INFOPLIST_KEY_NSContactsUsageDescription |
+| alwaysLocation | INFOPLIST_KEY_NSLocationAlwaysUsageDescription | 
+| whenInUseLocation | INFOPLIST_KEY_NSLocationWhenInUseUsageDescription |
+| mic | INFOPLIST_KEY_NSMicrophoneUsageDescription |
+| photoLibrary(addOnly) | INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription |
+| photoLibrary(readWrite) | INFOPLIST_KEY_NSPhotoLibraryUsageDescription |
+
+* notification 의 경우 plist.value에 설정을 추가 하는 방식이 아닌 capability에 추가 해야 한다.
+project > target > capability > +capability > push notificaion 추가
+* callKit 의 경우 app extension을 추가해야 함. [CallKit Doc](https://developer.apple.com/documentation/callkit/)
+
+## Example
+
+``` Swift
+
+import SwiftUI
+import PermissionManager
+
+struct ContentView: View {
+    var body: some View {
+        VStack {
+            Button {
+                Task {
+                    let result = await PermissionManager.instance.currentPermissionCondition(.camera)
+                }
+            } label: {
+                Text("CheckPermission")
+            }
+            
+            Button {
+                Task {
+                    await PermissionManager.instance.requestPermission(.camera)
+                }
+            } label: {
+                Text("RequestPermission")
+            }
+        }
+    }
+}
+
+```
+
 
 ## 구성
 
-1. PermissionManager
-2. PMModels
-    2.1 PermissionCondition
-    2.2 PermissionType
-    2.3 PMPermissionCheck
-    2.4 PMPermissionRequest
+- PermissionManager
+- Models
+> ** NOTE:_ **
+ 2.1 PermissionCondition
+ 2.2 PermissionType
+ 2.3 PMPermissionCheck
+ 2.4 PMPermissionRequest
 
 ### PermissionManager
 
@@ -81,53 +138,3 @@ notSupport 의 경우 해당 권한을 요청 할 수 있없는 상태 인경우
  os14 부터는 해당 옵션을 명시 해야 한다. 
  UNAuthorizationOptions : notification에 대한 옵션으로 badge, sound, alarm등을 포함할 수 있다. [AppleDocument](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions)
  
-## plist 설정
-
-앱에서 특정 권한에 대한 요청 및 제어를 위해서는 plist에 해당 권한에 대한 설명을 명시해야 한다.
-> **NOTE:_** 
-project > target > build settings > info.plist values에 해당 권한 사용에 대한 설명을 명시 해야 함.
-
-| permission | key |
-| :--- | :--- |
-| camera | INFOPLIST_KEY_NSCameraUsageDescription |
-| contact | INFOPLIST_KEY_NSContactsUsageDescription |
-| alwaysLocation | INFOPLIST_KEY_NSLocationAlwaysUsageDescription | 
-| whenInUseLocation | INFOPLIST_KEY_NSLocationWhenInUseUsageDescription |
-| mic | INFOPLIST_KEY_NSMicrophoneUsageDescription |
-| photoLibrary(addOnly) | INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription |
-| photoLibrary(readWrite) | INFOPLIST_KEY_NSPhotoLibraryUsageDescription |
-
-* notification 의 경우 plist.value에 설정을 추가 하는 방식이 아닌 capability에 추가 해야 한다.
-project > target > capability > +capability > push notificaion 추가
-* callKit 의 경우 app extension을 추가해야 함. [CallKit Doc](https://developer.apple.com/documentation/callkit/)
-
-## Example
-
-``` Swift
-
-import SwiftUI
-import PermissionManager
-
-struct ContentView: View {
-    var body: some View {
-        VStack {
-            Button {
-                Task {
-                    let result = await PermissionManager.instance.currentPermissionCondition(.camera)
-                }
-            } label: {
-                Text("CheckPermission")
-            }
-            
-            Button {
-                Task {
-                    await PermissionManager.instance.requestPermission(.camera)
-                }
-            } label: {
-                Text("RequestPermission")
-            }
-        }
-    }
-}
-
-```
