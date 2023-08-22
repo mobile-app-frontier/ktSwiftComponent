@@ -17,6 +17,12 @@ public enum PermissionCondition {
 }
 
 
+///Privacy - Photo Library Usage Description
+/// NSPhotoLibraryUsageDescription
+public enum PHPhotoLibraryRequest {
+    case addOnly, readWrite
+}
+
 /// permission types
 public enum PermissionType {
     /// call blocking permission

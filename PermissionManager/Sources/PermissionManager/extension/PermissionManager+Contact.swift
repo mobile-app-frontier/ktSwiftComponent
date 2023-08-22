@@ -13,7 +13,7 @@ import Contacts
 ///INFOPLIST_KEY_NSContactsUsageDescription = 주소록 접근 권한 필요
 
 extension PermissionManager {
-    func checkContactPermission() -> PermissionCondition {
+    internal func checkContactPermission() -> PermissionCondition {
         switch CNContactStore.authorizationStatus(for: .contacts) {
         case .authorized:
             return .granted(.contacts)
@@ -26,7 +26,7 @@ extension PermissionManager {
         }
     }
     
-    func requestContactPermission() async -> PermissionCondition {
+    internal func requestContactPermission() async -> PermissionCondition {
         do {
             if try await CNContactStore().requestAccess(for: .contacts) {
                 return .granted(.contacts)

@@ -9,15 +9,9 @@ import Foundation
 import Photos
 
 
-///Privacy - Photo Library Usage Description
-/// NSPhotoLibraryUsageDescription
-public enum PHPhotoLibraryRequest {
-    case addOnly, readWrite
-}
-
 
 extension PermissionManager {
-    func checkPhotoLibraryPermission(request options: PHPhotoLibraryRequest?) -> PermissionCondition {
+    internal func checkPhotoLibraryPermission(request options: PHPhotoLibraryRequest?) -> PermissionCondition {
         let status: PHAuthorizationStatus
         
         if #available(iOS 14, *) {

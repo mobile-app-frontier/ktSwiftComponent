@@ -11,7 +11,7 @@ import AVFoundation
 ///Privacy - Microphone Usage Description
 /// NSMicrophoneUsageDescription
 extension PermissionManager {
-    func checkMicroPhonePermission() -> PermissionCondition {
+    internal func checkMicroPhonePermission() -> PermissionCondition {
         switch AVAudioSession.sharedInstance().recordPermission {
         case .granted:
             return .granted(.mic)
@@ -24,7 +24,7 @@ extension PermissionManager {
         }
     }
     
-    func requestMicroPhonePermission() async -> PermissionCondition {
+    internal func requestMicroPhonePermission() async -> PermissionCondition {
         do {
             return try await withCheckedThrowingContinuation({ continuation in
                 AVAudioSession.sharedInstance().requestRecordPermission { granted in

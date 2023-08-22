@@ -13,7 +13,7 @@ import AVFoundation
 /// raw key : NSCameraUsageDescription
 ///
 extension PermissionManager {
-    func checkCameraPermission() -> PermissionCondition {
+    internal func checkCameraPermission() -> PermissionCondition {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized:
             return .granted(.camera)
@@ -26,7 +26,7 @@ extension PermissionManager {
         }
     }
     
-    func requestCameraPermission() async -> PermissionCondition {
+    internal func requestCameraPermission() async -> PermissionCondition {
         do {
             return try await withCheckedThrowingContinuation({ continuation in
                 AVCaptureDevice.requestAccess(for: .video) { granted in
