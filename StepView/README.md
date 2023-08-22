@@ -7,34 +7,9 @@
 
 ## example
 
-``` Swift 
-struct ContentView: View {
-    
-    @State
-    var controller = StepController<ExampleStepType>(
-        contents: ExampleStepType.stepSequence()
-            .map({ step in
-                step.toStepContent()
-            }),
-        initialIndex: 0)
-        .willStepSwitchProcess { current, next in
-            print("current \(current) -> next \(next)")
-        }
-    
-    
-    var body: some View {
-        StepView(controller: controller)
-            .onReceive(controller.$stepState) { state in
-                if case .complete = state {
-                    print("step view is finished")
-                }
-            }
-    }
-}
+### Step1. define Content
+``` Swift
 
-
-
-//MARK: - ExampleStepType
 enum ExampleStepType {
     case screen1
     case screen2
@@ -49,32 +24,10 @@ enum ExampleStepType {
     }
 }
 
+```
 
-
-//MARK: - ExampleStepType+StepView
-extension ExampleStepType {
-    func toStepContent()-> StepContent<ExampleStepType>  {
-        switch (self) {
-        case .screen1:
-            return StepContent(step: .screen1) {
-                Screen1().toAnyView()
-            }
-        case .screen2:
-            return StepContent(step: .screen2) {
-                Screen2().toAnyView()
-            }
-        case .screen3:
-            return StepContent(step: .screen3) {
-                Screen3().toAnyView()
-            }
-        }
-    }
-}
-
-
-//MARK: - Example Screen
-
-
+### Step2. define subScreen
+``` Swift
 
 struct Screen1: View {
     @EnvironmentObject
@@ -136,6 +89,58 @@ struct Screen3: View {
 
 ```
 
+### Step3. define content to screen Extension
+``` Swift
+
+extension ExampleStepType {
+    func toStepContent()-> StepContent<ExampleStepType>  {
+        switch (self) {
+        case .screen1:
+            return StepContent(step: .screen1) {
+                Screen1().toAnyView()
+            }
+        case .screen2:
+            return StepContent(step: .screen2) {
+                Screen2().toAnyView()
+            }
+        case .screen3:
+            return StepContent(step: .screen3) {
+                Screen3().toAnyView()
+            }
+        }
+    }
+}
+
+```
+
+### Step4. create controller & define view
+
+``` Swift 
+struct ContentView: View {
+    
+    @State
+    var controller = StepController<ExampleStepType>(
+        contents: ExampleStepType.stepSequence()
+            .map({ step in
+                step.toStepContent()
+            }),
+        initialIndex: 0)
+        .willStepSwitchProcess { current, next in
+            print("current \(current) -> next \(next)")
+        }
+    
+    
+    var body: some View {
+        StepView(controller: controller)
+            .onReceive(controller.$stepState) { state in
+                if case .complete = state {
+                    print("step view is finished")
+                }
+            }
+    }
+}
+
+```
 
 ## 구성
 1. StepView
