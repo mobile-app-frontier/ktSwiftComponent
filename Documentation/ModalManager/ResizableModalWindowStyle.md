@@ -6,7 +6,7 @@ public struct ResizableModalWindowStyle : ModalWindowStyle
 
 ## Inheritance
 
-[`ModalWindowStyle`](./ModalWindowStyle)
+[`ModalWindowStyle`](/Documentation/ModalManager/ModalWindowStyle)
 
 ## Initializers
 

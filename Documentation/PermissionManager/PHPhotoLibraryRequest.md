@@ -9,13 +9,13 @@ public enum PHPhotoLibraryRequest
 
 ## Enumeration Cases
 
-### `addOnly`
+### `readWrite`
 
 ``` swift
 case addOnly, readWrite
 ```
 
-### `readWrite`
+### `addOnly`
 
 ``` swift
 case addOnly, readWrite

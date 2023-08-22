@@ -6,7 +6,7 @@ public struct RSACipher: Cipher
 
 ## Inheritance
 
-[`Cipher`](./Cipher)
+[`Cipher`](/Documentation/CryptoUtils/Cipher)
 
 ## Initializers
 

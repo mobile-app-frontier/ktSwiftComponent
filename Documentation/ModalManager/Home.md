@@ -1,21 +1,21 @@
 # Types
 
-  - [ModalManager](./ModalManager)
-  - [ModalController](./ModalController)
-  - [StackOrder](./StackOrder)
-  - [ModalPresentableState](./ModalPresentableState)
-  - [ModalOrderPriority](./ModalOrderPriority)
-  - [ModalOrderOptions](./ModalOrderOptions):
+  - [ModalManager](/Documentation/ModalManager/ModalManager)
+  - [ModalController](/Documentation/ModalManager/ModalController)
+  - [StackOrder](/Documentation/ModalManager/StackOrder)
+  - [ModalPresentableState](/Documentation/ModalManager/ModalPresentableState)
+  - [ModalOrderPriority](/Documentation/ModalManager/ModalOrderPriority)
+  - [ModalOrderOptions](/Documentation/ModalManager/ModalOrderOptions):
     TODO
-  - [DefaultModalStyle](./DefaultModalStyle)
-  - [ResizableModalWindowStyle](./ResizableModalWindowStyle)
+  - [DefaultModalStyle](/Documentation/ModalManager/DefaultModalStyle)
+  - [ResizableModalWindowStyle](/Documentation/ModalManager/ResizableModalWindowStyle)
 
 # Protocols
 
-  - [ModalOrder](./ModalOrder)
-  - [ModalStyle](./ModalStyle)
-  - [ModalWindowStyle](./ModalWindowStyle)
+  - [ModalOrder](/Documentation/ModalManager/ModalOrder)
+  - [ModalStyle](/Documentation/ModalManager/ModalStyle)
+  - [ModalWindowStyle](/Documentation/ModalManager/ModalWindowStyle)
 
 # Global Variables
 
-  - [body](./body)
+  - [body](/Documentation/ModalManager/body)

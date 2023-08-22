@@ -1,39 +1,39 @@
 <details>
 <summary>Types</summary>
 
-  - [WorkItemType](./WorkItemType)
+  - [WorkItemType](/Documentation/PollingCenter/WorkItemType)
 
 </details>
 
 <details>
 <summary>Protocols</summary>
 
-  - [WorkItem](./WorkItem)
-  - [WorkItemCategory](./WorkItemCategory)
+  - [WorkItem](/Documentation/PollingCenter/WorkItem)
+  - [WorkItemCategory](/Documentation/PollingCenter/WorkItemCategory)
 
 </details>
 
 <details>
 <summary>Global Typealiases</summary>
 
-  - [PollingTask](./PollingTask)
+  - [PollingTask](/Documentation/PollingCenter/PollingTask)
 
 </details>
 
 <details>
 <summary>Global Variables</summary>
 
-  - [interval](./interval)
+  - [interval](/Documentation/PollingCenter/interval)
 
 </details>
 
 <details>
 <summary>Global Functions</summary>
 
-  - [add(workItem:)](./add\(workItem_\))
-  - [remove(category:)](./remove\(category_\))
-  - [removeAll()](./removeAll\(\))
-  - [start()](./start\(\))
-  - [stop()](./stop\(\))
+  - [add(workItem:)](/Documentation/PollingCenter/add\(workItem_\))
+  - [remove(category:)](/Documentation/PollingCenter/remove\(category_\))
+  - [removeAll()](/Documentation/PollingCenter/removeAll\(\))
+  - [start()](/Documentation/PollingCenter/start\(\))
+  - [stop()](/Documentation/PollingCenter/stop\(\))
 
 </details>

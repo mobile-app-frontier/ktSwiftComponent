@@ -1,17 +1,17 @@
 <details>
 <summary>Types</summary>
 
-  - [StepContent](./StepContent)
-  - [StepController](./StepController)
-  - [StepControllerOptions](./StepControllerOptions)
-  - [StepView](./StepView)
-  - [StepViewState](./StepViewState)
+  - [StepContent](/Documentation/StepView/StepContent)
+  - [StepController](/Documentation/StepView/StepController)
+  - [StepControllerOptions](/Documentation/StepView/StepControllerOptions)
+  - [StepView](/Documentation/StepView/StepView)
+  - [StepViewState](/Documentation/StepView/StepViewState)
 
 </details>
 
 <details>
 <summary>Extensions</summary>
 
-  - [View](./View)
+  - [View](/Documentation/StepView/View)
 
 </details>

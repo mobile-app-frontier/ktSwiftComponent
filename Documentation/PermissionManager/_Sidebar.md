@@ -1,20 +1,20 @@
 <details>
 <summary>Types</summary>
 
-  - [PHPhotoLibraryRequest](./PHPhotoLibraryRequest)
-  - [PMPermissionCheck](./PMPermissionCheck)
-  - [PMPermissionRequest](./PMPermissionRequest)
-  - [PermissionCondition](./PermissionCondition)
-  - [PermissionManager](./PermissionManager)
-  - [PermissionType](./PermissionType)
+  - [PHPhotoLibraryRequest](/Documentation/PermissionManager/PHPhotoLibraryRequest)
+  - [PMPermissionCheck](/Documentation/PermissionManager/PMPermissionCheck)
+  - [PMPermissionRequest](/Documentation/PermissionManager/PMPermissionRequest)
+  - [PermissionCondition](/Documentation/PermissionManager/PermissionCondition)
+  - [PermissionManager](/Documentation/PermissionManager/PermissionManager)
+  - [PermissionType](/Documentation/PermissionManager/PermissionType)
 
 </details>
 
 <details>
 <summary>Global Functions</summary>
 
-  - [checkPermissions(permissions:)](./checkPermissions\(permissions_\))
-  - [currentPermissionCondition(\_:)](./currentPermissionCondition\(__\))
-  - [requestPermission(\_:)](./requestPermission\(__\))
+  - [checkPermissions(permissions:)](/Documentation/PermissionManager/checkPermissions\(permissions_\))
+  - [currentPermissionCondition(\_:)](/Documentation/PermissionManager/currentPermissionCondition\(__\))
+  - [requestPermission(\_:)](/Documentation/PermissionManager/requestPermission\(__\))
 
 </details>

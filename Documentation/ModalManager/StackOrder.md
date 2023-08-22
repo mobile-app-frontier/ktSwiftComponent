@@ -6,7 +6,7 @@ public class StackOrder: ModalOrder
 
 ## Inheritance
 
-[`ModalOrder`](./ModalOrder)
+[`ModalOrder`](/Documentation/ModalManager/ModalOrder)
 
 ## Methods
 

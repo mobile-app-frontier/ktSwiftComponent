@@ -6,7 +6,7 @@ public struct DefaultBannerPolicyItem: BannerPolicyItem
 
 ## Inheritance
 
-[`BannerPolicyItem`](./BannerPolicyItem)
+[`BannerPolicyItem`](/Documentation/Banner/BannerPolicyItem)
 
 ## Initializers
 

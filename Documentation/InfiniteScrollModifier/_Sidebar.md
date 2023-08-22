@@ -1,7 +1,7 @@
 <details>
 <summary>Types</summary>
 
-  - [InfiniteScrollDelegate](./InfiniteScrollDelegate)
-  - [InfiniteScrollModifier](./InfiniteScrollModifier)
+  - [InfiniteScrollDelegate](/Documentation/InfiniteScrollModifier/InfiniteScrollDelegate)
+  - [InfiniteScrollModifier](/Documentation/InfiniteScrollModifier/InfiniteScrollModifier)
 
 </details>

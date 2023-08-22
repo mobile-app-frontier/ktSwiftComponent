@@ -1,13 +1,13 @@
 <details>
 <summary>Types</summary>
 
-  - [ShimmerModifier](./ShimmerModifier)
+  - [ShimmerModifier](/Documentation/AnimationView/ShimmerModifier)
 
 </details>
 
 <details>
 <summary>Extensions</summary>
 
-  - [View](./View)
+  - [View](/Documentation/AnimationView/View)
 
 </details>

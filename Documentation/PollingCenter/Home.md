@@ -1,24 +1,24 @@
 # Types
 
-  - [WorkItemType](./WorkItemType)
+  - [WorkItemType](/Documentation/PollingCenter/WorkItemType)
 
 # Protocols
 
-  - [WorkItemCategory](./WorkItemCategory)
-  - [WorkItem](./WorkItem)
+  - [WorkItemCategory](/Documentation/PollingCenter/WorkItemCategory)
+  - [WorkItem](/Documentation/PollingCenter/WorkItem)
 
 # Global Typealiases
 
-  - [PollingTask](./PollingTask)
+  - [PollingTask](/Documentation/PollingCenter/PollingTask)
 
 # Global Functions
 
-  - [start()](./start\(\))
-  - [stop()](./stop\(\))
-  - [add(workItem:​)](./add\(workItem_\))
-  - [remove(category:​)](./remove\(category_\))
-  - [removeAll()](./removeAll\(\))
+  - [start()](/Documentation/PollingCenter/start\(\))
+  - [stop()](/Documentation/PollingCenter/stop\(\))
+  - [add(workItem:​)](/Documentation/PollingCenter/add\(workItem_\))
+  - [remove(category:​)](/Documentation/PollingCenter/remove\(category_\))
+  - [removeAll()](/Documentation/PollingCenter/removeAll\(\))
 
 # Global Variables
 
-  - [interval](./interval)
+  - [interval](/Documentation/PollingCenter/interval)

@@ -1,15 +1,15 @@
 <details>
 <summary>Types</summary>
 
-  - [NavRoutePresentOptions](./NavRoutePresentOptions)
-  - [NavRouterAction](./NavRouterAction)
+  - [NavRoutePresentOptions](/Documentation/NavRouter/NavRoutePresentOptions)
+  - [NavRouterAction](/Documentation/NavRouter/NavRouterAction)
 
 </details>
 
 <details>
 <summary>Protocols</summary>
 
-  - [NavRoute](./NavRoute)
-  - [NavRouter](./NavRouter)
+  - [NavRoute](/Documentation/NavRouter/NavRoute)
+  - [NavRouter](/Documentation/NavRouter/NavRouter)
 
 </details>

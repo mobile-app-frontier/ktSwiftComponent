@@ -6,7 +6,7 @@ public struct DefaultModalStyle : ModalStyle
 
 ## Inheritance
 
-[`ModalStyle`](./ModalStyle)
+[`ModalStyle`](/Documentation/ModalManager/ModalStyle)
 
 ## Properties
 

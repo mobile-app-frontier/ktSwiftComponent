@@ -1,20 +1,20 @@
 # Types
 
-  - [CryptorError](./CryptorError)
-  - [RSAError](./RSAError)
-  - [AESCipher](./AESCipher)
-  - [RSACipher](./RSACipher)
-  - [Digest](./Digest)
-  - [CipherKeyUtils](./CipherKeyUtils)
+  - [CryptorError](/Documentation/CryptoUtils/CryptorError)
+  - [RSAError](/Documentation/CryptoUtils/RSAError)
+  - [AESCipher](/Documentation/CryptoUtils/AESCipher)
+  - [RSACipher](/Documentation/CryptoUtils/RSACipher)
+  - [Digest](/Documentation/CryptoUtils/Digest)
+  - [CipherKeyUtils](/Documentation/CryptoUtils/CipherKeyUtils)
 
 # Protocols
 
-  - [Cipher](./Cipher):
+  - [Cipher](/Documentation/CryptoUtils/Cipher):
     encrypt, decrypt protocol
 
 # Extensions
 
-  - [Array](./Array)
-  - [Data](./Data)
-  - [String](./String)
-  - [URL](./URL)
+  - [Array](/Documentation/CryptoUtils/Array)
+  - [Data](/Documentation/CryptoUtils/Data)
+  - [String](/Documentation/CryptoUtils/String)
+  - [URL](/Documentation/CryptoUtils/URL)

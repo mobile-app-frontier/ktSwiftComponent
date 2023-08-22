@@ -6,7 +6,7 @@ public enum NetworkDownloadError: NetworkError
 
 ## Inheritance
 
-[`NetworkError`](./NetworkError)
+[`NetworkError`](/Documentation/NetworkManager/NetworkError)
 
 ## Enumeration Cases
 

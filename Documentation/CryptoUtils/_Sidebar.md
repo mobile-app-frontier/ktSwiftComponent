@@ -1,28 +1,28 @@
 <details>
 <summary>Types</summary>
 
-  - [AESCipher](./AESCipher)
-  - [CipherKeyUtils](./CipherKeyUtils)
-  - [CryptorError](./CryptorError)
-  - [Digest](./Digest)
-  - [RSACipher](./RSACipher)
-  - [RSAError](./RSAError)
+  - [AESCipher](/Documentation/CryptoUtils/AESCipher)
+  - [CipherKeyUtils](/Documentation/CryptoUtils/CipherKeyUtils)
+  - [CryptorError](/Documentation/CryptoUtils/CryptorError)
+  - [Digest](/Documentation/CryptoUtils/Digest)
+  - [RSACipher](/Documentation/CryptoUtils/RSACipher)
+  - [RSAError](/Documentation/CryptoUtils/RSAError)
 
 </details>
 
 <details>
 <summary>Protocols</summary>
 
-  - [Cipher](./Cipher)
+  - [Cipher](/Documentation/CryptoUtils/Cipher)
 
 </details>
 
 <details>
 <summary>Extensions</summary>
 
-  - [Array](./Array)
-  - [Data](./Data)
-  - [String](./String)
-  - [URL](./URL)
+  - [Array](/Documentation/CryptoUtils/Array)
+  - [Data](/Documentation/CryptoUtils/Data)
+  - [String](/Documentation/CryptoUtils/String)
+  - [URL](/Documentation/CryptoUtils/URL)
 
 </details>

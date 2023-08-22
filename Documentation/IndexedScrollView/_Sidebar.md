@@ -1,23 +1,23 @@
 <details>
 <summary>Types</summary>
 
-  - [HapticManager](./HapticManager)
-  - [IndexedScrollView.IndexBarItemType](./IndexedScrollView.IndexBarItemType)
-  - [IndexedScrollView.SectionPreviewType](./IndexedScrollView.SectionPreviewType)
-  - [IndexedScrollViewTextDesign](./IndexedScrollViewTextDesign)
+  - [HapticManager](/Documentation/IndexedScrollView/HapticManager)
+  - [IndexedScrollView.IndexBarItemType](/Documentation/IndexedScrollView/IndexedScrollView.IndexBarItemType)
+  - [IndexedScrollView.SectionPreviewType](/Documentation/IndexedScrollView/IndexedScrollView.SectionPreviewType)
+  - [IndexedScrollViewTextDesign](/Documentation/IndexedScrollView/IndexedScrollViewTextDesign)
 
 </details>
 
 <details>
 <summary>Global Variables</summary>
 
-  - [body](./body)
+  - [body](/Documentation/IndexedScrollView/body)
 
 </details>
 
 <details>
 <summary>Extensions</summary>
 
-  - [IndexedScrollView](./IndexedScrollView)
+  - [IndexedScrollView](/Documentation/IndexedScrollView/IndexedScrollView)
 
 </details>

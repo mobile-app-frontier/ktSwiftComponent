@@ -1,8 +1,8 @@
 <details>
 <summary>Types</summary>
 
-  - [Log](./Log)
-  - [LogFilter](./LogFilter)
-  - [LogLevel](./LogLevel)
+  - [Log](/Documentation/Log/Log)
+  - [LogFilter](/Documentation/Log/LogFilter)
+  - [LogLevel](/Documentation/Log/LogLevel)
 
 </details>

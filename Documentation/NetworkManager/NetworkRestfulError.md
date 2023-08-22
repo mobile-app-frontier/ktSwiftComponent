@@ -6,7 +6,7 @@ public enum NetworkRestfulError: NetworkError
 
 ## Inheritance
 
-[`NetworkError`](./NetworkError)
+[`NetworkError`](/Documentation/NetworkManager/NetworkError)
 
 ## Enumeration Cases
 
