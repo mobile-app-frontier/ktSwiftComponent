@@ -2,7 +2,7 @@
 
 온보딩 등 화면이 순서를 갖고 이동할 때 사용되는 View다.
 
-- [example](#예시 코드)
+- [example](#example)
 - [구성](#구성)
 
 ## example
