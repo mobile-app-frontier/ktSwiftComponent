@@ -10,7 +10,7 @@ import CallKit
 
 extension PermissionManager {
     
-    func checkCallKitPermission() async -> PermissionCondition {
+    internal func checkCallKitPermission() async -> PermissionCondition {
         return await withCheckedContinuation { continuation in
             CXCallDirectoryManager.sharedInstance.getEnabledStatusForExtension(withIdentifier: "") { state, error in
                 

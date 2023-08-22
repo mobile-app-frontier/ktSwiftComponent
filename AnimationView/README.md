@@ -2,10 +2,10 @@
 
 SwiftUI View의 animation을 줄 수 있는 기능을 포함한다.
 
-## Animation View Category
+## Support Animation 
 
-1. AnimateVisibleView : change visible by animation
-2. ShimmerModifier : append shimmer effect in view   
+[1. AnimateVisibleView](#1-animatevisibleview) : change visible by animation \
+[2. ShimmerModifier](#2-shimmermodifier) : append shimmer effect in view   
 
 ### 1. AnimateVisibleView
 
@@ -31,3 +31,6 @@ Text("test text")
     .shimmering()
         
 ```
+
+
+

@@ -14,7 +14,7 @@ import CoreLocation
 ///Privacy - Location When In Use Usage Description
 /// NSLocationWhenInUseUsageDescription
 extension PermissionManager {
-    func checkLocationPermission() -> PermissionCondition {
+    internal func checkLocationPermission() -> PermissionCondition {
         guard CLLocationManager.locationServicesEnabled() else {
             return .notSupport(reason: "locationServices is disable")
         }

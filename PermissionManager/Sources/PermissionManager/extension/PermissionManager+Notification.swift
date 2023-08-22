@@ -11,7 +11,7 @@ import UserNotifications
 extension PermissionManager {
     
     
-    func checkNotificationPermission() async -> PermissionCondition {
+    internal func checkNotificationPermission() async -> PermissionCondition {
         let notificationCenter = UNUserNotificationCenter.current()
         let settings = await notificationCenter.notificationSettings()
         
@@ -30,7 +30,7 @@ extension PermissionManager {
         }
     }
     
-    func requestNotificaationPermission(options: UNAuthorizationOptions) async -> PermissionCondition {
+    internal func requestNotificaationPermission(options: UNAuthorizationOptions) async -> PermissionCondition {
         
         guard ProcessInfo.processInfo.environment["SIMULATOR_DEVICE_NAME"] == nil else {
             debugPrint("[requestNotificaationPermission] Device is simulator. Simulator not supported notifications")
