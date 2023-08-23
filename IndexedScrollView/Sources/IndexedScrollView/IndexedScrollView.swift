@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import OrderedCollections
 
+/// `OrderedDictionary<Key, [Element]>` Type 의 Data 를 통해 Key 별로 categorize 되어 Scroll 될 수 있는 View 를 제공
 public struct IndexedScrollView<Key, Element, SectionHeader, Cell>: View
 where Key: Hashable,
       Key: Comparable,
@@ -16,13 +17,14 @@ where Key: Hashable,
       SectionHeader: View,
       Cell: View
 {
-    /// Key: StringProtocol 일 때의 initialzer
-    /// - `dataSource`: View 를 그릴 기본 데이터
-    /// - `header`: Header ViewBuilder. parameter 로 Key 를 받음.
-    /// - `cell`: Cell ViewBuilder, parameter 로 Element 를 받음.
-    /// - `indexBarItemType`: 선택 파라미터. 입력하지 않으면 오른쪽 스크롤 영역의 Item 을 기본 style 로 정함.
-    /// - `sectionPreviewType`: 선택 파라미터. 입력하지 않으면 기본 Style 의 Section Preview 를 정함.
-    /// - `scrollAnimationDuration`: 선택 파라미터. 입력하지 않으면 0.2 sec duration 으로 스크롤 애니메이션이 일어남.
+    /// Key 가 StringProtocol 을 따를 때 사용할 수 있는 initialzer
+    /// - Parameters:
+    ///   - dataSource: View 를 그릴 기본 데이터
+    ///   - header: Header ViewBuilder. parameter 로 Key 를 받음.
+    ///   - cell: Cell ViewBuilder, parameter 로 Element 를 받음.
+    ///   - indexBarItemType: 선택 파라미터. 입력하지 않으면 오른쪽 스크롤 영역의 Item 을 기본 style 로 정함.
+    ///   - sectionPreviewType: 선택 파라미터. 입력하지 않으면 기본 Style 의 Section Preview 를 정함.
+    ///   - scrollAnimationDuration: 선택 파라미터. 입력하지 않으면 0.2 sec duration 으로 스크롤
     public init(dataSource: OrderedDictionary<Key, [Element]>,
                 @ViewBuilder header: @escaping (Key) -> SectionHeader,
                 @ViewBuilder cell: @escaping (Element) -> Cell,
@@ -41,12 +43,13 @@ where Key: Hashable,
     }
     
     /// 기본 initializer
-    /// - `dataSource`: View 를 그릴 기본 데이터
-    /// - `header`: Header ViewBuilder. parameter 로 Key 를 받음.
-    /// - `cell`: Cell ViewBuilder, parameter 로 Element 를 받음.
-    /// - `indexBarItem`: 오른쪽 스크롤 바의 Item 디자인. 필수 파라미터.
-    /// - `sectionPreviewType`: 선택 파라미터. 입력하지 않으면 Section Preview 는 보여지지 않음.
-    /// - `scrollAnimationDuration`: 선택 파라미터. 입력하지 않으면 0.2 sec duration 으로 스크롤 애니메이션이 일어남.
+    /// - Parameters:
+    ///   - dataSource: View 를 그릴 기본 데이터
+    ///   - header: Header ViewBuilder. parameter 로 Key 를 받음.
+    ///   - cell: Cell ViewBuilder, parameter 로 Element 를 받음.
+    ///   - indexBarItem: 오른쪽 스크롤 바의 Item 디자인. 필수 파라미터.
+    ///   - sectionPreview:  선택 파라미터. 입력하지 않으면 Section Preview 는 보여지지 않음.
+    ///   - scrollAnimationDuration: 선택 파라미터. 입력하지 않으면 0.2 sec duration 으로 스크롤
     public init(dataSource: OrderedDictionary<Key, [Element]>,
                 @ViewBuilder header: @escaping (Key) -> SectionHeader,
                 @ViewBuilder cell: @escaping (Element) -> Cell,
@@ -64,27 +67,29 @@ where Key: Hashable,
         self.sectionPreviewDefaultDesign = nil
     }
     
-    // IndexedScrollView 가 그려지는 기반 data
-    // Key: Index ex) 초성, 알파벳 ...
-    // [Element]: 어떠한 Index 에 매칭되는 Element 들의 리스트. ex) [Contact]
+    /// IndexedScrollView 가 그려지는 기반 data
+    ///
+    /// Key: Index ex) 초성, 알파벳 ...
+    ///
+    /// [Element]: 어떠한 Index 에 매칭되는 Element 들의 리스트. ex) [Contact]
     internal let dataSource: OrderedDictionary<Key, [Element]>
     
-    // Header View Builder (밖에서 입력받은 Header 의 design)
+    /// Header View Builder (밖에서 입력받은 Header 의 design)
     internal let header: (Key) -> SectionHeader
-    // Cell View Builder (밖에서 입력받은 Cell 의 design)
+    /// Cell View Builder (밖에서 입력받은 Cell 의 design)
     internal let cell: (Element) -> Cell
     
-    // 오른쪽 스크롤 Item 의 ViewBuilder.
+    /// 오른쪽 스크롤 Item 의 ViewBuilder.
     internal let indexBarItem: (Key) -> any View
-    // 스크롤이 변경될 때마다 보여주는 SectionPreview ViewBuilder. nil 일때는 보여주지 않음.
+    /// 스크롤이 변경될 때마다 보여주는 SectionPreview ViewBuilder. nil 일때는 보여주지 않음.
     internal let sectionPreview: ((Key) -> any View)?
     
-    // 스크롤되는 애니메이션의 duration.
+    /// 스크롤되는 애니메이션의 duration.
     private let scrollAnimationDuration: Double
     
-    // index Bar Item Text 의 디자인.
+    /// index Bar Item Text 의 디자인.
     internal let indexBarItemDefaultDesign: IndexedScrollViewTextDesign?
-    // section Preview Text 의 디자인.
+    /// section Preview Text 의 디자인.
     internal let sectionPreviewDefaultDesign: IndexedScrollViewTextDesign?
     
   
