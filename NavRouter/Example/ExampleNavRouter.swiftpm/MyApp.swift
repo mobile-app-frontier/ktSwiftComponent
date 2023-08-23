@@ -28,7 +28,7 @@ final class AppDelegate : NSObject,UIApplicationDelegate {
 final class AppSceneDelegate: NSObject, UIWindowSceneDelegate {
         
     /// define first route screen
-    private let router: GenieRouter = .init(startingRoute: .splash(true))
+    private let router: AppRouter = .init(startingRoute: .splash)
     
     var window: UIWindow?
 

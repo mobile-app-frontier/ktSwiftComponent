@@ -11,23 +11,21 @@
 //  software.
 //
 
-import Foundation
+
 import NavRouter
 import UIKit
 
 
 
 final class AppRouter : NavRouter {
-    func replaceTo(_ route: AppRoute, animated: Bool, restorationIdentifier: String?, options: NavRouter.NavRoutePresentOptions?) {
-        <#code#>
-    }
+ 
     
     typealias Route = AppRoute
     
     private let navigationController: UINavigationController
     private let startingRoute: Route?
     
-    init(navigationController: UINavigationController, startingRoute: Route?) {
+    init(navigationController: UINavigationController = .init(), startingRoute: Route?) {
         self.navigationController = navigationController
         self.startingRoute = startingRoute
     }
@@ -40,4 +38,8 @@ final class AppRouter : NavRouter {
         return startingRoute
     }
 
+    
+    func didRouteNav(action: NavRouterAction) {
+        
+    }
 }

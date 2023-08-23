@@ -17,8 +17,6 @@ enum AppRoute: NavRoute {
     case home
     case login
     case splash
-    
-    
 }
 
 //MARK: - AppRoute+NavRoute
