@@ -4,6 +4,7 @@ Module description
 
 - [Example](#example)
 - [Functions](#funcitons)
+- [API Document](#api-document)
 
 ## Example
 
