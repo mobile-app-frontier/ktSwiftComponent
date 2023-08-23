@@ -11,6 +11,7 @@ import Foundation
 ///
 ///  `WorkItem` Protocol 을 따르는 Item 단위로 Polling Scheduler 에 작업들을 추가하거나 삭제할 수 있음.
 public final class PollingCenter<Item: WorkItem> {
+    public init() {}
 
     /// 주기적으로 실행될 작업들의 모음.
     private var workItems: [Item] = []
