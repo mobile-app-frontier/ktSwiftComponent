@@ -34,3 +34,7 @@ add Package \
 - [PermissionManager](/PermissionManager)
 - [PollingCenter](/PollingCenter)
 - [StepView](/StepView)
+
+> **NOTE:**
+> 1. 각 항목에 More는 api documentation입니다.
+> 2. 각 모듈은 Example  directory에 샘플 코드가 있습니다.
