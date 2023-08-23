@@ -21,4 +21,4 @@
 
 # Global Variables
 
-  - [interval](/Documentation/PollingCenter/interval)
+  - [interval](/Documentation/PollingCenter/interval.md)
