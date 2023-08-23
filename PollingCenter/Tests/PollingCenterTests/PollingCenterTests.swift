@@ -2,34 +2,47 @@ import XCTest
 @testable import PollingCenter
 
 final class PollingCenterTests: XCTestCase {
-    func testExample() throws {
+    func testExample() async throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
         
-        // Polling Service start.
+        // start Polling Service
         TestPollingCenter.instance.start()
         
+        // change Polling interval
+        TestPollingCenter.instance.interval = 2
+
+        // add Work Item
         TestPollingCenter.instance.add(workItem: TestWorkItem(category: .callHistory,
-                                                              task: [{
-            debugPrint("Task")
-        }]))
-        // Polling Service stop.
+                                                 task: [
+                                                    { debugPrint("Task 1")},
+                                                    { debugPrint("Task 2")}
+                                                 ]))
+
+        try? await Task.sleep(nanoseconds: 10_000_000_000)
+        
+        // remove Work Item by category
+        TestPollingCenter.instance.remove(category: .callHistory)
+
+        // remove all Work Items
+        TestPollingCenter.instance.removeAll()
+
+        // stop Polling Service
         TestPollingCenter.instance.stop()
     }
 }
 
 
-// TO TEST
 struct TestWorkItem: WorkItem {
-    var category: Category
-    
-    var task: [PollingTask]
-    var type: WorkItemType = .scheduled
-    
     enum Category: WorkItemCategory {
         case callHistory
+        case message
     }
+
+    var category: Category
+    var task: [PollingTask]
+    var type: WorkItemType = .scheduled
 }
 
 final class TestPollingCenter {
