@@ -89,6 +89,8 @@ public final class PollingCenter<Item: WorkItem> {
     }
     
     /// `PollingCenter` 에 등록되어 있는 모든 `WorkItem` 들을 지움.
+    ///
+    /// 해당 function 을 호출할 경우 내부에서 `stop()`이 호출됨.
     public func removeAll() {
         debugPrint("[PollingCenter] remove all workItem")
         stop()
