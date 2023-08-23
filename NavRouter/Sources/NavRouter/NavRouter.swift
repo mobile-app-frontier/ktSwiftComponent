@@ -60,7 +60,7 @@ public protocol NavRouter: ObservableObject {
     func replace(_ route: Route, animated: Bool, options:NavRoutePresentOptions?)
     
     /// navigation stack에 restorationIdentifier vc이후의 stack을 제거 하고 신규 vc를 추가
-    func replaceTo(_ route: Route, animated: Bool, restorationIdentifier: String?, options:NavRoutePresentOptions?)
+    func replaceTo(_ route: Route, animated: Bool, restorationIdentifier: String, options:NavRoutePresentOptions?)
     
     /// NavRouter delegate
     func didRouteNav(action: NavRouterAction)

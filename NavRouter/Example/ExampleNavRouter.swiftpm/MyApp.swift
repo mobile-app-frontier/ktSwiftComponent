@@ -1,17 +1,7 @@
-# NavRouter
-
-Module description
-
-- [Example](#example)
-- [structure](#structure)
-
-## Example
-
-### Step1. define app delegate
-
-
-``` Swift
+import SwiftUI
+import NavRouter
 import UIKit
+
 
 @main
 final class AppDelegate : NSObject,UIApplicationDelegate {
@@ -37,7 +27,7 @@ final class AppDelegate : NSObject,UIApplicationDelegate {
 // define scene delegate
 final class AppSceneDelegate: NSObject, UIWindowSceneDelegate {
         
-    /// define first route screen    
+    /// define first route screen
     private let router: GenieRouter = .init(startingRoute: .splash(true))
     
     var window: UIWindow?
@@ -50,29 +40,3 @@ final class AppSceneDelegate: NSObject, UIWindowSceneDelegate {
         router.start()
     }
 }
-
-```
-
-> **NOTE:** 
-> 
-
-
-## Structure
-
-| name | param | return | Description |
-| :--- | :---: | ---: | --- |
-| getIndex | Void | Int | get index |
-| setIndex | Int | Void | set index |
-
-
-Link [Link](https://google.com)
-
-> **NOTE:** \
-hello note 
-
-
-## [MORE](/Documentation/NavRouter/Home.md)
-
-
-
-## example
