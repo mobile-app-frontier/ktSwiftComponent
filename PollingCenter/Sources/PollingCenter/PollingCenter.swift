@@ -18,7 +18,7 @@ public final class PollingCenter<Item: WorkItem> {
     /// 주기적으로 어떤 작업을 실행하기 위한 Timer.
     private var timer: Timer? = nil
     
-    /// `PollingCenter` 가 주기적으로 실행되는 시간 간격(second)
+    /// `PollingCenter` 가 주기적으로 실행되는 시간 간격(second). default 는 1 second.
     ///
     /// - Important: `interval` 를 변경할 경우 기존의 Polling 주기가 취소되고 새로운 주기로 `WorkItem`
     /// 들이 다시 실행됨. 즉, `interval` 이 수정된 즉시 등록되어 있는 `WorkItem`들이 실행될 수 있음.
