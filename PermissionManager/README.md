@@ -5,6 +5,7 @@
 - [plist 설정](#plist-설정)
 - [Example](#example)
 - [구성](#구성)
+- [More](#more)
  
 ## plist 설정
 
@@ -139,3 +140,6 @@ notSupport 의 경우 해당 권한을 요청 할 수 있없는 상태 인경우
  > 
  > UNAuthorizationOptions : notification에 대한 옵션으로 badge, sound, alarm등을 포함할 수 있다. \
  > [AppleDocument](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions)
+
+
+## [More](/Documentation/PermissionManager/Home)
