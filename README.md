@@ -23,7 +23,7 @@ add Package \
 
 ## KT SwiftPackage Module
 
-- [AnimationView]
+- [AnimationView](/AnimationView)
 - [Banner]
 - [CryptoUtils]
 - [IndexedScrollView]
