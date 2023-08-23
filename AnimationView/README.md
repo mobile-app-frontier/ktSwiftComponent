@@ -33,4 +33,4 @@ Text("test text")
 ```
 
 
-## [More](../Documentation/AnimationView/Home) 
+## [More](../Documentation/AnimationView/Home.md)
