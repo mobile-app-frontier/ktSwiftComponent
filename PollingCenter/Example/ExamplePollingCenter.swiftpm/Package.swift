@@ -35,7 +35,7 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/mobile-app-frontier/ktSwiftComponent.git", .branch("feature/polling_center_doc"))
+        .package(url: "https://github.com/mobile-app-frontier/ktSwiftComponent.git", .branch("main"))
     ],
     targets: [
         .executableTarget(
