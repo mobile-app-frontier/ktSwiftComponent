@@ -142,4 +142,4 @@ notSupport 의 경우 해당 권한을 요청 할 수 있없는 상태 인경우
  > [AppleDocument](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions)
 
 
-## [More](../Documentation/PermissionManager/Home)
+## [More](/Documentation/PermissionManager/Home)
