@@ -1,6 +1,6 @@
 # IndexedScrollView
 
-Module description
+`OrderedDictionary<Key, [Element]>` 를 데이터로 받아 Key 별로 스크롤이 가능한 View 제공
 
 - [Example](#example)
 - [More](#more)
