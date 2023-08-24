@@ -18,6 +18,8 @@ public protocol BannerPolicyDataSource {
 
 /// Banner Policy 참고용 Mock Data
 public final class MockBannerPolicyDataSource: BannerPolicyDataSource {
+    public init() {}
+    
     /// 1 초 delay 후, 미리 정의한 Mock Data 를 return 해줌. 테스트 할 때만 사용할 것
     /// - Returns: Banner Policy Mock Data
     public func getBannerPolicy() async throws -> [BannerPolicyItemModel] {
