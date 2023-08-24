@@ -7,11 +7,12 @@
 
 import SwiftUI
 import NavRouter
+import Banner
 
 enum BannerAppRoute: NavRoute {
     case splash
-    
     case main
+    case popupBanner(banner: PopupBannerPolicyItem)
 }
 
 extension BannerAppRoute {
@@ -21,6 +22,8 @@ extension BannerAppRoute {
             return "SplashScreen"
         case .main:
             return "MainScreen"
+        case .popupBanner(_):
+            return "PopupBannerView"
         }
     }
     
@@ -31,6 +34,8 @@ extension BannerAppRoute {
             SplashScreen()
         case .main:
             MainScreen()
+        case .popupBanner(let banner):
+            PopupBannerView(banner: banner)
         }
     }
 }
