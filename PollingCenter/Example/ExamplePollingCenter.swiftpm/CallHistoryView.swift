@@ -31,6 +31,13 @@ struct CallHistoryView: View {
                     Text("Change Polling Interval")
                 }
                 
+                Button {
+                    // remove all
+                    TestPollingCenter.instance.removeAll()
+                } label: {
+                    Text("Remove All Polling Item")
+                }
+                
                 NavigationLink {
                     MessageView()
                 } label: {

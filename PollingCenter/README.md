@@ -3,7 +3,6 @@
 주기적으로 어떠한 작업들을 병렬로 실행할 수 있는 기능을 제공 한다.
 
 - [Example](#example)
-- [structure](#structure)
 - [MORE](#more)
 
 ## Example
@@ -27,6 +26,9 @@ let pollingCenter = PollingCenter<TestWorkItem>()
 // start Polling Service
 pollingCenter.start()
 
+// change interval
+pollingCenter.interval = 3
+
 // add Work Item
 pollingCenter.add(workItem: TestWorkItem(category: .callHistory,
                                          task: [ 
@@ -44,9 +46,5 @@ pollingCenter.removeAll()
 pollingCenter.stop()
 
 ```
-
-## Structure
-- PollingCenter
-- WorkItem
 
 ## [MORE](/Documentation/PollingCenter/Home.md)
