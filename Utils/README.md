@@ -1,35 +1,23 @@
 # Utils
 
-Module description
+[Semantic Versioning](https://semver.org/) rule 을 따른 `Version` 객체 제공
 
 - [Example](#example)
-- [structure](#structure)
+- [More](#more)
 
 ## Example
 
 ``` Swift
 // Code block
-struct SampleView: View {
-    var body = {
-        VStack {
+// get App Version
+let appVersion = Version.getAppVersion()
 
-        }
-    }
-}
+// initialize from String Version
+let versionFromString = Version("2.10.4-beta")
+
+// initialize from major, minor, patch, preRelease Version
+let version = Version(major: 1, minor: 6, patch: 0, preRelease: nil)
 ```
-
-## Structure
-
-| name | param | return | Description |
-| :--- | :---: | ---: | --- |
-| getIndex | Void | Int | get index |
-| setIndex | Int | Void | set index |
-
-
-Link [Link](https://google.com)
-
-> **NOTE:** \
-hello note 
 
 
 ## [MORE](/Documentation/Utils/Home.md)
