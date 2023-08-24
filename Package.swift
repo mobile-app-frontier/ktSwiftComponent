@@ -123,5 +123,10 @@ let package = Package(
             name: "InfiniteScrollModifier",
             path: "InfiniteScrollModifier/Sources"
         ),
+        .testTarget(
+            name: "PollingCenterTest",
+            dependencies: [ "PollingCenter" ],
+            path: "PollingCenter/Tests"
+        )
     ]
 )
