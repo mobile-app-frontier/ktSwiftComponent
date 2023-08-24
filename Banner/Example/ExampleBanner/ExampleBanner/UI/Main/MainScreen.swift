@@ -30,6 +30,10 @@ struct MainScreen: View {
             },
             dismiss: { navRouter.dismiss(animated: false) })
         }
+        .onReceive(BannerManager.instance.landingPublisher) { landingType in
+            /// landing
+            debugPrint("landing to \(landingType)")
+        }
     }
 }
 

@@ -90,6 +90,7 @@ public struct PopupBannerView: View {
                         // inApp landing 일 경우, sheet 를 닫음.
                         if case .inApp(_) = banner.landingType {
                             hide()
+                            BannerManager.instance.clearWillShowBanner()
                         }
                     }
                 /// button

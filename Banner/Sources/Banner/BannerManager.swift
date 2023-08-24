@@ -33,6 +33,10 @@ public final class BannerManager {
     }
     // Banner Package 내부에서 landing event 가 발생할 때 호출하는 function.
     internal func send(landingType: BannerLandingType) {
+        if case .none = landingType {
+            return
+        }
+        
         landingSubject.send(landingType)
     }
     
@@ -139,6 +143,10 @@ public final class BannerManager {
                 }
             }
         }
+    }
+    
+    internal func clearWillShowBanner() {
+        willShowPopupBannerPolicy = PopupBannerPolicy()
     }
     
     // 현재 열려있는 popup banner 를 닫은 후, 보여줄 popup banner 있다면 present 함.
