@@ -5,13 +5,14 @@ struct ContentView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             Text("Contact")
+                .font(.system(size: 20, weight: .bold))
+            
             IndexedScrollView(dataSource: ChosungContactsBook(contacts: Contact.mockContacts),
                               header: { key in ContactHeader(key: key)},
                               cell: { contact in ContactCell(contact: contact) },
-                              indexBarItemType: .default(IndexedScrollViewTextDesign(background = nil))
+                              indexBarItemType: .default(IndexedScrollViewTextDesign(font: .system(size: 15)))
             )
         }
-        
         .padding([.leading, .trailing], 10)
     }
 }
@@ -38,6 +39,7 @@ struct ContactCell: View {
             Spacer()
             Text(contact.phoneNumber)
         }
-        .padding(5)
+        .padding(10)
     }
 }
+
