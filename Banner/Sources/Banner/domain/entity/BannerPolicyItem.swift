@@ -9,7 +9,7 @@ import Foundation
 import Utils
 
 /// DefaultBanner 와 PopupBanner 의 공통 요소. BannerPolicyItem의 필수값.
-protocol BannerPolicyItem: Comparable {
+internal protocol BannerPolicyItem: Comparable {
     /// `id`: Banner Id
     var id: String { get }
     /// `priority`: Banner 우선순위. 높은 우선순위를 가진것 부터 보여줌.
@@ -22,7 +22,7 @@ protocol BannerPolicyItem: Comparable {
     var additionalInfo: [String : String]? { get }
 }
 
-public enum BannerCloseType {
+internal enum BannerCloseType {
     case closeOnly // 닫기 옵션 하나만 존재. 한번 닫히면 다시 보여주지 않음.
     case nerverShowAgain // 다시 보지 않기, 닫기 옵션이 존재.
     case notShowForWeek // 일주일 동안 보지 않기, 닫기 옵션이 존재.
@@ -75,12 +75,26 @@ public enum BannerCloseType {
     }
 }
 
+/// 이동할 화면에 대한 정보
+///
+/// - `none`:  이동하지 않음.
+/// - `web`: 이동할 web view 에 대한 정보.
+/// - `inApp`: App 내부에서의 화면 이동.
 public enum BannerLandingType {
+    /// 이동하지 않음.
     case none
+    
+    /// WebView 로 Landing.
+    /// - Parameter url: web view url
     case web(url: String) // webview Landing 일 경우 landing 할 url 을 가지고 있음.
+    
+    /// App 내부의 화면으로 Landing
+    /// - Parameter destination: 앱 내부에서 이동할 화면의 이름
     case inApp(destination: String) // App 내의 화면 전환일 경우, destination 을 가지고 있음.
     
-    static func fromString(_ rawValue: String?, url: String?) -> BannerLandingType {
+    internal static func fromString(_ rawValue: String?,
+                                    url: String?
+    ) -> BannerLandingType {
         guard let rawValue = rawValue else {
             return .none
         }

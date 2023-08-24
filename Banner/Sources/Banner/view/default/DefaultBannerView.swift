@@ -9,8 +9,8 @@ import SwiftUI
 import Kingfisher
 
 // https://www.youtube.com/watch?v=uo8gj7RT3H8
-/// DefaultBannerView. [DefaultBannerPolicyItem] 을 Image Slider 형식으로 만들어줌.
-/// 주의! DefaultBannerPolicyItem 들은 같은 이미지 비율을 가져야 함.
+/// [DefaultBannerPolicyItem] 을 Image Slider 형식으로 만들어 주는 View.
+/// - Important: 같은 카테고리의 배너들은 같은 이미지 비율을 가져야 함.
 public struct DefaultBannerView: View {
     let defaultBanners: [DefaultBannerPolicyItem]
     
@@ -56,9 +56,6 @@ public struct DefaultBannerView: View {
                 }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-//            .onViewDidLoad {
-//                height = geometry.size.width / 5
-//            }
         }
         .frame(height: height)
         .cornerRadius(10)

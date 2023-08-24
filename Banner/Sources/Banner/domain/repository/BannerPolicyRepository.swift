@@ -7,18 +7,17 @@
 
 import Foundation
 
-public protocol BannerPolicyRepository {
-    func getBannerPolicy() async throws -> BannerPolicy
-}
-
-public final class MockBannerPolicyRepository: BannerPolicyRepository {
-    public init() {}
+internal final class BannerPolicyRepository {
+    internal let dataSource: BannerPolicyDataSource
     
-    public let dataSource = MockBannerPolicyDataSource()
+    internal init(dataSource: BannerPolicyDataSource) {
+        self.dataSource = dataSource
+    }
     
-    public func getBannerPolicy() async throws -> BannerPolicy {
+    internal func getBannerPolicy() async throws -> BannerPolicy {
         let model = try await dataSource.getBannerPolicy()
         
         return BannerPolicy(from: model)
     }
 }
+

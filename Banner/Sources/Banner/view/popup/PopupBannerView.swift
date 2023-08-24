@@ -7,10 +7,14 @@
 
 import SwiftUI
 
-/// PopupBannerView. Content 높이에 따라서 View 를 보여줌.
-/// 실제 bottom sheet 처럼 보여주기 위해서는 해당 View 를 present 할 때 UIViewController 의 배경색을 투명하게 혹은 dim 처리된 색상으로 변경하고, UIModalPresentationStyle 을 .overCurrentContext 로 지정해주어야 함.
+/// PopupBannerView. 
+///
+/// Content 높이에 따라서 View 를 보여줌.
+/// 
+/// - Important: 실제 bottom sheet 처럼 보여주기 위해서는 해당 View 를 present 할 때 UIViewController 의 배경색을 투명하게 혹은 dim 처리된 색상으로 변경하고, UIModalPresentationStyle 을 .overCurrentContext 로 지정해주어야 함.
 public struct PopupBannerView: View {
-    
+    /// 기본 Initializer
+    /// - Parameter banner: View 에서 보여줄 `PopupBanner` 정보
     public init(banner: PopupBannerPolicyItem) {
         self.banner = banner
     }
@@ -24,6 +28,9 @@ public struct PopupBannerView: View {
     
     @State
     private var height: CGFloat = 0
+    
+    @State
+    private var offsetY: CGFloat = 0
     
     private let topSafeArea: CGFloat = UIApplication.shared.windows.first?.safeAreaInsets.top ?? 0
     private let bottomSafeArea: CGFloat = UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? 0
@@ -49,11 +56,18 @@ public struct PopupBannerView: View {
             Color.black
                 .opacity(0.01)
                 .onTapGesture {
-                    change(height: 0)
+                    hide()
                 }
-                .onAnimationCompleted(for: height) {
-                    if height == 0 {
-                        BannerManager.instance.dismissAndPresentPopup()
+                .onAnimationCompleted(for: offsetY) {
+                    if offsetY == height {
+                        if case .closeOnly = banner.closeType {
+                            BannerManager.instance.dismissAndPresentPopup(
+                                id: banner.id,
+                                notShowedDate: banner.closeType.notShowedDate
+                            )
+                        } else {
+                            BannerManager.instance.dismissAndPresentPopup()
+                        }
                     }
                 }
             VStack(spacing: 0) {
@@ -75,7 +89,7 @@ public struct PopupBannerView: View {
                         BannerManager.instance.send(landingType: banner.landingType)
                         // inApp landing 일 경우, sheet 를 닫음.
                         if case .inApp(_) = banner.landingType {
-                            change(height: 0)
+                            hide()
                         }
                     }
                 /// button
@@ -93,6 +107,7 @@ public struct PopupBannerView: View {
             .background(Color.white.edgesIgnoringSafeArea(.all))
             .cornerRadius(10, corners: [.topLeft, .topRight])
             .shadow(radius: 10)
+            .offset(y: offsetY)
         }
         .ignoresSafeArea()
     }
@@ -106,8 +121,16 @@ public struct PopupBannerView: View {
     private func change(height: CGFloat) {
         let targetHeight = height <= systemHeight ? height : systemHeight
         
+        self.height = targetHeight
+        self.offsetY = targetHeight
         withAnimation(.easeInOut(duration: animationDuration)) {
-            self.height = targetHeight
+            offsetY = 0
+        }
+    }
+    
+    private func hide() {
+        withAnimation(.easeInOut(duration: animationDuration)) {
+            offsetY = height
         }
     }
 }

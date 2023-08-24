@@ -19,8 +19,8 @@ let package = Package(
             bundleIdentifier: "com.kt.BannerExample",
             displayVersion: "1.0",
             bundleVersion: "1",
-            appIcon: .placeholder(icon: .smiley),
-            accentColor: .presetColor(.brown),
+            appIcon: .placeholder(icon: .star),
+            accentColor: .presetColor(.purple),
             supportedDeviceFamilies: [
                 .pad,
                 .phone

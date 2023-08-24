@@ -8,9 +8,9 @@
 import Foundation
 
 // DefaultBannerPolicy 는 category 를 key 로 사용하고 있으며, key 에 매칭되는 [DefaultBannerPolicyItem]. DefaultBannerPolicy 는 Bloc 에서 banner filtering 시에 정렬이 되므로, 현재 정렬되어 있지 않음.
-public typealias DefaultBannerPolicy = [String:[DefaultBannerPolicyItem]]
+internal typealias DefaultBannerPolicy = [String:[DefaultBannerPolicyItem]]
 
-extension DefaultBannerPolicy {
+internal extension DefaultBannerPolicy {
     init(from model: [BannerPolicyItemModel]) {
         var defaultBanner = DefaultBannerPolicy()
         

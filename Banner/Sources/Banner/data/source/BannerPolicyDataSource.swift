@@ -7,11 +7,19 @@
 
 import Foundation
 
+
+
+/// Banner Policy 를 서버에서 받아올 때 사용되는 DataSource Protocol
 public protocol BannerPolicyDataSource {
+    /// 서버에서 받아온 BannerPolicy Json 정보를 `[BannerPolicyItemModel]` 로 변환하여 return
+    /// - Returns: 서버에서 받아온 Banner Policy Item 들의 List
     func getBannerPolicy() async throws -> [BannerPolicyItemModel]
 }
 
+/// Banner Policy 참고용 Mock Data
 public final class MockBannerPolicyDataSource: BannerPolicyDataSource {
+    /// 1 초 delay 후, 미리 정의한 Mock Data 를 return 해줌. 테스트 할 때만 사용할 것
+    /// - Returns: Banner Policy Mock Data
     public func getBannerPolicy() async throws -> [BannerPolicyItemModel] {
         // delay 1 sec
         try await Task.sleep(nanoseconds: 1_000_000_000)

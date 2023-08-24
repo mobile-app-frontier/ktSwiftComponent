@@ -8,9 +8,9 @@
 import Foundation
 
 // PopupBannerPolicy 는 priority 을 기준으로 내림차순 정렬되어 있음.
-public typealias PopupBannerPolicy = PriorityQueue<PopupBannerPolicyItem>
+internal typealias PopupBannerPolicy = PriorityQueue<PopupBannerPolicyItem>
 
-public extension PopupBannerPolicy {
+internal extension PopupBannerPolicy {
     init() {
         self.init([], >)
     }

@@ -9,7 +9,9 @@ import Foundation
 import Combine
 import SwiftUI
 
+/// `PopupBanner` 를 보여주는 `Sheet View` 관리와 `category` 별 `DefaultBannerView` 를 제공해주는 기능을 함.
 public final class BannerManager {
+    /// `BannerManager` 의 Singleton Instance
     public static let instance = BannerManager()
     
     /// `isInitialized`: BannerManager initialize 여부. initialize 는 한번만 가능.
@@ -22,7 +24,10 @@ public final class BannerManager {
     /// `landingSubject`: BannerManager 에서 내부적으로 들고 있는 landing subject.
     private let landingSubject = PassthroughSubject<BannerLandingType, Never>()
     
-    /// `landingPublisher` 외부에서 Landing 할 화면을 구독할 수 있는 Publisher.
+    /// 외부에서 사용자 interaction 에 의한 `Banner` Landing  화면을 구독할 수 있는 Publisher.
+    ///
+    /// ex) 사용자가 `LandingType` 이 있는 `DefaultBannerView` 혹은 `PopupBannerView` 를
+    /// tap 했을 때 Publish 될 수 있음.
     public var landingPublisher: AnyPublisher<BannerLandingType, Never> {
         landingSubject.eraseToAnyPublisher()
     }
@@ -55,11 +60,9 @@ public final class BannerManager {
     // BannerManager initializer.
     // BannerManager 는 Singleton 이므로, injection 해줘야 하는 Data 들을 해당 function 호출을 통해 지정함.
     // 해당 function 은 BannerManager 사용전에 반드시 호출되어야 하며, 한번만 호출이 가능함. (이미 initialize 를 진행했다면 새로운 parameter 는 setting 되지 않음.)
-    public func initialize(bannerPolicy: BannerPolicy?,
-                           present: @escaping (PopupBannerPolicyItem) -> Void,
-                           dismiss: @escaping () -> Void,
-                           localBannerPolicyGetter: @escaping () async -> [String : Int],
-                           localBannerPolicySetter: @escaping ([String : Int]) async -> Void
+    internal func initialize(bannerPolicy: BannerPolicy?,
+                             localBannerPolicyGetter: @escaping () async -> [String : Int],
+                             localBannerPolicySetter: @escaping ([String : Int]) async -> Void
     ) {
         guard !isInitialized else {
             debugPrint("[BannerPolicy] BannerManager 는 initialize 되어 있습니다.")
@@ -69,16 +72,15 @@ public final class BannerManager {
         isInitialized = true
         
         self.bannerPolicy = bannerPolicy
-        self.present = present
-        self.dismiss = dismiss
         self.localBannerPolicyGetter = localBannerPolicyGetter
         self.localBannerPolicySetter = localBannerPolicySetter
     }
     
     
-    // 입력받은 category 에 맞는 DefaultBannerView 를 return 해줌.
-    // initialize 이후에 사용할 수 있으며, 해당 category 에 일치하는 banner 가 없을 경우, nil 을 return 함.
-    // 해당 category 에 해당하는 DefaultBanner image 들을 ImageSlider 형태의 View 로 제공해줌.
+    /// category 에 해당하는 `DefaultBanner` image 들을 ImageSlider 형태의 View 로 제공해줌.
+    ///
+    /// - Parameter category:`DefaultBanner` 의 category
+    /// - Returns: 입력받은 category 에 맞는 `DefaultBannerView`. 해당 category 에 일치하는 banner 가 없을 경우, nil 을 return 함.
     public func buildDefaultBannerView(category: String) -> DefaultBannerView? {
         guard isInitialized else {
             debugPrint("[BannerPolicy] BannerManager 를 initialze 한 후에 사용하세요.")
@@ -94,7 +96,17 @@ public final class BannerManager {
     // PopupBanner sheet 를 start 해줌.
     // 내부에서 처음 initialize 에 입력받은 BannerPolicy 의 popupBanner 을 다시 세팅해주므로,
     // start() 를 다시 호출할 경우, bannerPolicy.popupBanner 을 처음부터 다시 보여줌.
-    public func start() {
+    /// `PopupBanner` sheet 를 start
+    ///
+    /// `PopupBanner` 들이 하나씩 `Sheet` 로 보여짐.
+    ///
+    /// - Important: `PopupBanner` 가 보여지고 있는 상태에서는 다시 호출하면 안됨. 또한, 모든 `PopupBanner` 를 전부 보여준 후 다시 call 할 경우 `BannerPolicyFetcher` 에서 fetch 한 배너들이 다시 처음부터 보여짐.
+    ///
+    /// - Parameters:
+    ///   - present: `PopupBannerPolicyItem` 받아 생성한 `PopupBannerView` 를 present 하는 로직.
+    ///   - dismiss: App navigator 에서 sheet 를 dismiss 하는 로직.
+    public func start(present: @escaping (PopupBannerPolicyItem) -> Void,
+                      dismiss: @escaping () -> Void) {
         guard isInitialized else {
             debugPrint("[BannerPolicy] BannerManager 를 initialze 한 후에 사용하세요.")
             return
@@ -104,6 +116,9 @@ public final class BannerManager {
             debugPrint("[BannerPolicy] banner policy 가 없습니다.")
             return
         }
+        
+        self.present = present
+        self.dismiss = dismiss
         
         Task {
             localBannerPolicy = await localBannerPolicyGetter!()
