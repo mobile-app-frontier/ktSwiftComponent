@@ -57,6 +57,7 @@ public struct DefaultBannerView: View {
                 }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            
         }
         .frame(height: height)
         .cornerRadius(10)
@@ -93,25 +94,34 @@ private struct ImageView: View {
     
     let width: CGFloat
     
+    @State
+    private var heightRatio: CGFloat = 1
+    
     @Binding
     var height: CGFloat?
     
     var body: some View {
         KFImage.url(banner.content.url)
             .loadDiskFileSynchronously()
-//            .fade(duration: 0.25)
+        //            .fade(duration: 0.25)
             .onProgress { receivedSize, totalSize in
                 
             }
             .onSuccess { result in
                 let imageSize = result.image.size
-                height = width * imageSize.height / imageSize.width
+                heightRatio = imageSize.height / imageSize.width
             }
             .resizable()
-            .aspectRatio(contentMode: .fit)
+            .aspectRatio(contentMode: .fill)
             .frame(width: width)
             .onTapGesture {
                 BannerManager.instance.send(landingType: banner.landingType)
+            }
+            .onChange(of: width) { newValue in
+                height = newValue * heightRatio
+            }
+            .onChange(of: heightRatio) { newValue in
+                height = width * newValue
             }
     }
 }

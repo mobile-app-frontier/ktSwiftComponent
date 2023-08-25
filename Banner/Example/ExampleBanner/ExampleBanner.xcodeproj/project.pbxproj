@@ -55,9 +55,9 @@
 		8E0D92682A9747C3005D9DC8 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				8E4398C02A987A7E00D95B67 /* Common */,
 				8E0D926A2A9747F4005D9DC8 /* Main */,
 				8E0D92692A9747ED005D9DC8 /* Splash */,
-				8E0D928B2A974F6F005D9DC8 /* ViewDidLoad.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -109,6 +109,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8E4398C02A987A7E00D95B67 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				8E0D928B2A974F6F005D9DC8 /* ViewDidLoad.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		8EEFA0A72A9745DB00886F07 = {
