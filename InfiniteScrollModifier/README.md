@@ -8,11 +8,53 @@ Module description
 ## Example
 
 ``` Swift
-// Code block
-struct SampleView: View {
-    var body = {
-        VStack {
-
+public struct InfiniteScrollExampleView: View {
+    
+    @State var data: [String] = []
+    
+    public init() {}
+    
+    public var body: some View {
+        LazyVStack {
+            ForEach(data, id: \.self) { item in
+                VStack {
+                    Text(item)
+                    Text(item)
+                }
+            }
+        }
+        /// 상단 새로고침 및 하단 불러오기를 트리거하려면 InfiniteScrollModifier를 호출합니다.
+        .modifier(
+            InfiniteScrollModifier(
+                delegate: InfiniteScrollDelegate(
+                    pullToRefresh: onRefresh,
+                    fetchMore: fetchMore
+                )
+            )
+        )
+    }
+    
+    func fetchMore() async {
+        do {
+            try await Task.sleep(nanoseconds: 2_000_000_000)
+            let result = ["4","5","6"]
+            data += result
+        } catch {
+            
+        }
+    }
+    
+    func onRefresh() async {
+        do {
+            try await Task.sleep(nanoseconds: 2_000_000_000)
+            let str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+            var arr: [String] = []
+            (0..<19).forEach { number in
+                arr.append(str.createRandomStr(length: number))
+            }
+            data = arr
+        } catch {
+            
         }
     }
 }
