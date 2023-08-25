@@ -1,141 +1,36 @@
 # InfiniteScrollModifier
 
-Module description
+View에 modifier 형태로 붙여서 사용할 수 있는 Pull to refresh 및 Infinite scrolling를 제공한다.
 
 - [Example](#example)
-- [structure](#structure)
+- [Structure](#structure)
+- [More](#more)
 
 ## Example
-
 ``` Swift
-public struct InfiniteScrollExampleView: View {
-    
-    @State var data: [String] = []
-    
-    public init() {}
-    
-    public var body: some View {
-        LazyVStack {
-            ForEach(data, id: \.self) { item in
-                VStack {
-                    Text(item)
-                    Text(item)
-                }
-            }
-        }
-        /// 상단 새로고침 및 하단 불러오기를 트리거하려면 InfiniteScrollModifier를 호출합니다.
-        .modifier(
-            InfiniteScrollModifier(
-                delegate: InfiniteScrollDelegate(
-                    pullToRefresh: onRefresh,
-                    fetchMore: fetchMore
-                )
-            )
-        )
-    }
-    
-    func fetchMore() async {
-        do {
-            try await Task.sleep(nanoseconds: 2_000_000_000)
-            let result = ["4","5","6"]
-            data += result
-        } catch {
-            
-        }
-    }
-    
-    func onRefresh() async {
-        do {
-            try await Task.sleep(nanoseconds: 2_000_000_000)
-            let str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-            var arr: [String] = []
-            (0..<19).forEach { number in
-                arr.append(str.createRandomStr(length: number))
-            }
-            data = arr
-        } catch {
-            
-        }
-    }
+LazyVStack {
+    // content ...
 }
+.modifier(
+    InfiniteScrollModifier(
+        delegate: InfiniteScrollDelegate(
+            pullToRefresh: onRefresh,
+            fetchMore: fetchMore
+        )
+    )
+)
 ```
 
 ## Structure
-
+### InfiniteScrollModifier
 | name | param | return | Description |
 | :--- | :---: | ---: | --- |
-| getIndex | Void | Int | get index |
-| setIndex | Int | Void | set index |
+| delegate | InfiniteScrollDelegate | Void | modifier의 속성 정의 |
 
+### InfiniteScrollDelegate
+| pullToRefresh | Void | (() async -> Void)? | pull to refresh 시 수행할 콜백 등록 |
+| fetchMore | Void | (() async -> Void)? | infinite scroll 시 수행할 콜백 등록 |
+| refreshProgressView | Void | (() -> any View)? | pull to refresh 시 띄울 progress view |
+| infiniteProgressView | Void | (() -> any View)? | infinite scroll 시 띄울 progress view |
 
-Link [Link](https://google.com)
-
-> **NOTE:** \
-hello note 
-
-
-## [MORE](/Documentation/InfiniteScrollModifier/Home.md)
-
-
-A description of this package.
-
-
-public struct InfiniteScrollExampleView: View {
-    
-    @State var data: [String] = []
-    
-    public init() {}
-    
-    public var body: some View {
-        LazyVStack {
-            ForEach(data, id: \.self) { item in
-                VStack {
-                    Text(item)
-                    Text(item)
-                }
-            }
-        }
-        /// 상단 새로고침 및 하단 불러오기를 트리거하려면 InfiniteScrollModifier를 호출합니다.
-        .modifier(
-            InfiniteScrollModifier(
-                delegate: InfiniteScrollDelegate(
-                    pullToRefresh: onRefresh,
-                    fetchMore: fetchMore
-                )
-            )
-        )
-    }
-    
-    func fetchMore() async {
-        do {
-            try await Task.sleep(nanoseconds: 2_000_000_000)
-            let result = ["4","5","6"]
-            data += result
-        } catch {
-            
-        }
-    }
-    
-    func onRefresh() async {
-        do {
-            try await Task.sleep(nanoseconds: 2_000_000_000)
-            let str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-            var arr: [String] = []
-            (0..<19).forEach { number in
-                arr.append(str.createRandomStr(length: number))
-            }
-            data = arr
-        } catch {
-            
-        }
-    }
-}
-
-extension String {
-    
-    func createRandomStr(length: Int) -> String {
-        let str = (0 ..< length).map{ _ in self.randomElement()! }
-        return String(str)
-    }
-    
-}
+## [MORE]
