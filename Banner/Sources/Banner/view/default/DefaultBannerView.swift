@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Kingfisher
+import Utils
 
 // https://www.youtube.com/watch?v=uo8gj7RT3H8
 /// [DefaultBannerPolicyItem] 을 Image Slider 형식으로 만들어 주는 View.
@@ -59,7 +60,6 @@ public struct DefaultBannerView: View {
         }
         .frame(height: height)
         .cornerRadius(10)
-        .padding([.leading, .trailing], 10)
         .overlay (
             // Animated Indicators
             HStack(spacing: 10) {
@@ -90,6 +90,7 @@ fileprivate extension View {
 
 private struct ImageView: View {
     let banner: DefaultBannerPolicyItem
+    
     let width: CGFloat
     
     @Binding
@@ -115,14 +116,14 @@ private struct ImageView: View {
     }
 }
 
-//struct DefaultBannerView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DefaultBannerView(defaultBanners: [
-//            DefaultBannerPolicyItem(id: "1111", priority: 1, targetAppversion: Version("1.0.0"), landingType: .none, content: .image(url: "https://fastly.picsum.photos/id/668/500/100.jpg?hmac=_H_udLJmfNoUADzswUtbwREyM_Gi8FhAfJam4K4eeBs"), category: "test"),
-//            DefaultBannerPolicyItem(id: "2222", priority: 1, targetAppversion: Version("1.0.0"), landingType: .none, content: .image(url: "https://fastly.picsum.photos/id/668/500/100.jpg?hmac=_H_udLJmfNoUADzswUtbwREyM_Gi8FhAfJam4K4eeBs"), category: "test"),
-//            DefaultBannerPolicyItem(id: "3", priority: 1, targetAppversion: Version("1.0.0"), landingType: .none, content: .image(url: "https://fastly.picsum.photos/id/668/500/100.jpg?hmac=_H_udLJmfNoUADzswUtbwREyM_Gi8FhAfJam4K4eeBs"), category: "test")
-//        ])
-//    }
-//}
+struct DefaultBannerView_Previews: PreviewProvider {
+    static var previews: some View {
+        DefaultBannerView(defaultBanners: [
+            DefaultBannerPolicyItem(id: "1111", priority: 1, targetAppversion: Version("1.0.0"), landingType: .none, content: .image(url: "https://fastly.picsum.photos/id/668/500/100.jpg?hmac=_H_udLJmfNoUADzswUtbwREyM_Gi8FhAfJam4K4eeBs"), category: "test"),
+            DefaultBannerPolicyItem(id: "2222", priority: 1, targetAppversion: Version("1.0.0"), landingType: .none, content: .image(url: "https://fastly.picsum.photos/id/668/500/100.jpg?hmac=_H_udLJmfNoUADzswUtbwREyM_Gi8FhAfJam4K4eeBs"), category: "test"),
+            DefaultBannerPolicyItem(id: "3", priority: 1, targetAppversion: Version("1.0.0"), landingType: .none, content: .image(url: "https://fastly.picsum.photos/id/668/500/100.jpg?hmac=_H_udLJmfNoUADzswUtbwREyM_Gi8FhAfJam4K4eeBs"), category: "test")
+        ])
+    }
+}
 
 

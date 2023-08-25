@@ -14,9 +14,9 @@
 		8E0D92752A974ADF005D9DC8 /* SplashBloc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0D92742A974ADF005D9DC8 /* SplashBloc.swift */; };
 		8E0D92772A974AE8005D9DC8 /* SplashState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0D92762A974AE8005D9DC8 /* SplashState.swift */; };
 		8E0D928C2A974F6F005D9DC8 /* ViewDidLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0D928B2A974F6F005D9DC8 /* ViewDidLoad.swift */; };
-		8E0D92952A975349005D9DC8 /* Banner in Frameworks */ = {isa = PBXBuildFile; productRef = 8E0D92942A975349005D9DC8 /* Banner */; };
-		8E0D92972A975349005D9DC8 /* ModalManager in Frameworks */ = {isa = PBXBuildFile; productRef = 8E0D92962A975349005D9DC8 /* ModalManager */; };
-		8E0D92992A975349005D9DC8 /* NavRouter in Frameworks */ = {isa = PBXBuildFile; productRef = 8E0D92982A975349005D9DC8 /* NavRouter */; };
+		8E0D929F2A975761005D9DC8 /* Banner in Frameworks */ = {isa = PBXBuildFile; productRef = 8E0D929E2A975761005D9DC8 /* Banner */; };
+		8E0D92A12A975761005D9DC8 /* ModalManager in Frameworks */ = {isa = PBXBuildFile; productRef = 8E0D92A02A975761005D9DC8 /* ModalManager */; };
+		8E0D92A32A975761005D9DC8 /* NavRouter in Frameworks */ = {isa = PBXBuildFile; productRef = 8E0D92A22A975761005D9DC8 /* NavRouter */; };
 		8EEFA0B42A9745DB00886F07 /* ExampleBannerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEFA0B32A9745DB00886F07 /* ExampleBannerApp.swift */; };
 		8EEFA0B82A9745DE00886F07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EEFA0B72A9745DE00886F07 /* Assets.xcassets */; };
 		8EEFA0BB2A9745DE00886F07 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EEFA0BA2A9745DE00886F07 /* Preview Assets.xcassets */; };
@@ -43,9 +43,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E0D92972A975349005D9DC8 /* ModalManager in Frameworks */,
-				8E0D92952A975349005D9DC8 /* Banner in Frameworks */,
-				8E0D92992A975349005D9DC8 /* NavRouter in Frameworks */,
+				8E0D92A12A975761005D9DC8 /* ModalManager in Frameworks */,
+				8E0D929F2A975761005D9DC8 /* Banner in Frameworks */,
+				8E0D92A32A975761005D9DC8 /* NavRouter in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,9 +175,9 @@
 			);
 			name = ExampleBanner;
 			packageProductDependencies = (
-				8E0D92942A975349005D9DC8 /* Banner */,
-				8E0D92962A975349005D9DC8 /* ModalManager */,
-				8E0D92982A975349005D9DC8 /* NavRouter */,
+				8E0D929E2A975761005D9DC8 /* Banner */,
+				8E0D92A02A975761005D9DC8 /* ModalManager */,
+				8E0D92A22A975761005D9DC8 /* NavRouter */,
 			);
 			productName = ExampleBanner;
 			productReference = 8EEFA0B02A9745DB00886F07 /* ExampleBanner.app */;
@@ -208,7 +208,7 @@
 			);
 			mainGroup = 8EEFA0A72A9745DB00886F07;
 			packageReferences = (
-				8E0D92932A975349005D9DC8 /* XCRemoteSwiftPackageReference "ktSwiftComponent" */,
+				8E0D929D2A975761005D9DC8 /* XCRemoteSwiftPackageReference "ktSwiftComponent" */,
 			);
 			productRefGroup = 8EEFA0B12A9745DB00886F07 /* Products */;
 			projectDirPath = "";
@@ -462,7 +462,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8E0D92932A975349005D9DC8 /* XCRemoteSwiftPackageReference "ktSwiftComponent" */ = {
+		8E0D929D2A975761005D9DC8 /* XCRemoteSwiftPackageReference "ktSwiftComponent" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mobile-app-frontier/ktSwiftComponent.git";
 			requirement = {
@@ -473,19 +473,19 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8E0D92942A975349005D9DC8 /* Banner */ = {
+		8E0D929E2A975761005D9DC8 /* Banner */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8E0D92932A975349005D9DC8 /* XCRemoteSwiftPackageReference "ktSwiftComponent" */;
+			package = 8E0D929D2A975761005D9DC8 /* XCRemoteSwiftPackageReference "ktSwiftComponent" */;
 			productName = Banner;
 		};
-		8E0D92962A975349005D9DC8 /* ModalManager */ = {
+		8E0D92A02A975761005D9DC8 /* ModalManager */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8E0D92932A975349005D9DC8 /* XCRemoteSwiftPackageReference "ktSwiftComponent" */;
+			package = 8E0D929D2A975761005D9DC8 /* XCRemoteSwiftPackageReference "ktSwiftComponent" */;
 			productName = ModalManager;
 		};
-		8E0D92982A975349005D9DC8 /* NavRouter */ = {
+		8E0D92A22A975761005D9DC8 /* NavRouter */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8E0D92932A975349005D9DC8 /* XCRemoteSwiftPackageReference "ktSwiftComponent" */;
+			package = 8E0D929D2A975761005D9DC8 /* XCRemoteSwiftPackageReference "ktSwiftComponent" */;
 			productName = NavRouter;
 		};
 /* End XCSwiftPackageProductDependency section */
