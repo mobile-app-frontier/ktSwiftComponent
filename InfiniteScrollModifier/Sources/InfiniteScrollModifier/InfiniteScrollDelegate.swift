@@ -8,15 +8,19 @@
 import Foundation
 import SwiftUI
 
-/// InfiniteScrollModifier 생성 시에 속성을 정의합니다.
+/// InfiniteScrollModifier 생성 시에 속성을 정의한다.
 public struct InfiniteScrollDelegate {
-    /// 상단 새로고침 시 수행할 콜백을 등록합니다. nil이면 새로고침이 실행되지 않습니다.
+    /// 상단 새로고침 시 수행할 콜백을 등록한다.
+    /// nil이면 pull to refresh가 호출되지 않는다.
     var pullToRefresh: (() async -> Void)?
-    /// 하단 불러오기 시 수행할 콜백을 등록합니다. nil이면 새로고침이 실행되지 않습니다.
+    /// 하단 불러오기 시 수행할 콜백을 등록한다.
+    /// nil이면 infinite scroll이 호출되지 않는다.
     var fetchMore: (() async -> Void)?
-    /// 상단 새로고침 시 보여질View를 받습니다. 없으면 DefaultProgressView가 표출됩니다.
+    /// 상단 새로고침 시 보여질 View를 받는다.
+    ///  nil이면 DefaultProgressView가 표출된다.
     var refreshProgressView: (() -> any View)?
-    /// 하단 불러오기 시 보여질 View를 받습니다. 없으면 DefaultProgressView가 표출됩니다.
+    /// 하단 불러오기 시 보여질 View를 받는다.
+    /// nil이면 DefaultProgressView가 표출된다.
     var infiniteProgressView: (() -> any View)?
     
     public init(

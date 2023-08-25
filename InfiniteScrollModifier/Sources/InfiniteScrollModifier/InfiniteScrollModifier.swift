@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-/// modifier 언제 action이 일어나는지 명시 (데이터)
+/// View에 modifier 형태로 붙여서 사용할 수 있는 Pull to refresh 및 Infinite scrolling를 제공한다.
 public struct InfiniteScrollModifier: ViewModifier {
     
     @StateObject
@@ -26,10 +26,13 @@ public struct InfiniteScrollModifier: ViewModifier {
     
     let delegate: InfiniteScrollDelegate
     
+    /// modifier에 적용할 pull to refresh 및 infinite scroll 속성들을 설정한다.
     public init(delegate: InfiniteScrollDelegate) {
         self.delegate = delegate
     }
     
+    /// 사용자가 스크롤을 일정 높이 이상으로 잡아당기면 pull to refresh 콜백이 호출된다.
+    /// 스크롤이 화면 하단에 도달했을 때, 사용자가 스크롤을 계속 내리면 infinite scroll 콜백이 호출된다.
     public func body(content: Content) -> some View {
         GeometryReader {  screenProxy in
             ScrollView {
@@ -40,7 +43,6 @@ public struct InfiniteScrollModifier: ViewModifier {
                         }
                     }
                     .background(GeometryReader { proxy in
-                        /// 스크롤뷰(scrollGeometry가 스크롤뷰의 좌표평면)에 대해 상대적인 y 좌표의 변화를 관찰한다.
                         Color.clear
                             .preference(
                                 key: PullToRefreshKey.self,
@@ -69,7 +71,6 @@ public struct InfiniteScrollModifier: ViewModifier {
                         .background (
                             GeometryReader { proxy in
                                 Color.clear
-                                /// proxy 가 변할 때마다 값을 ScrollCurrentOffsetKey에 저장한다.
                                     .preference(
                                         key: ScrollCurrentOffsetKey.self,
                                         value: ScrollSet(
