@@ -8,8 +8,9 @@
 import Foundation
 import Security
 
-// 비대칭키 RSA 알고리즘 사용
-// 대칭키 대비 속도가 아주 느림.
+/// 비칭키 암호를 사용하여 암/복호화 시 사용
+/// 속도 느림.
+/// 현재 비대칭키 중 가장 널리 사용되고 있는 RSA 알고리즘을 사용.
 public struct RSACipher: Cipher {
     private let algorithm: SecKeyAlgorithm = .rsaEncryptionPKCS1
     
@@ -17,11 +18,19 @@ public struct RSACipher: Cipher {
     private let publicKey: SecKey?
     public let key: SecKey?
     
+    /// publicKey와 SecKey로 초기화
+    /// - Parameters:
+    ///   - privateKey: 개인키
+    ///   - publicKey: 공개키
     public init(privateKey: SecKey? = nil, publicKey: SecKey? = nil) {
         self.key = privateKey
         self.publicKey = publicKey
     }
     
+    /// 개인키에서 공개키를 얻어올 때 사용
+    /// - Returns: 암호화 시 사용하는 키
+    /// - Throws: . emptyPrivateKey(공개키도 개인키도 없을 때),
+    ///           .failedToCreatePubKey(개인 키로 공개키를 만들다가 실패했을 때)
     public func getPublicKey() throws -> SecKey {
         guard let publicKey = publicKey else {
             guard let privateKey = self.key else {
@@ -40,8 +49,9 @@ public struct RSACipher: Cipher {
 
 //MARK: - implement Cipher
 extension RSACipher {
-    
-    // RSA 암호화
+    /// 암호화 함수
+    /// - Parameter originalData: 원본 데이터
+    /// - Returns: 암호화 된 데이터
     public func encrypt(originalData: Data) throws -> Data {
         let publicKey = try getPublicKey()
         
@@ -80,8 +90,11 @@ extension RSACipher {
         return encryptedData
         
     }
-
-    // RSA 복호화
+    
+    /// 복호화
+    /// - Parameter encryptedData: 암호화된 데이터
+    /// - Returns: 복호화 된 데이터
+    /// - Throws: ``RSAError``
     public func decrypt(encryptedData: Data) throws -> Data {
         guard let key = self.key else {
             throw RSAError.invalidMessage

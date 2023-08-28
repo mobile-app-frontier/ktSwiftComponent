@@ -3,17 +3,17 @@ import CryptoKit
 import Foundation
 
 public struct CipherKeyUtils {
-    
+    /// AES 키 생성 함수
     public static func generateSymmetricKey(keySize: Int) -> SymmetricKey{
         return SymmetricKey(size: SymmetricKeySize(bitCount: keySize))
     }
     
-    // keyData -> SymmetricKey
+    /// KeyData를 AESCipher에서 사용할 수 있는 SymmetricKey(대칭키) 형태로 변환
     public static func wrapSymmetricKey(data: Data) -> SymmetricKey {
         return SymmetricKey(data: data)
     }
     
-    // RSA 키 생성 함수
+    /// RSA 키 생성 함수
     public static func generateRSAKey(keyLength: Int) throws -> SecKey {
         let attributes: [CFString: Any] = [
             kSecAttrKeyType: kSecAttrKeyTypeRSA,
@@ -27,7 +27,7 @@ public struct CipherKeyUtils {
         return privateKey
     }
     
-    // keyData -> SecKey
+    /// KeyData(String 타입)를 RSACipher에서 사용할 수 있는 SecKey(비대칭키) 형태로 변환
     public static func wrapPublicKey(publicKeyString: String) throws -> SecKey {
         let wrapBase64Key = try publicKeyString.toBase64String()
         
@@ -38,6 +38,7 @@ public struct CipherKeyUtils {
         return try wrapPublicKey(publicKeyData: data)
     }
     
+    /// KeyData(Data 타입)를 RSACipher에서 사용할 수 있는 SecKey(비대칭키) 형태로 변환
     public static func wrapPublicKey(publicKeyData: Data) throws -> SecKey {
         let stripedHeader = try stripKeyHeader(keyData: publicKeyData)
         let tag = UUID().uuidString
@@ -118,7 +119,6 @@ extension CipherKeyUtils {
             
         // On iOS 9 and earlier, add a persistent version of the key to the system keychain
         } else {
-            
             let persistKey = UnsafeMutablePointer<AnyObject?>(mutating: nil)
             
             let keyAddDict: [CFString: Any] = [
