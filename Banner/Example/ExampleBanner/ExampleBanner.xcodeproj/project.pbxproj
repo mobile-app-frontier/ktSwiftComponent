@@ -474,7 +474,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mobile-app-frontier/ktSwiftComponent.git";
 			requirement = {
-				branch = feature/banner_doc;
+				branch = main;
 				kind = branch;
 			};
 		};
