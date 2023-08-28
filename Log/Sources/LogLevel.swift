@@ -1,5 +1,7 @@
 import os
 
+/// LogLevel 로 filtering할 때 사용
+/// 기본값 debug
 public enum LogLevel: Int {
     case debug
     case info
@@ -35,6 +37,7 @@ extension LogLevel {
             return "ERROR"
         }
     }
+    
     var tag: String {
         switch self {
         case .debug:
