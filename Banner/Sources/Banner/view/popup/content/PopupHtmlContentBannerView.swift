@@ -77,7 +77,11 @@ private struct HtmlContentView: UIViewRepresentable {
                             if let height = height as? CGFloat, self.webViewHeight == 0 {
                                 
                                 withAnimation(.linear(duration: 0.3)) {
-                                    self.webViewHeight = height
+                                    if height > ViewSize.safeHeight {
+                                        self.webViewHeight = ViewSize.safeHeight
+                                    } else {
+                                        self.webViewHeight = height
+                                    }
                                 }
                                 
                             }

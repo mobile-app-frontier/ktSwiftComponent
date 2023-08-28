@@ -15,19 +15,6 @@ internal struct PopupImageContentBannerView: View {
     @State
     var height: CGFloat = 0
     
-    private let topSafeArea: CGFloat = UIApplication.shared.windows.first?.safeAreaInsets.top ?? 0
-    private let bottomSafeArea: CGFloat = UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? 0
-    private let leftSafeArea: CGFloat = UIApplication.shared.windows.first?.safeAreaInsets.left ?? 0
-    private let rightSafeArea: CGFloat = UIApplication.shared.windows.first?.safeAreaInsets.right ?? 0
-    
-    private var width: CGFloat {
-        UIScreen.main.bounds.width - leftSafeArea - rightSafeArea
-    }
-    
-    private var systemHeight: CGFloat {
-        UIScreen.main.bounds.height - bottomSafeArea - topSafeArea - 100
-    }
-    
     var body: some View {
         KFImage.url(url)
             .loadDiskFileSynchronously()
@@ -36,10 +23,10 @@ internal struct PopupImageContentBannerView: View {
             }
             .onSuccess { result in
                 let imageSize = result.image.size
-                let imageHeight = width * imageSize.height / imageSize.width
+                let imageHeight = ViewSize.safeWidth * imageSize.height / imageSize.width
                 
-                if (imageHeight > systemHeight) {
-                    height = systemHeight
+                if (imageHeight > ViewSize.safeHeight) {
+                    height =  ViewSize.safeHeight
                 }
                 else {
                     height = imageHeight

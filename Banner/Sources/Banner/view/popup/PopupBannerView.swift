@@ -27,20 +27,7 @@ public struct PopupBannerView: View {
     @State
     private var height: CGFloat = 0
     
-    private let topSafeArea: CGFloat = UIApplication.shared.windows.first?.safeAreaInsets.top ?? 0
-    private let bottomSafeArea: CGFloat = UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? 0
-    private let leftSafeArea: CGFloat = UIApplication.shared.windows.first?.safeAreaInsets.left ?? 0
-    private let rightSafeArea: CGFloat = UIApplication.shared.windows.first?.safeAreaInsets.right ?? 0
-    
     private let animationDuration = 0.4
-    
-    private var safeWidth: CGFloat {
-        UIScreen.main.bounds.width - leftSafeArea - rightSafeArea 
-    }
-    
-    private var systemHeight: CGFloat {
-        UIScreen.main.bounds.height - bottomSafeArea - topSafeArea - 100
-    }
     
     public var body: some View {
         ZStack(alignment: .bottom) {
@@ -110,8 +97,8 @@ struct PopupBannerView_Previews: PreviewProvider {
                                                       landingType: .none,
                                                       content:
 //                .html("<h1>Hello, <strong>World!</strong></h1>"),
-                .text("blablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablabla"),
-//                .image(url: "https://fastly.picsum.photos/id/565/1000/600.jpg?hmac=oJQa8_RLVzpyhJggqcyNnMUelPH8nqYUaqj65ws0p5c"),
+//                .text("blablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablabla"),
+                .image(url: "https://fastly.picsum.photos/id/565/1000/600.jpg?hmac=oJQa8_RLVzpyhJggqcyNnMUelPH8nqYUaqj65ws0p5c"),
 //            .text("test"),
                                                       closeType: .closeOnly))
     }
