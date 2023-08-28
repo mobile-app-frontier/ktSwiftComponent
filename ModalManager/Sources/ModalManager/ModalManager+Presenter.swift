@@ -41,17 +41,20 @@ public extension ModalManager {
      */
     func show(
         modalWindowStyle: ModalWindowStyle = ResizableModalWindowStyle(),
-        modalContent: @escaping () -> some View,
-        orderOption: ModalOrderOptions? = nil
+        arbitraryMarginValue: CGFloat = 0,
+        modalContent: @escaping () -> some View
     ) {
-        if ModalManager.instance.ignoreIfPresenting && ModalManager.instance.modalOrder.modals() != 0 {
+        
+        // 이미 표출 중인 모달이 있으면 표출하지 않습니다.
+        if ModalManager.getInstance().ignoreIfPresenting && ModalManager.getInstance().modalOrder.modals() != 0 {
             return
         }
         let customModalView: ModalView = ModalView(
             contentBuilder: modalContent,
-            modalWindowStyle: modalWindowStyle
+            modalWindowStyle: modalWindowStyle,
+            arbitraryMarginValue: arbitraryMarginValue
         )
-        createModalController(customModalView, orderOption)
+        createModalController(customModalView)
     }
     
 }
