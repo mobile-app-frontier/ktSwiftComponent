@@ -6,6 +6,6 @@
 - [File URL 데이터 암호화](/Documentation/CryptoUtils/URL.md)
 - [그 밖에 암호화 관련 Util](/Documentation/CryptoUtils/CipherKeyUtils.md)
 
-- [Example](/CryptoUtils/Tests/CryptoUtilsTests/CryptoUtilsTests)
+- [Example](/CryptoUtils/Tests/CryptoUtilTests/CryptoUtilTests.swift)
 
 ## [MORE](/Documentation/CryptoUtils/Home.md)
