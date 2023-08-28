@@ -30,7 +30,6 @@ internal struct PopupOptionButtonBannerView: View {
                 Text("닫기")
             }
         }
-        .padding([.leading, .trailing], 10)
     }
 }
 

@@ -12,20 +12,29 @@ internal struct PopupButtonBannerView: View {
     let bannerId: String
     let closeType: BannerCloseType
     
+    private let bottomSafeArea: CGFloat = UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? 0
+    private let leftSafeArea: CGFloat = UIApplication.shared.windows.first?.safeAreaInsets.left ?? 0
+    private let rightSafeArea: CGFloat = UIApplication.shared.windows.first?.safeAreaInsets.right ?? 0
+    
     var body: some View {
-        switch closeType {
-        case .closeOnly:
-            PopupCloseOnlyButtonBannerView(bannerId: bannerId)
-        case .nerverShowAgain:
-            PopupOptionButtonBannerView(bannerId: bannerId,
-                                        closeType: closeType)
-        case .notShowForWeek:
-            PopupOptionButtonBannerView(bannerId: bannerId,
-                                        closeType: closeType)
-        case .notShowToday:
-            PopupOptionButtonBannerView(bannerId: bannerId,
-                                        closeType: closeType)
+        ZStack {
+            switch closeType {
+            case .closeOnly:
+                PopupCloseOnlyButtonBannerView(bannerId: bannerId)
+            case .nerverShowAgain:
+                PopupOptionButtonBannerView(bannerId: bannerId,
+                                            closeType: closeType)
+            case .notShowForWeek:
+                PopupOptionButtonBannerView(bannerId: bannerId,
+                                            closeType: closeType)
+            case .notShowToday:
+                PopupOptionButtonBannerView(bannerId: bannerId,
+                                            closeType: closeType)
+            }
         }
+            .padding(.bottom, bottomSafeArea)
+            .padding(.leading, leftSafeArea == 0 ? 10 : leftSafeArea)
+            .padding(.trailing, rightSafeArea == 0 ? 10 : rightSafeArea)
     }
 }
 

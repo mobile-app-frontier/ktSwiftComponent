@@ -9,33 +9,47 @@ import SwiftUI
 
 // Content Type 에 따라 View 를 build.
 internal struct PopupContentBannerView: View {
-    let type: PopupBannerPolicyItem.Content
-    
-    @Binding
-    var height: CGFloat
+    let banner: PopupBannerPolicyItem
     
     var body: some View {
-        switch (type) {
-        case .text(let content):
-            PopupTextContentBannerView(content: content, height: $height)
-        case .image(let url):
-            PopupImageContentBannerView(url: URL(string: url), height: $height)
-        case .html(let content):
-            PopupHtmlContentBannerView(htmlString: content, height: $height)
-                .frame(height: height)
+        VStack(spacing: 10) {
+            /// content
+            switch (banner.content) {
+            case .text(let content):
+                PopupTextContentBannerView(content: content)
+            case .image(let url):
+                PopupImageContentBannerView(url: URL(string: url))
+            case .html(let content):
+                PopupHtmlContentBannerView(htmlString: content,
+                                           id: banner.id,
+                                           closeType: banner.closeType
+                )
+            }
+            
+            if case .html = banner.content {}
+            else {
+                /// button
+                PopupButtonBannerView(bannerId: banner.id,
+                                      closeType: banner.closeType)
+                    .buttonStyle(.plain)
+            }
+            
+            
         }
     }
 }
 
 struct PopupContentBannerView_Previews: PreviewProvider {
     static var previews: some View {
-        PopupContentBannerView(
-            type: .html("<h1>Hello, <strong>World!</strong></h1>"),
-//            type: .text("test"),
-//            type: .image(url:
-//                                                "https://fastly.picsum.photos/id/248/1000/400.jpg?hmac=SLxXRxNIg8fQ3R4yILJJ9eQpwBkdsWjnhMegYrgVIWM"
-//                                                "https://fastly.picsum.photos/id/565/1000/600.jpg?hmac=oJQa8_RLVzpyhJggqcyNnMUelPH8nqYUaqj65ws0p5c"
-//                                           ),
-                               height: .constant(0))
+        PopupContentBannerView(banner: PopupBannerPolicyItem(id: "1",
+                                                             priority: 1,
+                                                             targetAppversion: nil,
+                                                             landingType: .none,
+                                                             content:
+                       .html("<h1>Hello, <strong>World!</strong></h1>"),
+       //                .text("blablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablabla"),
+       //                .image(url: "https://fastly.picsum.photos/id/565/1000/600.jpg?hmac=oJQa8_RLVzpyhJggqcyNnMUelPH8nqYUaqj65ws0p5c"),
+                                                             closeType: .closeOnly)
+                               )
     }
 }

@@ -21,16 +21,11 @@ public struct PopupBannerView: View {
     
     let banner: PopupBannerPolicyItem
     
-    let buttonHeight: CGFloat = 50
-    
     @State
-    private var contentHeight: CGFloat = 0
+    private var offsetY: CGFloat = -20
     
     @State
     private var height: CGFloat = 0
-    
-    @State
-    private var offsetY: CGFloat = 0
     
     private let topSafeArea: CGFloat = UIApplication.shared.windows.first?.safeAreaInsets.top ?? 0
     private let bottomSafeArea: CGFloat = UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? 0
@@ -40,15 +35,11 @@ public struct PopupBannerView: View {
     private let animationDuration = 0.4
     
     private var safeWidth: CGFloat {
-        UIScreen.main.bounds.width - leftSafeArea - rightSafeArea
+        UIScreen.main.bounds.width - leftSafeArea - rightSafeArea 
     }
     
     private var systemHeight: CGFloat {
         UIScreen.main.bounds.height - bottomSafeArea - topSafeArea - 50
-    }
-    
-    private var maxContentHeight: CGFloat {
-        systemHeight - buttonHeight - 20
     }
     
     public var body: some View {
@@ -70,21 +61,9 @@ public struct PopupBannerView: View {
                         }
                     }
                 }
-            VStack(spacing: 0) {
+            VStack(spacing: 10) {
                 /// content
-                PopupContentBannerView(type: banner.content, height: $contentHeight)
-                    .onChange(of: contentHeight) { height in
-                        guard maxContentHeight >= height else {
-                            self.contentHeight = maxContentHeight
-                            return
-                        }
-                        change(contentHeight: contentHeight)
-                    }
-//                    .frame(
-//                        width: safeWidth,
-//                        height: contentHeight,
-//                        alignment: .bottom // 뷰 정렬
-//                    )
+                PopupContentBannerView(banner: banner)
                     .onTapGesture {
                         BannerManager.instance.send(landingType: banner.landingType)
                         // inApp landing 일 경우, sheet 를 닫음.
@@ -93,40 +72,26 @@ public struct PopupBannerView: View {
                             BannerManager.instance.clearWillShowBanner()
                         }
                     }
-                /// button
-                PopupButtonBannerView(bannerId: banner.id,
-                                      closeType: banner.closeType)
-                    .buttonStyle(.plain)
-                    .frame(maxWidth: .infinity, maxHeight: buttonHeight)
             }
-            .padding([.bottom], bottomSafeArea)
-//            .frame(
-//                width: safeWidth,
-//                height: height,
-//                alignment: .bottom // 뷰 정렬
-//            )
-            .background(Color.white.edgesIgnoringSafeArea(.all))
-            .cornerRadius(10, corners: [.topLeft, .topRight])
-            .shadow(radius: 10)
-            .offset(y: offsetY)
+                .overlay(GeometryReader {
+                    Color.clear.preference(
+                        key: ContentSizeKey.self,
+                        value: $0.size
+                    )
+                })
+                .onPreferenceChange(ContentSizeKey.self) { size in
+                    height = size.height
+                    offsetY = height
+                    withAnimation(.easeInOut(duration: animationDuration)) {
+                        offsetY = 0
+                    }
+                }
+                .background(Color.white.edgesIgnoringSafeArea(.all))
+                .cornerRadius(10, corners: [.topLeft, .topRight])
+                .shadow(radius: 10)
+                .offset(y: offsetY)
         }
         .ignoresSafeArea()
-    }
-    
-    private func change(contentHeight: CGFloat) {
-        let height = contentHeight + buttonHeight + bottomSafeArea
-        
-        change(height: height)
-    }
-    
-    private func change(height: CGFloat) {
-        let targetHeight = height <= systemHeight ? height : systemHeight
-        
-        self.height = targetHeight
-        self.offsetY = targetHeight
-        withAnimation(.easeInOut(duration: animationDuration)) {
-            offsetY = 0
-        }
     }
     
     private func hide() {
@@ -144,9 +109,9 @@ struct PopupBannerView_Previews: PreviewProvider {
                                                       targetAppversion: nil,
                                                       landingType: .none,
                                                       content:
-                .html("<h1>Hello, <strong>World!</strong></h1>"),
+//                .html("<h1>Hello, <strong>World!</strong></h1>"),
 //                .text("blablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablabla"),
-//                .image(url: "https://fastly.picsum.photos/id/565/1000/600.jpg?hmac=oJQa8_RLVzpyhJggqcyNnMUelPH8nqYUaqj65ws0p5c"),
+                .image(url: "https://fastly.picsum.photos/id/565/1000/600.jpg?hmac=oJQa8_RLVzpyhJggqcyNnMUelPH8nqYUaqj65ws0p5c"),
                                                       closeType: .closeOnly))
     }
 }
@@ -164,6 +129,14 @@ struct RoundedCorner: Shape {
     func path(in rect: CGRect) -> Path {
         let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         return Path(path.cgPath)
+    }
+}
+
+private struct ContentSizeKey: PreferenceKey {
+    static var defaultValue: CGSize = .zero
+
+    static func reduce(value: inout CGSize, nextValue: () -> CGSize) {
+        value = nextValue()
     }
 }
 
