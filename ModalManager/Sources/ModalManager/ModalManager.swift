@@ -30,8 +30,8 @@ public enum ModalPresentableState {
 @MainActor
 public class ModalManager {
     
-    public static let instance: ModalManager = ModalManager()
-
+    private static var instance: ModalManager? = nil
+    
     public static func getInstance(
         modalOrder: ModalOrder? = nil,
         modalStyle: ModalStyle? = nil,
@@ -46,7 +46,9 @@ public class ModalManager {
     
     private var modalControllersToPresent: [ModalController] = []
     
-    var ignoreIfPresenting: Bool
+    private(set) var modalStyle: ModalStyle = DefaultModalStyle()
+    
+    private(set) var modalOrder: ModalOrder = StackOrder()
     
     /// 다이얼로그를 1개만 출력하고 싶을 때 사용
     private(set) var ignoreIfPresenting: Bool = false
