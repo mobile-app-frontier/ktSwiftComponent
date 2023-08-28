@@ -39,7 +39,7 @@ public struct PopupBannerView: View {
     }
     
     private var systemHeight: CGFloat {
-        UIScreen.main.bounds.height - bottomSafeArea - topSafeArea - 50
+        UIScreen.main.bounds.height - bottomSafeArea - topSafeArea - 100
     }
     
     public var body: some View {
