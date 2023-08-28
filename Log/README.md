@@ -1,9 +1,9 @@
 # Log
 
-Module description
-
+Log 모듈.
+XCode에서 Filtering 할 수 있는 옵션이 있음.
+사용 예시 참고.
 - [Example](#example)
-- [structure](#structure)
 
 ## Example
 
@@ -55,19 +55,5 @@ Log.d("My play ground debug message!!!!")
 // [2023-08-28 15:06:52] (I) [MyPlayground:43] test(): My play ground message!!!!
 // [2023-08-28 15:06:52] (D) [MyPlayground:44] test(): My play ground debug message!!!!
 ```
-
-## Structure
-
-| name | param | return | Description |
-| :--- | :---: | ---: | --- |
-| getIndex | Void | Int | get index |
-| setIndex | Int | Void | set index |
-
-
-Link [Link](https://google.com)
-
-> **NOTE:** \
-hello note 
-
 
 ## [MORE](/Documentation/Log/Home.md)
