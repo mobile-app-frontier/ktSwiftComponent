@@ -11,10 +11,11 @@ import Utils
 
 public typealias LocalBannerPolicy = [String : Int]
 
-public final class BannerPolicyBloc: ObservableObject {
-    /// `state`: BannerPolicyBloc 의 상태.
+/// 서버 정책과 단말에 저장된 정책을 가져오고 비교하여 보여줄 배너를 걸러줌
+public final class BannerPolicyFetcher: ObservableObject {
+    /// `BannerPolicyFetcher`의 현재 상태.
     @Published
-    public var state: BannerPolicyState
+    public var state: BannerPolicyState = .initial
     
     private let repository: BannerPolicyRepository
     
@@ -23,18 +24,27 @@ public final class BannerPolicyBloc: ObservableObject {
     /// `localBannerPolicySetter`: 외부에서 injection 받은 변경된 LocalBannerPolicy 를 단말에 write 하는 function.
     private let localBannerPolicySetter: (LocalBannerPolicy) async -> Void
     
-    public init(state: BannerPolicyState = .initial,
-                repository: BannerPolicyRepository,
-                localBannerPolicyGetter: @escaping () async -> [String : Int],
-                localBannerPolicySetter: @escaping ([String : Int]) async -> Void
+    /// `BannerPolicyFetcher` 의 기본 initializer.
+    /// - Parameters:
+    ///   - dataSource: 서버에서 배너 정책을 받아오는 기능을 가지고 있는 `DataSource`
+    ///   - localBannerPolicyGetter: 단말에서 로컬 배너 정책을 읽어오는 로직.
+    ///   ex) `UserDefaults` 에서 특정 키를 가지고 value:  `[String : Int]` 를 읽어오는 로직.
+    ///   - localBannerPolicySetter: 단말에 로컬 배너 정책을 저장하는 로직.
+    ///   ex) `UserDefaults` 에 특정 키에 value: `[String : Int]` 를 저장하는 로직.
+    public init(dataSource: BannerPolicyDataSource,
+                localBannerPolicyGetter: @escaping () async -> LocalBannerPolicy,
+                localBannerPolicySetter: @escaping (LocalBannerPolicy) async -> Void
     ) {
-        self.state = state
-        self.repository = repository
+        self.repository = BannerPolicyRepository(dataSource: dataSource)
         self.localBannerPolicyGetter = localBannerPolicyGetter
         self.localBannerPolicySetter = localBannerPolicySetter
     }
     
-    // remoteBannerPolicy 와 localBannerPolicy 를 동시에 fetch 함.
+    /// remoteBannerPolicy 와 localBannerPolicy 를 동시에 fetch 하고 비교하여 보여줄 배너를 filtering 함.
+    ///
+    /// - remoteBannerPolicy 와 localBannerPolicy 를 fetch 성공하면 `state` 는 `.fetched` 상태로 변함.
+    /// - remoteBannerPolicy 와 localBannerPolicy 를 비교하여 filtering 한 후, 유효한 로컬 배너 정책을 update & `state` 는 `.success` 상태로 변함.
+    /// - fetch 과정 중에 error 가 발생할 경우, `state` 는 `.fail` 상태로 변함.
     public func fetch() async {
         // async let 구문을 이용하여 병렬로 비동기 함수 실행
         async let remoteBannerPolicy = repository.getBannerPolicy()
@@ -79,10 +89,16 @@ public final class BannerPolicyBloc: ObservableObject {
         cacheImage(urls: imageUrls)
         
         debugPrint("[BannerPolicy] fetch success")
+        let willShowBanner = BannerPolicy(defaultBanner: filteredDefaultBanner.banner,
+                                          popup: filteredPopupBanner.remoteBanner)
+        
+        // Banner Manager initialize
+        BannerManager.instance.initialize(bannerPolicy: willShowBanner,
+                                          localBannerPolicyGetter: localBannerPolicyGetter,
+                                          localBannerPolicySetter: localBannerPolicySetter)
+        
         // state emit
-        state = .success(
-            willShowBanner: BannerPolicy(defaultBanner: filteredDefaultBanner.banner,
-                                         popup: filteredPopupBanner.remoteBanner))
+        state = .success(willShowBanner: willShowBanner)
     }
     
     // 보여줄 remote default banner policy 를 filtering 함.

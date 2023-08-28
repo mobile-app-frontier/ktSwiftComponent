@@ -12,18 +12,18 @@ public struct Heap<T: Comparable> {
     private var elements: [T] = []
     private let sortFunction: (T, T) -> Bool
     
-    public var isEmpty: Bool {
+    internal var isEmpty: Bool {
         return self.elements.count <= 1
     }
-    public var peek: T? {
+    internal var peek: T? {
         if self.isEmpty { return nil }
         return self.elements.last!
     }
-    public var count: Int {
+    internal var count: Int {
         return self.elements.count - 1
     }
     
-    public init(elements: [T] = [], sortFunction: @escaping (T, T) -> Bool) {
+    internal init(elements: [T] = [], sortFunction: @escaping (T, T) -> Bool) {
         if !elements.isEmpty {
             self.elements = [elements.first!] + elements
         } else {
@@ -35,23 +35,23 @@ public struct Heap<T: Comparable> {
         }
     }
     
-    public func leftChild(of index: Int) -> Int {
+    internal func leftChild(of index: Int) -> Int {
         return index * 2
     }
     
-    public func rightChild(of index: Int) -> Int {
+    internal func rightChild(of index: Int) -> Int {
         return index * 2 + 1
     }
     
-    public func parent(of index: Int) -> Int {
+    internal func parent(of index: Int) -> Int {
         return (index) / 2
     }
     
-    public mutating func add(element: T) {
+    internal mutating func add(element: T) {
         self.elements.append(element)
     }
     
-    public mutating func diveDown(from index: Int) {
+    internal mutating func diveDown(from index: Int) {
         var higherPriority = index
         let leftIndex = self.leftChild(of: index)
         let rightIndex = self.rightChild(of: index)
@@ -68,7 +68,7 @@ public struct Heap<T: Comparable> {
         }
     }
     
-    public mutating func swimUp(from index: Int) {
+    internal mutating func swimUp(from index: Int) {
         var index = index
         while index != 1 && self.sortFunction(self.elements[index], self.elements[self.parent(of: index)]) {
             self.elements.swapAt(index, self.parent(of: index))
@@ -76,13 +76,13 @@ public struct Heap<T: Comparable> {
         }
     }
     
-    public mutating func buildHeap() {
+    internal mutating func buildHeap() {
         for index in (1...(self.elements.count / 2)).reversed() {
             self.diveDown(from: index)
         }
     }
     
-    public mutating func insert(node: T) {
+    internal mutating func insert(node: T) {
         if self.elements.isEmpty {
             self.elements.append(node)
         }
@@ -90,7 +90,7 @@ public struct Heap<T: Comparable> {
         self.swimUp(from: self.elements.endIndex - 1)
     }
     
-    public mutating func remove() -> T? {
+    internal mutating func remove() -> T? {
         if self.isEmpty { return nil }
         
         self.elements.swapAt(1, elements.endIndex - 1)

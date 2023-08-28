@@ -8,6 +8,7 @@
 import Foundation
 import Utils
 
+/// Popup Banner
 public struct PopupBannerPolicyItem: BannerPolicyItem {
     public static func == (lhs: PopupBannerPolicyItem, rhs: PopupBannerPolicyItem) -> Bool {
         lhs.id == rhs.id
@@ -18,18 +19,18 @@ public struct PopupBannerPolicyItem: BannerPolicyItem {
     }
     
     /// BannerPolicyItem protocol.
-    public let id: String
-    public let priority: Int
-    public let targetAppversion: Version?
-    public let landingType: BannerLandingType
-    public let additionalInfo: [String : String]?
+    internal let id: String
+    internal let priority: Int
+    internal let targetAppversion: Version?
+    internal let landingType: BannerLandingType
+    internal let additionalInfo: [String : String]?
     
     /// `content`: Banner Content. text / html / image
-    public let content: PopupBannerPolicyItem.Content
+    internal let content: PopupBannerPolicyItem.Content
     /// `closeType`: Banner 가 닫히는 옵션. closeOnly / nerverShowAgain / notShowForWeek / notShowToday
-    public let closeType: BannerCloseType
+    internal let closeType: BannerCloseType
     
-    init(id: String,
+    internal init(id: String,
          priority: Int,
          targetAppversion: Version?,
          landingType: BannerLandingType,
@@ -46,7 +47,7 @@ public struct PopupBannerPolicyItem: BannerPolicyItem {
         self.additionalInfo = additionalInfo
     }
     
-    public init(from model: BannerPolicyItemModel) {
+    internal init(from model: BannerPolicyItemModel) {
         self.init(id: model.id,
                   priority: model.priority,
                   targetAppversion: model.appVersion != nil ? Version(model.appVersion!) : nil,
@@ -57,7 +58,7 @@ public struct PopupBannerPolicyItem: BannerPolicyItem {
         )
     }
     
-    public enum Content {
+    internal enum Content {
         case text(String)
         case html(String)
         case image(url: String)

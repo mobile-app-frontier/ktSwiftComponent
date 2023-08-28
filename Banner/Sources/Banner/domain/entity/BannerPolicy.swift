@@ -7,18 +7,25 @@
 
 import Foundation
 
+/// 배너 정책
 public struct BannerPolicy {
-    /// `defaultBanner`: defaultBanner. Category:[DefaultBannerPolicyItem]. category 별로 DefaultBannerPolicyItem 을 가지고 있음. DefaultBanner 는 Bloc 에서 banner filtering 시에 정렬이 되므로, 현재 정렬되어 있지 않음.
-    let defaultBanner: DefaultBannerPolicy
-    /// `popup`: PopupBanner. PriorityQueue<PopupBannerPolicyItem>. priority 가 높은 순부터 정렬되어 있음.
-    let popup: PopupBannerPolicy
+    /// defaultBanner. `[Category:[DefaultBannerPolicyItem]].` 
+    ///
+    /// category 별로 `DefaultBannerPolicyItem` 을 가지고 있음.
+    /// - Important: `DefaultBanner` 는 `BannerPolicyFetcher` 내부에서 정렬을 수행하므로,  `priority` 에 따라서 정렬되지 않아 있을 수 있음.
+    internal let defaultBanner: DefaultBannerPolicy
     
-    init(defaultBanner: DefaultBannerPolicy, popup: PopupBannerPolicy) {
+    /// PopupBanner. `PriorityQueue<PopupBannerPolicyItem>`.
+    ///
+    /// priority 가 높은 순부터 정렬되어 있음.
+    internal let popup: PopupBannerPolicy
+    
+    internal init(defaultBanner: DefaultBannerPolicy, popup: PopupBannerPolicy) {
         self.defaultBanner = defaultBanner
         self.popup = popup
     }
     
-    init(from model: [BannerPolicyItemModel]) {
+    internal init(from model: [BannerPolicyItemModel]) {
         // TODO: 이렇게 하면 두바퀴를 돔. 성능에 문제가 있을시 수정 필요.
         self.defaultBanner = DefaultBannerPolicy(from: model)
         self.popup = PopupBannerPolicy(from: model)

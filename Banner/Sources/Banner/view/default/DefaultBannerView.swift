@@ -7,10 +7,11 @@
 
 import SwiftUI
 import Kingfisher
+import Utils
 
 // https://www.youtube.com/watch?v=uo8gj7RT3H8
-/// DefaultBannerView. [DefaultBannerPolicyItem] 을 Image Slider 형식으로 만들어줌.
-/// 주의! DefaultBannerPolicyItem 들은 같은 이미지 비율을 가져야 함.
+/// [DefaultBannerPolicyItem] 을 Image Slider 형식으로 만들어 주는 View.
+/// - Important: 같은 카테고리의 배너들은 같은 이미지 비율을 가져야 함.
 public struct DefaultBannerView: View {
     let defaultBanners: [DefaultBannerPolicyItem]
     
@@ -56,13 +57,10 @@ public struct DefaultBannerView: View {
                 }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-//            .onViewDidLoad {
-//                height = geometry.size.width / 5
-//            }
+            
         }
         .frame(height: height)
         .cornerRadius(10)
-        .padding([.leading, .trailing], 10)
         .overlay (
             // Animated Indicators
             HStack(spacing: 10) {
@@ -93,7 +91,11 @@ fileprivate extension View {
 
 private struct ImageView: View {
     let banner: DefaultBannerPolicyItem
+    
     let width: CGFloat
+    
+    @State
+    private var heightRatio: CGFloat = 1
     
     @Binding
     var height: CGFloat?
@@ -101,31 +103,37 @@ private struct ImageView: View {
     var body: some View {
         KFImage.url(banner.content.url)
             .loadDiskFileSynchronously()
-//            .fade(duration: 0.25)
+        //            .fade(duration: 0.25)
             .onProgress { receivedSize, totalSize in
                 
             }
             .onSuccess { result in
                 let imageSize = result.image.size
-                height = width * imageSize.height / imageSize.width
+                heightRatio = imageSize.height / imageSize.width
             }
             .resizable()
-            .aspectRatio(contentMode: .fit)
+            .aspectRatio(contentMode: .fill)
             .frame(width: width)
             .onTapGesture {
                 BannerManager.instance.send(landingType: banner.landingType)
             }
+            .onChange(of: width) { newValue in
+                height = newValue * heightRatio
+            }
+            .onChange(of: heightRatio) { newValue in
+                height = width * newValue
+            }
     }
 }
 
-//struct DefaultBannerView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DefaultBannerView(defaultBanners: [
-//            DefaultBannerPolicyItem(id: "1111", priority: 1, targetAppversion: Version("1.0.0"), landingType: .none, content: .image(url: "https://fastly.picsum.photos/id/668/500/100.jpg?hmac=_H_udLJmfNoUADzswUtbwREyM_Gi8FhAfJam4K4eeBs"), category: "test"),
-//            DefaultBannerPolicyItem(id: "2222", priority: 1, targetAppversion: Version("1.0.0"), landingType: .none, content: .image(url: "https://fastly.picsum.photos/id/668/500/100.jpg?hmac=_H_udLJmfNoUADzswUtbwREyM_Gi8FhAfJam4K4eeBs"), category: "test"),
-//            DefaultBannerPolicyItem(id: "3", priority: 1, targetAppversion: Version("1.0.0"), landingType: .none, content: .image(url: "https://fastly.picsum.photos/id/668/500/100.jpg?hmac=_H_udLJmfNoUADzswUtbwREyM_Gi8FhAfJam4K4eeBs"), category: "test")
-//        ])
-//    }
-//}
+struct DefaultBannerView_Previews: PreviewProvider {
+    static var previews: some View {
+        DefaultBannerView(defaultBanners: [
+            DefaultBannerPolicyItem(id: "1111", priority: 1, targetAppversion: Version("1.0.0"), landingType: .none, content: .image(url: "https://fastly.picsum.photos/id/668/500/100.jpg?hmac=_H_udLJmfNoUADzswUtbwREyM_Gi8FhAfJam4K4eeBs"), category: "test"),
+            DefaultBannerPolicyItem(id: "2222", priority: 1, targetAppversion: Version("1.0.0"), landingType: .none, content: .image(url: "https://fastly.picsum.photos/id/668/500/100.jpg?hmac=_H_udLJmfNoUADzswUtbwREyM_Gi8FhAfJam4K4eeBs"), category: "test"),
+            DefaultBannerPolicyItem(id: "3", priority: 1, targetAppversion: Version("1.0.0"), landingType: .none, content: .image(url: "https://fastly.picsum.photos/id/668/500/100.jpg?hmac=_H_udLJmfNoUADzswUtbwREyM_Gi8FhAfJam4K4eeBs"), category: "test")
+        ])
+    }
+}
 
 

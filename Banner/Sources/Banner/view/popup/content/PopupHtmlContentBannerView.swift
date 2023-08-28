@@ -9,10 +9,35 @@ import SwiftUI
 import WebKit
 
 // html Type 의 popupBanner View.
-internal struct PopupHtmlContentBannerView: UIViewRepresentable {
+internal struct PopupHtmlContentBannerView: View {
+    let htmlString: String
+    let id: String
+    let closeType: BannerCloseType
+    
+    @State
+    var height: CGFloat = 0
+    
+    var body: some View {
+        VStack(spacing: 10) {
+            HtmlContentView(htmlString: htmlString, height: $height)
+                .frame(height: height)
+            
+            if (height != 0) {
+                /// button
+                PopupButtonBannerView(bannerId: id,
+                                      closeType: closeType)
+                    .buttonStyle(.plain)
+            }
+        }
+    }
+    
+}
+
+private struct HtmlContentView: UIViewRepresentable {
     let htmlString: String
     
-    @Binding var height: CGFloat
+    @Binding
+    var height: CGFloat
 
     func makeUIView(context: Context) -> WKWebView {
         return WKWebView()
@@ -50,8 +75,15 @@ internal struct PopupHtmlContentBannerView: UIViewRepresentable {
                         webView.evaluateJavaScript("document.body.scrollHeight", completionHandler: { (height, error) in
                             
                             if let height = height as? CGFloat, self.webViewHeight == 0 {
-                                self.webViewHeight = height
-                                debugPrint("[BannerPolicy] HTML webview height is \(height)")
+                                
+                                withAnimation(.linear(duration: 0.3)) {
+                                    if height > ViewSize.safeHeight {
+                                        self.webViewHeight = ViewSize.safeHeight
+                                    } else {
+                                        self.webViewHeight = height
+                                    }
+                                }
+                                
                             }
                         })
                     }
@@ -63,6 +95,6 @@ internal struct PopupHtmlContentBannerView: UIViewRepresentable {
 
 struct PopupHtmlContentBannerView_Previews: PreviewProvider {
     static var previews: some View {
-        PopupHtmlContentBannerView(htmlString: "<h1>Hello, <strong>World!</strong></h1>", height: .constant(0))
+        PopupHtmlContentBannerView(htmlString: "<h1>Hello, <strong>World!</strong></h1>", id: "2", closeType: .closeOnly)
     }
 }

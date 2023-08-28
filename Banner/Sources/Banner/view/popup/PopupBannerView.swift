@@ -7,107 +7,83 @@
 
 import SwiftUI
 
-/// PopupBannerView. Content 높이에 따라서 View 를 보여줌.
-/// 실제 bottom sheet 처럼 보여주기 위해서는 해당 View 를 present 할 때 UIViewController 의 배경색을 투명하게 혹은 dim 처리된 색상으로 변경하고, UIModalPresentationStyle 을 .overCurrentContext 로 지정해주어야 함.
+/// PopupBannerView. 
+///
+/// Content 높이에 따라서 View 를 보여줌.
+/// 
+/// - Important: 실제 bottom sheet 처럼 보여주기 위해서는 해당 View 를 present 할 때 UIViewController 의 배경색을 투명하게 혹은 dim 처리된 색상으로 변경하고, UIModalPresentationStyle 을 .overCurrentContext 로 지정해주어야 함.
 public struct PopupBannerView: View {
-    
+    /// 기본 Initializer
+    /// - Parameter banner: View 에서 보여줄 `PopupBanner` 정보
     public init(banner: PopupBannerPolicyItem) {
         self.banner = banner
     }
     
     let banner: PopupBannerPolicyItem
     
-    let buttonHeight: CGFloat = 50
-    
     @State
-    private var contentHeight: CGFloat = 0
+    private var offsetY: CGFloat = -20
     
     @State
     private var height: CGFloat = 0
     
-    private let topSafeArea: CGFloat = UIApplication.shared.windows.first?.safeAreaInsets.top ?? 0
-    private let bottomSafeArea: CGFloat = UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? 0
-    private let leftSafeArea: CGFloat = UIApplication.shared.windows.first?.safeAreaInsets.left ?? 0
-    private let rightSafeArea: CGFloat = UIApplication.shared.windows.first?.safeAreaInsets.right ?? 0
-    
     private let animationDuration = 0.4
-    
-    private var safeWidth: CGFloat {
-        UIScreen.main.bounds.width - leftSafeArea - rightSafeArea
-    }
-    
-    private var systemHeight: CGFloat {
-        UIScreen.main.bounds.height - bottomSafeArea - topSafeArea - 50
-    }
-    
-    private var maxContentHeight: CGFloat {
-        systemHeight - buttonHeight - 20
-    }
     
     public var body: some View {
         ZStack(alignment: .bottom) {
             Color.black
                 .opacity(0.01)
                 .onTapGesture {
-                    change(height: 0)
+                    hide()
                 }
-                .onAnimationCompleted(for: height) {
-                    if height == 0 {
-                        BannerManager.instance.dismissAndPresentPopup()
-                    }
-                }
-            VStack(spacing: 0) {
-                /// content
-                PopupContentBannerView(type: banner.content, height: $contentHeight)
-                    .onChange(of: contentHeight) { height in
-                        guard maxContentHeight >= height else {
-                            self.contentHeight = maxContentHeight
-                            return
+                .onAnimationCompleted(for: offsetY) {
+                    if offsetY == height {
+                        if case .closeOnly = banner.closeType {
+                            BannerManager.instance.dismissAndPresentPopup(
+                                id: banner.id,
+                                notShowedDate: banner.closeType.notShowedDate
+                            )
+                        } else {
+                            BannerManager.instance.dismissAndPresentPopup()
                         }
-                        change(contentHeight: contentHeight)
                     }
-                    .frame(
-                        width: safeWidth,
-                        height: contentHeight,
-                        alignment: .bottom // 뷰 정렬
-                    )
+                }
+            VStack(spacing: 10) {
+                /// content
+                PopupContentBannerView(banner: banner)
                     .onTapGesture {
                         BannerManager.instance.send(landingType: banner.landingType)
                         // inApp landing 일 경우, sheet 를 닫음.
                         if case .inApp(_) = banner.landingType {
-                            change(height: 0)
+                            hide()
+                            BannerManager.instance.clearWillShowBanner()
                         }
                     }
-                /// button
-                PopupButtonBannerView(bannerId: banner.id,
-                                      closeType: banner.closeType)
-                    .buttonStyle(.plain)
-                    .frame(maxWidth: .infinity, maxHeight: buttonHeight)
             }
-            .padding([.bottom], bottomSafeArea)
-            .frame(
-                width: safeWidth,
-                height: height,
-                alignment: .bottom // 뷰 정렬
-            )
-            .background(Color.white.edgesIgnoringSafeArea(.all))
-            .cornerRadius(10, corners: [.topLeft, .topRight])
-            .shadow(radius: 10)
+                .overlay(GeometryReader {
+                    Color.clear.preference(
+                        key: ContentSizeKey.self,
+                        value: $0.size
+                    )
+                })
+                .onPreferenceChange(ContentSizeKey.self) { size in
+                    height = size.height
+                    offsetY = height
+                    withAnimation(.easeInOut(duration: animationDuration)) {
+                        offsetY = 0
+                    }
+                }
+                .background(Color.white.edgesIgnoringSafeArea(.all))
+                .cornerRadius(10, corners: [.topLeft, .topRight])
+                .shadow(radius: 10)
+                .offset(y: offsetY)
         }
         .ignoresSafeArea()
     }
     
-    private func change(contentHeight: CGFloat) {
-        let height = contentHeight + buttonHeight + bottomSafeArea
-        
-        change(height: height)
-    }
-    
-    private func change(height: CGFloat) {
-        let targetHeight = height <= systemHeight ? height : systemHeight
-        
+    private func hide() {
         withAnimation(.easeInOut(duration: animationDuration)) {
-            self.height = targetHeight
+            offsetY = height
         }
     }
 }
@@ -121,8 +97,9 @@ struct PopupBannerView_Previews: PreviewProvider {
                                                       landingType: .none,
                                                       content:
 //                .html("<h1>Hello, <strong>World!</strong></h1>"),
-                .text("blablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablabla"),
-//                .image(url: "https://fastly.picsum.photos/id/565/1000/600.jpg?hmac=oJQa8_RLVzpyhJggqcyNnMUelPH8nqYUaqj65ws0p5c"),
+//                .text("blablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablabla"),
+                .image(url: "https://fastly.picsum.photos/id/565/1000/600.jpg?hmac=oJQa8_RLVzpyhJggqcyNnMUelPH8nqYUaqj65ws0p5c"),
+//            .text("test"),
                                                       closeType: .closeOnly))
     }
 }
@@ -140,6 +117,14 @@ struct RoundedCorner: Shape {
     func path(in rect: CGRect) -> Path {
         let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         return Path(path.cgPath)
+    }
+}
+
+private struct ContentSizeKey: PreferenceKey {
+    static var defaultValue: CGSize = .zero
+
+    static func reduce(value: inout CGSize, nextValue: () -> CGSize) {
+        value = nextValue()
     }
 }
 
