@@ -17,7 +17,7 @@ public extension NavRouter {
         push(route)
     }
     
-    func present(_ route: Route, animated: Bool = true, isModal: Bool) {
+    func present(_ route: Route, animated: Bool = false, isModal: Bool) {
         let viewController = UIHostingController(
             rootView: route.view()
                 .environmentObject(self)
@@ -34,7 +34,7 @@ public extension NavRouter {
         }
     }
     
-    func presentWithOptions(_ route: Route, animated: Bool = true, options:NavRoutePresentOptions) {
+    func present(_ route: Route, animated: Bool = true, options:NavRoutePresentOptions) {
         
         let viewController = UIHostingController(
             rootView: route.view()
@@ -58,7 +58,7 @@ public extension NavRouter {
     }
     
     
-    func push(_ route: Route, animated: Bool = true) {
+    func push(_ route: Route, animated: Bool = true, options:NavRoutePresentOptions? = nil) {
         
         let viewController = UIHostingController(
             rootView: route.view()
@@ -66,7 +66,11 @@ public extension NavRouter {
         )
         
         viewController.restorationIdentifier = route.restorationIdentifier()
-        
+        if let options = options {
+            viewController.view.backgroundColor = options.backgroundColor
+            viewController.modalTransitionStyle = options.modalTransitionStyle
+            viewController.modalPresentationStyle = options.modalPresentationStyle
+        }
         
         getNavigationController().setToolbarHidden(true, animated: false)
         getNavigationController().setNavigationBarHidden(true, animated: false)
@@ -104,7 +108,7 @@ public extension NavRouter {
     }
     
     
-    func replace(_ route: Route, animated: Bool = true) {
+    func replace(_ route: Route, animated: Bool = true, options: NavRoutePresentOptions? = nil) {
         var viewControllers = getNavigationController().viewControllers
         /// remove last viewcontroller
         _ = viewControllers.popLast()
@@ -118,9 +122,47 @@ public extension NavRouter {
         
         uiHostingController.restorationIdentifier = route.restorationIdentifier()
         
+        if let options = options {
+            uiHostingController.view.backgroundColor = options.backgroundColor
+            uiHostingController.modalTransitionStyle = options.modalTransitionStyle
+            uiHostingController.modalPresentationStyle = options.modalPresentationStyle
+        }
+        
         viewControllers.append(uiHostingController)
         
         getNavigationController().setViewControllers(viewControllers, animated: animated)
+        didRouteNav(action: .replaceRoute(replaced: route))
+    }
+    
+    func replaceTo(_ route: Route, animated: Bool, restorationIdentifier: String, options:NavRoutePresentOptions? = nil) {
+        var resultViewControllers = [UIViewController]()
+        
+        getNavigationController().viewControllers.forEach { viewController in
+            resultViewControllers.append(viewController)
+            if viewController.restorationIdentifier == restorationIdentifier {
+                return
+            }
+        }
+        
+        // new Route ViewController
+        let uiHostingController = UIHostingController(
+            rootView: route.view()
+                .environmentObject(self)
+        )
+        
+        uiHostingController.navigationController?.setToolbarHidden(true, animated: false)
+        
+        uiHostingController.restorationIdentifier = route.restorationIdentifier()
+        
+        if let options = options {
+            uiHostingController.view.backgroundColor = options.backgroundColor
+            uiHostingController.modalTransitionStyle = options.modalTransitionStyle
+            uiHostingController.modalPresentationStyle = options.modalPresentationStyle
+        }
+        
+        resultViewControllers.append(uiHostingController)
+        
+        getNavigationController().setViewControllers(resultViewControllers, animated: animated)
         didRouteNav(action: .replaceRoute(replaced: route))
     }
     
