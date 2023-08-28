@@ -7,17 +7,28 @@
 
 import Foundation
 import os
-// NOTE:
-// 2. release에서 logger도 찍을 지? (이게 playground에서만 안찍히는 건지는 확인해봐야되기는 하는데,,)
+// TODO: release에서 logger도 찍을 지? (playground에서만 안찍히는 건지는 확인필요,,)
 // TODO: DEBUG 태그 전처리자..?
 
+/// Log
 public class Log {
     static private var filter: LogFilter = LogFilter()
     
+    /// Log 초기화
+    /// 프로젝트 전체에 적용되는 LogFilter를 설정해 줄 수 있음.
+    /// - Parameter option: ``LogFilter`` 참고.
     public static func initialize(option: LogFilter) {
         self.filter = option
     }
     
+    /// Log level 지정해서 찍을 수 있는 로그
+    /// - Parameters:
+    ///   - message: 실제 출력될 메세지. 타입 상관 없음.
+    ///   - file: 현재 로그가 찍힌 파일 이름. 직접 지정해 줄 수 있으나 지정해 주지 않으면 실제 로그를 찍은 파일 이름이 출력됨.
+    ///   - line: 로그가 찍힌 라인. 직접 지정해 줄 수 있으나 지정해 주지 않으면 실제 로그를 찍은 파일의 라인 수가 출력됨.
+    ///   - funcname: 로그가 찍힌 함수 이름. 직접 지정해 줄 수 있으나 지정해 주지 않으면 실제 로그를 찍은 함수 이름이 출력됨.
+    ///   - customFilter: 로그를 필터링해서 보고 싶을 때 사용 ``LogFilter`` 참조
+    /// - Output Message: [getCurrentTime()] (level.tag) [file:line] funcname message
     public static func log<T>(
         _ message: T,
         level: LogLevel,
@@ -51,6 +62,14 @@ public class Log {
         #endif
     }
     
+    /// Log level Info 인 로그
+    /// - Parameters:
+    ///   - message: 실제 출력될 메세지. 타입 상관 없음.
+    ///   - file: 현재 로그가 찍힌 파일 이름. 직접 지정해 줄 수 있으나 지정해 주지 않으면 실제 로그를 찍은 파일 이름이 출력됨.
+    ///   - line: 로그가 찍힌 라인. 직접 지정해 줄 수 있으나 지정해 주지 않으면 실제 로그를 찍은 파일의 라인 수가 출력됨.
+    ///   - funcname: 로그가 찍힌 함수 이름. 직접 지정해 줄 수 있으나 지정해 주지 않으면 실제 로그를 찍은 함수 이름이 출력됨.
+    ///   - customFilter: 로그를 필터링해서 보고 싶을 때 사용 ``LogFilter`` 참조
+    /// - Output Message: [getCurrentTime()] (I) [file:line] funcname message
     public static func i<T>(
         _ message: T,
         file: String = #file,
@@ -61,6 +80,14 @@ public class Log {
         log(message, level: .info, file: file, line, funcname, customFilter: customFilter)
     }
     
+    /// Log level debug 인 로그
+    /// - Parameters:
+    ///   - message: 실제 출력될 메세지. 타입 상관 없음.
+    ///   - file: 현재 로그가 찍힌 파일 이름. 직접 지정해 줄 수 있으나 지정해 주지 않으면 실제 로그를 찍은 파일 이름이 출력됨.
+    ///   - line: 로그가 찍힌 라인. 직접 지정해 줄 수 있으나 지정해 주지 않으면 실제 로그를 찍은 파일의 라인 수가 출력됨.
+    ///   - funcname: 로그가 찍힌 함수 이름. 직접 지정해 줄 수 있으나 지정해 주지 않으면 실제 로그를 찍은 함수 이름이 출력됨.
+    ///   - customFilter: 로그를 필터링해서 보고 싶을 때 사용 ``LogFilter`` 참조
+    /// - Output Message: [getCurrentTime()] (D) [file:line] funcname message
     public static func d<T>(
         _ message: T,
         file: String = #file,
@@ -70,6 +97,14 @@ public class Log {
             log(message, level: .debug, file: file, line, funcname, customFilter: customFilter)
         }
     
+    /// Log level error 인 로그
+    /// - Parameters:
+    ///   - message: 실제 출력될 메세지. 타입 상관 없음.
+    ///   - file: 현재 로그가 찍힌 파일 이름. 직접 지정해 줄 수 있으나 지정해 주지 않으면 실제 로그를 찍은 파일 이름이 출력됨.
+    ///   - line: 로그가 찍힌 라인. 직접 지정해 줄 수 있으나 지정해 주지 않으면 실제 로그를 찍은 파일의 라인 수가 출력됨.
+    ///   - funcname: 로그가 찍힌 함수 이름. 직접 지정해 줄 수 있으나 지정해 주지 않으면 실제 로그를 찍은 함수 이름이 출력됨.
+    ///   - customFilter: 로그를 필터링해서 보고 싶을 때 사용 ``LogFilter`` 참조
+    /// - Output Message: [getCurrentTime()] (E) [file:line] funcname message
     public static func e<T>(
         _ message: T,
         file: String = #file,
