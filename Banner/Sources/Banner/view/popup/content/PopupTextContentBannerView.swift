@@ -15,23 +15,17 @@ internal struct PopupTextContentBannerView: View {
     var height: CGFloat
     
     var body: some View {
-        VStack {
-            Spacer()
-            GeometryReader { geometry in
-                Text(content)
-                    .padding([.leading, .trailing], 10)
-                    .background(GeometryReader {
-                        Color.clear.preference(
-                            key: TextSizeKey.self,
-                            value: $0.frame(in: .local).size
-                        )
-                    })
-                    .onPreferenceChange(TextSizeKey.self) {
-                        height = $0.height + 20
-                    }
+        Text(content)
+            .padding([.leading, .trailing, .top], 10)
+            .background(GeometryReader {
+                Color.clear.preference(
+                    key: TextSizeKey.self,
+                    value: $0.frame(in: .local).size
+                )
+            })
+            .onPreferenceChange(TextSizeKey.self) {
+                height = $0.height + 20
             }
-            Spacer()
-        }
     }
     
     private struct TextSizeKey: PreferenceKey {

@@ -80,11 +80,11 @@ public struct PopupBannerView: View {
                         }
                         change(contentHeight: contentHeight)
                     }
-                    .frame(
-                        width: safeWidth,
-                        height: contentHeight,
-                        alignment: .bottom // 뷰 정렬
-                    )
+//                    .frame(
+//                        width: safeWidth,
+//                        height: contentHeight,
+//                        alignment: .bottom // 뷰 정렬
+//                    )
                     .onTapGesture {
                         BannerManager.instance.send(landingType: banner.landingType)
                         // inApp landing 일 경우, sheet 를 닫음.
@@ -100,11 +100,11 @@ public struct PopupBannerView: View {
                     .frame(maxWidth: .infinity, maxHeight: buttonHeight)
             }
             .padding([.bottom], bottomSafeArea)
-            .frame(
-                width: safeWidth,
-                height: height,
-                alignment: .bottom // 뷰 정렬
-            )
+//            .frame(
+//                width: safeWidth,
+//                height: height,
+//                alignment: .bottom // 뷰 정렬
+//            )
             .background(Color.white.edgesIgnoringSafeArea(.all))
             .cornerRadius(10, corners: [.topLeft, .topRight])
             .shadow(radius: 10)
@@ -144,8 +144,8 @@ struct PopupBannerView_Previews: PreviewProvider {
                                                       targetAppversion: nil,
                                                       landingType: .none,
                                                       content:
-//                .html("<h1>Hello, <strong>World!</strong></h1>"),
-                .text("blablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablabla"),
+                .html("<h1>Hello, <strong>World!</strong></h1>"),
+//                .text("blablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablabla"),
 //                .image(url: "https://fastly.picsum.photos/id/565/1000/600.jpg?hmac=oJQa8_RLVzpyhJggqcyNnMUelPH8nqYUaqj65ws0p5c"),
                                                       closeType: .closeOnly))
     }

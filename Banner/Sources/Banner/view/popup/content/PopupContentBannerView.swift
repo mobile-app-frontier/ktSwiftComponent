@@ -22,6 +22,7 @@ internal struct PopupContentBannerView: View {
             PopupImageContentBannerView(url: URL(string: url), height: $height)
         case .html(let content):
             PopupHtmlContentBannerView(htmlString: content, height: $height)
+                .frame(height: height)
         }
     }
 }
