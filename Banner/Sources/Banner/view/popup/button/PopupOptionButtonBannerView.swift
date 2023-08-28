@@ -20,6 +20,7 @@ internal struct PopupOptionButtonBannerView: View {
                                             notShowedDate: closeType.notShowedDate)
             } label: {
                 Text(closeType.title)
+                    .font(BannerManager.instance.popupButtonFont)
             }
             
             Spacer()
@@ -28,6 +29,7 @@ internal struct PopupOptionButtonBannerView: View {
                 BannerManager.instance.dismissAndPresentPopup()
             } label: {
                 Text("닫기")
+                    .font(BannerManager.instance.popupButtonFont)
             }
         }
     }
