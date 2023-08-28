@@ -58,6 +58,7 @@ public final class BannerManager {
     /// `willShowPopupBannerPolicy`: 보여줄 Popup Banner Policy. PriorityQueue 이므로 이미 보여준 배너는 없음.
     private var willShowPopupBannerPolicy = PopupBannerPolicy()
     internal var popupButtonFont: Font? = nil
+    internal var popupButtonTextColor: Color? = nil
 
     private init() {}
     
@@ -111,9 +112,11 @@ public final class BannerManager {
     ///   - present: `PopupBannerPolicyItem` 받아 생성한 `PopupBannerView` 를 present 하는 로직.
     ///   - dismiss: App navigator 에서 sheet 를 dismiss 하는 로직.
     ///   - popupButtonFont: Popup BottomSheet button 의 폰트.
+    ///   - popupButtonTextColor: Popup BottomSheet button Text 의 foreground color.
     public func start(present: @escaping (PopupBannerPolicyItem) -> Void,
                       dismiss: @escaping () -> Void,
-                      popupButtonFont: Font? = nil
+                      popupButtonFont: Font? = nil,
+                      popupButtonTextColor: Color? = nil
     ) {
         guard isInitialized else {
             debugPrint("[BannerPolicy] BannerManager 를 initialze 한 후에 사용하세요.")
@@ -128,6 +131,7 @@ public final class BannerManager {
         self.present = present
         self.dismiss = dismiss
         self.popupButtonFont = popupButtonFont
+        self.popupButtonTextColor = popupButtonTextColor
         
         Task {
             localBannerPolicy = await localBannerPolicyGetter!()

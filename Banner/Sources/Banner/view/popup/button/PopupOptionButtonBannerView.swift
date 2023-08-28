@@ -21,6 +21,7 @@ internal struct PopupOptionButtonBannerView: View {
             } label: {
                 Text(closeType.title)
                     .font(BannerManager.instance.popupButtonFont)
+                    .foregroundColor(BannerManager.instance.popupButtonTextColor)
             }
             
             Spacer()
@@ -30,6 +31,7 @@ internal struct PopupOptionButtonBannerView: View {
             } label: {
                 Text("닫기")
                     .font(BannerManager.instance.popupButtonFont)
+                    .foregroundColor(BannerManager.instance.popupButtonTextColor)
             }
         }
     }

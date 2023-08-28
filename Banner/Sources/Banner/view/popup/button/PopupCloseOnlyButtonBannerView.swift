@@ -23,6 +23,7 @@ internal struct PopupCloseOnlyButtonBannerView: View {
             } label: {
                 Text("닫기")
                     .font(BannerManager.instance.popupButtonFont)
+                    .foregroundColor(BannerManager.instance.popupButtonTextColor)
             }
         }
     }
