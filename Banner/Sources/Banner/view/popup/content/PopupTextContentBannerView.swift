@@ -12,8 +12,12 @@ internal struct PopupTextContentBannerView: View {
     let content: String
     
     var body: some View {
-        Text(content)
-            .padding([.leading, .trailing, .top], 10)
+        HStack {
+            Text(content)
+                .padding([.leading, .trailing, .top], 10)
+            Spacer()
+        }
+        
     }
 }
 
