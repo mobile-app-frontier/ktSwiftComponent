@@ -32,9 +32,9 @@ internal struct PopupButtonBannerView: View {
                                             closeType: closeType)
             }
         }
-            .padding(.bottom, bottomSafeArea)
-            .padding(.leading, leftSafeArea == 0 ? 10 : leftSafeArea)
-            .padding(.trailing, rightSafeArea == 0 ? 10 : rightSafeArea)
+        .padding(.bottom, bottomSafeArea == 0 ? 10 : bottomSafeArea)
+        .padding(.leading, leftSafeArea == 0 ? 10 : leftSafeArea)
+        .padding(.trailing, rightSafeArea == 0 ? 10 : rightSafeArea)
     }
 }
 
