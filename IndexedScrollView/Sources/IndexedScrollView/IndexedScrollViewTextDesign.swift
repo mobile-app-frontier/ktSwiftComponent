@@ -7,12 +7,19 @@
 
 import SwiftUI
 
+/// `IndexedScrollView` 의 `IndexBar` or `SectionPreview` 의 TextDesign format.
 public struct IndexedScrollViewTextDesign {
-    let font: Font?
-    let foregroundColor: Color?
-    let backgroundColor: Color?
+    /// 글자 font
+    public let font: Font?
+    /// 글자 색상
+    public let foregroundColor: Color?
+    /// 배경색
+    public let backgroundColor: Color?
     
-    init(font: Font? = nil, foregroundColor: Color? = nil, backgroundColor: Color?) {
+    public init(font: Font? = nil,
+         foregroundColor: Color? = nil,
+         backgroundColor: Color? = nil
+    ) {
         self.font = font
         self.foregroundColor = foregroundColor
         self.backgroundColor = backgroundColor

@@ -8,16 +8,16 @@
 import SwiftUI
 
 // https://velog.io/@j_aion/SwiftUI-Haptics
-public class HapticManager {
-    public static let instance = HapticManager()
+internal class HapticManager {
+    internal static let instance = HapticManager()
     private init() {}
     
-    public func notification(type: UINotificationFeedbackGenerator.FeedbackType) {
+    internal func notification(type: UINotificationFeedbackGenerator.FeedbackType) {
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(type)
     }
     
-    public func impact(style: UIImpactFeedbackGenerator.FeedbackStyle) {
+    internal func impact(style: UIImpactFeedbackGenerator.FeedbackStyle) {
         let generator = UIImpactFeedbackGenerator(style: style)
         generator.impactOccurred()
     }

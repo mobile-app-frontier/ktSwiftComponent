@@ -1,50 +1,22 @@
 # IndexedScrollView
 
-Module description
+`OrderedDictionary<Key, [Element]>` 를 데이터로 받아 Key 별로 스크롤이 가능한 View 제공
 
 - [Example](#example)
-- [structure](#structure)
+- [More](#more)
 
 ## Example
-
 ``` Swift
 // Code block
-struct SampleView: View {
-    var body = {
-        VStack {
+typealias ChosungContactsBook = OrderedDictionary<String, [Contact]>
 
-        }
-    }
+struct SampleView: View {
+    var body: some View {
+        IndexedScrollView(
+            dataSource: ChosungContactBook.mock, // data
+            header: { key in Text(key) },
+            cell: { contact in Text(contact.name) })}
 }
 ```
 
-## Structure
-
-| name | param | return | Description |
-| :--- | :---: | ---: | --- |
-| getIndex | Void | Int | get index |
-| setIndex | Int | Void | set index |
-
-
-Link [Link](https://google.com)
-
-> **NOTE:** \
-hello note 
-
-
 ## [MORE](/Documentation/IndexedScrollView/Home.md)
-
-
-
-## how to use
-IndexedScrollView(dataSource: dataSource,
-                  header: { key in
-    HStack {
-        Text("Section Header")
-    }
-},
-                  cell: { contact in
-    HStack {
-        Text("Cell")
-    }
-})
