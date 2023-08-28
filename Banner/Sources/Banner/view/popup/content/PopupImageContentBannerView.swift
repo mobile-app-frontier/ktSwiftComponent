@@ -50,7 +50,7 @@ internal struct PopupImageContentBannerView: View {
             .aspectRatio(contentMode: .fill)
 //            .padding(.leading, leftSafeArea)
 //            .padding(.trailing, rightSafeArea)
-            .frame(width: .infinity, height: height)
+            .frame(height: height)
             .clipped()
             .ignoresSafeArea()
     }
