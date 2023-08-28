@@ -127,6 +127,11 @@ let package = Package(
             name: "PollingCenterTest",
             dependencies: [ "PollingCenter" ],
             path: "PollingCenter/Tests"
+        ),
+        .testTarget(
+            name: "CryptoUtilTests",
+            dependencies: [ "CryptoUtils" ],
+            path: "CryptoUtils/Tests"
         )
     ]
 )

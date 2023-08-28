@@ -10,7 +10,10 @@ import CryptoKit
 
 // TODO: IO 발생하는데 async하게 사용하도록 변경
 extension URL {
-    // url extension
+    /// URL 파일 Data 암호화
+    /// - Parameters:
+    ///   - keyData: 데이터 형태의 키
+    ///   - cipher: 암호화 알고리즘에 따라 AES(대칭)/RSA(비대칭) 선택해서 사용
     public func encrypt(keyData: Data, cipher: any Cipher) throws {
         let fileData = try Data(contentsOf: self)
         //        let cipher = AESCipher(data: keyData, appId: Bundle.main.bundleIdentifier)
@@ -22,6 +25,10 @@ extension URL {
         try encryptedData.write(to: self)
     }
     
+    /// URL 파일 Data 복호화
+    /// - Parameters:
+    ///   - keyData: 데이터 형태의 키
+    ///   - cipher: 암호화 알고리즘에 따라 AES(대칭)/RSA(비대칭) 선택해서 사용
     public func decrypt(keyData: Data, cipher: any Cipher) throws {
         let fileData = try Data(contentsOf: self)
 

@@ -1,5 +1,5 @@
 import XCTest
-import CryptoKit
+//import CryptoKit
 @testable import CryptoUtils
 
 final class CryptoUtilsTests: XCTestCase {
@@ -35,7 +35,7 @@ final class CryptoUtilsTests: XCTestCase {
         XCTAssertEqual(decrypted, pureData)
     }
     
-    
+    // 3. 텍스트 형태의 RSA key 테스트
     func testRsaEncrypt() throws {
 
         let pubKey = "-----BEGIN RSA PUBLIC KEY-----\nMIIBigKCAYEA4EsRV1YUnI+kW7WpknBo46uyfL7l79ZnEEycYkAzuimm7+nhxTxX\nFiaZuzk10G3Ki+Hdi4dGaTHKg+hoHnvjchHsv3TksNQZJn+LznOg5lvSAs3EIDFU\nW6PNv7TJ/jtFc4xgkLO+pKPdGwfQqdB+oNT6KTya0hwPyxiXfDGboCBMtHo8IrFI\nJMRUCzQy72enHQOsTAPfN3RX14CUQr4z/NF/bA/gNUKmjmL0HP0eCibZhhcplSDK\n9YIukyImS6kv1EU2o7gv9Pe5sjdq9uqJJ0iUMNtUrWPu/2mpXLpZ96pmG0frcDby\nqb0KDnHJD4MNErqAFfBxxYF3/UtZVIRLKPcXp+gL2kil1Khdg9wmjLBJsxd0btT8\nuJjOwgnuzbK8cPVbZTe4P5AEusu8CuHNwRkZ6aU7Ud57pzoJ/eL+zBsf6qnFVF7g\nTiI2wwS1S4OcMY4RqtRy8QKS5a5wGbdN8EkakFY6cBx4LVpMNzfkTfxLLf2xlCgc\nZcmhYuaS0HpHAgMBAAE=\n-----END RSA PUBLIC KEY-----"
@@ -50,7 +50,7 @@ final class CryptoUtilsTests: XCTestCase {
     }
     
     
-    
+    // 4. 텍스트 형태로 만든 AES 키 테스트
     func testAESEncryption() throws {
         let keyData = "findKey1findKey1".data(using: .utf8)!
         
@@ -63,5 +63,4 @@ final class CryptoUtilsTests: XCTestCase {
         let decrypted = try encrypted.decrypt(cipher: cipher)
         XCTAssertEqual(decrypted, original)
     }
-    
 }

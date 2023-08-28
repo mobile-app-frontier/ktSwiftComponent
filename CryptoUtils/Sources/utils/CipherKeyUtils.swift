@@ -3,17 +3,23 @@ import CryptoKit
 import Foundation
 
 public struct CipherKeyUtils {
-    
-    public static func generateSymmetricKey(keySize: Int) -> SymmetricKey{
+    /// 대칭키 생성 함수
+    /// - Parameter keySize: 키 사이즈로 대칭키 생성
+    /// - Returns: SymmetricKey(대칭키)
+    public static func generateSymmetricKey(keySize: Int) -> SymmetricKey {
         return SymmetricKey(size: SymmetricKeySize(bitCount: keySize))
     }
     
-    // keyData -> SymmetricKey
+    /// KeyData를 AESCipher에서 사용할 수 있는 SymmetricKey(대칭키) 형태로 변환
+    /// - Parameter data: key Data
+    /// - Returns: SymmetricKey(대칭키)
     public static func wrapSymmetricKey(data: Data) -> SymmetricKey {
         return SymmetricKey(data: data)
     }
     
-    // RSA 키 생성 함수
+    /// 비대칭키 생성 함수
+    /// - Parameter keyLength: key의 길이를 넘겨주면 해당 길이로 비대칭 키 생성함.
+    /// - Returns: SecKey(비대칭키)
     public static func generateRSAKey(keyLength: Int) throws -> SecKey {
         let attributes: [CFString: Any] = [
             kSecAttrKeyType: kSecAttrKeyTypeRSA,
@@ -27,7 +33,9 @@ public struct CipherKeyUtils {
         return privateKey
     }
     
-    // keyData -> SecKey
+    /// KeyData(String 타입)를 RSACipher에서 사용할 수 있는 SecKey(비대칭키)로 wrapping 해주는 함수
+    /// - Parameter publicKeyString: 서버 등에서 받은 string 타입으로 public key
+    /// - Returns: SecKey(비대칭키)
     public static func wrapPublicKey(publicKeyString: String) throws -> SecKey {
         let wrapBase64Key = try publicKeyString.toBase64String()
         
@@ -38,6 +46,9 @@ public struct CipherKeyUtils {
         return try wrapPublicKey(publicKeyData: data)
     }
     
+    /// KeyData(Data 타입)를 RSACipher에서 사용할 수 있는 SecKey(비대칭키)로 wrapping 해주는 함수
+    /// - Parameter publicKeyData: <#publicKeyData description#>
+    /// - Returns: SecKey(비대칭키)
     public static func wrapPublicKey(publicKeyData: Data) throws -> SecKey {
         let stripedHeader = try stripKeyHeader(keyData: publicKeyData)
         let tag = UUID().uuidString
@@ -90,7 +101,6 @@ extension CipherKeyUtils {
     }
     
     static private func addKey(_ keyData: Data, isPublic: Bool, tag: String) throws ->  SecKey {
-        
         let keyData = keyData
         
         guard let tagData = tag.data(using: .utf8) else {
@@ -101,7 +111,6 @@ extension CipherKeyUtils {
         
         // On iOS 10+, we can use SecKeyCreateWithData without going through the keychain
         if #available(iOS 10.0, *), #available(watchOS 3.0, *), #available(tvOS 10.0, *) {
-            
             let sizeInBits = keyData.count * 8
             let keyDict: [CFString: Any] = [
                 kSecAttrKeyType: kSecAttrKeyTypeRSA,
@@ -118,7 +127,6 @@ extension CipherKeyUtils {
             
         // On iOS 9 and earlier, add a persistent version of the key to the system keychain
         } else {
-            
             let persistKey = UnsafeMutablePointer<AnyObject?>(mutating: nil)
             
             let keyAddDict: [CFString: Any] = [
