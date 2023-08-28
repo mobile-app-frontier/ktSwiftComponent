@@ -21,10 +21,10 @@ public struct ModalView: View {
     let leftSafeArea: CGFloat = UIApplication.shared.windows.first?.safeAreaInsets.left ?? 0
     let rightSafeArea: CGFloat = UIApplication.shared.windows.first?.safeAreaInsets.right ?? 0
     
-    /// 최대 길이/너비로 띄워질 경우 아름답지 않아서 추가된 파라미터
-    let arbitraryMarginValue: CGFloat = 50
-    
     let modalWindowStyle: ModalWindowStyle
+    
+    /// 최대 길이/너비로 띄워질 경우 아름답지 않아서 추가된 파라미터
+    let arbitraryMarginValue: CGFloat
     
     private var safeHeight : CGFloat {
         

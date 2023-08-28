@@ -11,8 +11,7 @@ import SwiftUI
 public protocol ModalOrder {
 
     func add(
-        controller: ModalController,
-        orderOptions: ModalOrderOptions?
+        controller: ModalController
     )
 
     func remove()

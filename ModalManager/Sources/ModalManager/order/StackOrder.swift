@@ -14,8 +14,7 @@ public class StackOrder: ModalOrder {
     private var modalReferenceArray: [ModalController] = []
     
     public func add(
-        controller: ModalController,
-        orderOptions: ModalOrderOptions? = nil
+        controller: ModalController
     ) {
         modalReferenceArray.append(controller)
     }

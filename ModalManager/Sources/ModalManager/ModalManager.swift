@@ -18,12 +18,12 @@ public enum ModalPresentableState {
     case onDismiss
     
     /*
-         RootViewController 위에 1개의 컨트롤러를 띄울 수 있는데,
-         A라는 ModalController가 present 수행 중일 때
-         B라는 ModalController가 present하기 위해 rootView를 찾으면,
-         아직 A가 RootView가 되지 않은 상태에서 찾게 된다. -> [Warning] attempt to present on while a presentation is in progress
-         A의 present 작업이 끝날 때까지 A에서는 onPresent 상태를 들고 있어야 한다.
-         A 작업이 끝나면 present의 핸들러에서 initState 상태로 전환한다.
+     RootViewController 위에 1개의 컨트롤러를 띄울 수 있는데,
+     A라는 ModalController가 present 수행 중일 때
+     B라는 ModalController가 present하기 위해 rootView를 찾으면,
+     아직 A가 RootView가 되지 않은 상태에서 찾게 된다. -> [Warning] attempt to present on while a presentation is in progress
+     A의 present 작업이 끝날 때까지 A에서는 onPresent 상태를 들고 있어야 한다.
+     A 작업이 끝나면 present의 핸들러에서 initState 상태로 전환한다.
      */
 }
 
@@ -31,36 +31,38 @@ public enum ModalPresentableState {
 public class ModalManager {
     
     public static let instance: ModalManager = ModalManager()
-    
-    private var modalStyle: ModalStyle
-    
-    let modalOrder: ModalOrder
+
+    public static func getInstance(
+        modalOrder: ModalOrder? = nil,
+        modalStyle: ModalStyle? = nil,
+        ignoreIfPresenting: Bool? = nil
+    ) -> ModalManager {
+        guard ModalManager.instance == nil else {
+            return ModalManager.instance!
+        }
+        ModalManager.instance = ModalManager(modalOrder: modalOrder, modalStyle: modalStyle, ignoreIfPresenting: ignoreIfPresenting)
+        return ModalManager.instance!
+    }
     
     private var modalControllersToPresent: [ModalController] = []
     
     var ignoreIfPresenting: Bool
     
+    /// 다이얼로그를 1개만 출력하고 싶을 때 사용
+    private(set) var ignoreIfPresenting: Bool = false
+    
     var currentState: ModalPresentableState = .initState
     
-    func updateState(_ newState: ModalPresentableState) {
-        if newState == .initState {
-            if !modalControllersToPresent.isEmpty {
-                currentState = .onPresent
-                let controller = modalControllersToPresent.removeFirst()
-                modalOrder.add(controller: controller, orderOptions: nil)
-                presentModalController(controller)
-            } else {
-                currentState = newState
-            }
-        } else {
-            currentState = newState
-        }
-    }
+    private init() {}
     
-    private init() {
-        self.modalOrder = StackOrder()
-        self.modalStyle = DefaultModalStyle()
-        self.ignoreIfPresenting = false
+    private init(
+        modalOrder: ModalOrder? ,
+        modalStyle: ModalStyle?,
+        ignoreIfPresenting: Bool? = nil
+    ) {
+        self.modalOrder = modalOrder == nil ? StackOrder() : modalOrder!
+        self.modalStyle = modalStyle == nil ? DefaultModalStyle() : modalStyle!
+        self.ignoreIfPresenting = ignoreIfPresenting == nil ? false : ignoreIfPresenting!
     }
 }
 
@@ -68,8 +70,7 @@ public class ModalManager {
 extension ModalManager {
     
     func createModalController(
-        _ customModalView: ModalView,
-        _ orderOptions: ModalOrderOptions? = nil
+        _ customModalView: ModalView
     ) {
         
         let customModalController: ModalController = ModalController(
@@ -80,13 +81,27 @@ extension ModalManager {
         
         if currentState == .initState {
             updateState(.onPresent)
-            modalOrder.add(controller: customModalController, orderOptions: orderOptions)
+            modalOrder.add(controller: customModalController)
             presentModalController(customModalController)
         } else {
             modalControllersToPresent.append(customModalController)
         }
     }
     
+    func updateState(_ newState: ModalPresentableState) {
+        if newState == .initState {
+            if !modalControllersToPresent.isEmpty {
+                currentState = .onPresent
+                let controller = modalControllersToPresent.removeFirst()
+                modalOrder.add(controller: controller)
+                presentModalController(controller)
+            } else {
+                currentState = newState
+            }
+        } else {
+            currentState = newState
+        }
+    }
 }
 
 // MARK: - private ModalManager functions
