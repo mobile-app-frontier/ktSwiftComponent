@@ -114,6 +114,8 @@ public final class BannerManager {
     ///   - dismiss: App navigator 에서 sheet 를 dismiss 하는 로직.
     ///   - popupButtonFont: Popup BottomSheet button 의 폰트.
     ///   - popupButtonTextColor: Popup BottomSheet button Text 의 foreground color.
+    ///   - popupTextContentFont: Popup Banner 의 `contentType` 이 text 일 때 사용되는 text 폰트.
+    ///   - popupTextContentColor: Popup Banner 의 `contentType` 이 text 일 때 사용되는 text 의 foreground color
     public func start(present: @escaping (PopupBannerPolicyItem) -> Void,
                       dismiss: @escaping () -> Void,
                       popupButtonFont: Font? = nil,
