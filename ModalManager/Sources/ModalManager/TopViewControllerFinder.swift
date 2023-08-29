@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import SwiftUI
 
+/// 화면 최상단 컨트롤러를 찾는다.
 func findTopViewController(
     baseVC: UIViewController? = UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController
 ) -> UIViewController? {

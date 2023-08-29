@@ -8,8 +8,11 @@
 import Foundation
 import SwiftUI
 
+/// 모달 순서 등의 관리에 사용한다.
 public protocol ModalOrder {
 
+    /// - Parameters:
+    ///     - controller: 관리할 ModalController.
     func add(
         controller: ModalController
     )

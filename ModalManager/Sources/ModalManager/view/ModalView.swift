@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// 사용자 정의 모달 뷰를 받아서 UI를 조정한다.
 public struct ModalView: View {
     
     @ViewBuilder

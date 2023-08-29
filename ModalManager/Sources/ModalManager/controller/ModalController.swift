@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import SwiftUI
 
+/// SwiftUI ModalView를 컨트롤러로 변환한다.
 public class ModalController: UIHostingController<ModalView> {
     var customModal: ModalView
     
