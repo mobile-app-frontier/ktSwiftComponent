@@ -7,9 +7,18 @@
 
 import SwiftUI
 
-/// View에 modifier 형태로 붙여서 사용할 수 있는 Pull to refresh 및 Infinite scroll을 제공한다.
+/// View에 modifier 형태로 붙여서 사용할 수 있는 Pull to refresh 및 Infinite scroll 제공.
+///
+/// 스크롤 높이에 따라 Pull To Refresh 또는 Infinite Scrolling을 실행한다.
+///
+/// ### Notes: ###
+/// - bloc: Pull To Refresh, Infinite Scroll 상태 관리.
+/// - screenTopEdge: 스크롤 뷰 시작 지점 좌표.
+/// - prevOffset: Pull To Refresh 호출 결정에 사용되는 요소.
+/// - refreshingChecked: 스크롤을 한번 당겨서 Pull To Refresh가 호출되었는지 여부.
 public struct InfiniteScrollModifier: ViewModifier {
     
+    /// 스크롤 상태 관리
     @StateObject
     private var bloc: InfiniteScrollerBloc = InfiniteScrollerBloc()
     
@@ -24,18 +33,18 @@ public struct InfiniteScrollModifier: ViewModifier {
     
     private let scrollGeometry: String = "scroll"
     
-    /// pull to refresh, infinite scroll 트리거 시 호출할 콜백과 보여질 뷰를 가진다.
+    /// Pull To Refresh 및 Infinite Scrolling 정의.
     public let delegate: InfiniteScrollDelegate
     
-    /// pull to refresh와 infinite scroll을 트리거할 수 있는 modifier를 생성한다.
+    /// delegate에 사용자가 정의한 동작을 바탕으로 pull to refresh 및 infinite scrolling을 트리거할 수 있는 modifier를 생성.
     ///
-    /// 사용자가 스크롤을 일정 높이 이상으로 잡아당기면 pull to refresh 콜백이 호출된다.
-    /// 스크롤이 화면 하단에 도달했을 때, 사용자가 스크롤을 계속 내리면 infinite scroll 콜백이 호출된다.
+    /// - 사용자가 스크롤을 일정 높이 이상으로 잡아당기면 pull to refresh 콜백이 호출됩니다.
+    /// - 스크롤이 화면 하단에 도달했을 때, 사용자가 스크롤을 계속 내리면 infinite scroll 콜백이 호출됩니다.
     public init(delegate: InfiniteScrollDelegate) {
         self.delegate = delegate
     }
     
-    /// modifier를 호출한 View가 pull to refresh 및 infinite scroll를 트리거 할 수 있게 만들어 준다.
+    /// modifier를 호출한 View가 pull to refresh 및 infinite scroll를 트리거 할 수 있게 만든다.
     public func body(content: Content) -> some View {
         GeometryReader {  screenProxy in
             ScrollView {
