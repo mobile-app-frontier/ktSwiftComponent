@@ -59,9 +59,10 @@ public final class BannerManager {
     private var willShowPopupBannerPolicy = PopupBannerPolicy()
     internal var popupButtonFont: Font? = nil
     internal var popupButtonTextColor: Color? = nil
+    internal var popupTextContentFont: Font? = nil
+    internal var popupTextContentColor: Color? = nil
 
     private init() {}
-    
     
     // BannerManager initializer.
     // BannerManager 는 Singleton 이므로, injection 해줘야 하는 Data 들을 해당 function 호출을 통해 지정함.
@@ -116,7 +117,9 @@ public final class BannerManager {
     public func start(present: @escaping (PopupBannerPolicyItem) -> Void,
                       dismiss: @escaping () -> Void,
                       popupButtonFont: Font? = nil,
-                      popupButtonTextColor: Color? = nil
+                      popupButtonTextColor: Color? = nil,
+                      popupTextContentFont: Font? = nil,
+                      popupTextContentColor: Color? = nil
     ) {
         guard isInitialized else {
             debugPrint("[BannerPolicy] BannerManager 를 initialze 한 후에 사용하세요.")
@@ -132,6 +135,8 @@ public final class BannerManager {
         self.dismiss = dismiss
         self.popupButtonFont = popupButtonFont
         self.popupButtonTextColor = popupButtonTextColor
+        self.popupTextContentFont = popupTextContentFont
+        self.popupTextContentColor = popupTextContentColor
         
         Task {
             localBannerPolicy = await localBannerPolicyGetter!()

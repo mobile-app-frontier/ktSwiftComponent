@@ -22,6 +22,7 @@ category 에 따라 분류되며, `BannerManager` 를 통해 category 별 `Image
 - `DefaultBanner` 의 경우 같은 카테고리의 배너들은 가로 세로 비율이 일정한 이미지여야 함.
     ex) message 카테고리의 배너 이미지들의 가로 세로 비율은 모두 5 : 2
 - `PopupBanner` 에 inApp 랜딩이 있을 경우, 반드시 가장 낮은 우선순위를 가져야 함. inApp 랜딩을 포함한 `PopupBanner` 의 경우, 사용자 interaction 에 의해 랜딩이 실행되었을 때 다음 popup banner 는 모두 보여주지 않음.
+- `BannerManager` 의 모든 기능은 `BannerPolicyFetcher` 가 fetch 에 성공한 이후(`BannerPolicyFetcher` 의 state 가 `BannerPolicyState.success`) 에 사용 가능.
 - `BannerManager` 에서 `PopupBanner` 의 start() parameter 인 `present` 로직은 UIViewController 의 배경색을 투명하게 혹은 dim 처리된 색상으로 변경하고, UIModalPresentationStyle 을 .overCurrentContext 로 지정해주어야 함.
 
 ## Example
@@ -139,19 +140,19 @@ contentType 에 따라서 달라짐
 - "T": content 영역에 보여주고 싶은 문자열
 - "H": HTML 형식의 String. HTML String 자체에 링크를 거는 것은 권장하지 않음.
 
-### landingType
+#### landingType
 - "none" / "" : landing 되지 않음.
 - "web": web view landing.
 - All the rest: inapp landing.
 
-### closeType
+#### closeType
 `DefaultBanner` 일 경우에만 지원.
 - "close": 닫기. 한번 보여주고 다시 보여주지 않음.
 - "never": 다시 보지 않기.
 - "week": 일주일 동안 보지 않기.
 - "today": 오늘은 보지 않기.
 
-### type
+#### type
 - "default": Image Slider 배너
 - "popup" : Sheet 배너
 

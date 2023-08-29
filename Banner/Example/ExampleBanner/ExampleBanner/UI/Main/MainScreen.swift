@@ -30,7 +30,8 @@ struct MainScreen: View {
             },
                                          dismiss: { navRouter.dismiss(animated: false) },
                                          popupButtonFont: .system(size: 15, weight: .semibold),
-                                         popupButtonTextColor: Color.gray)
+                                         popupButtonTextColor: Color.gray
+            )
         }
         .onReceive(BannerManager.instance.landingPublisher) { landingType in
             /// landing
