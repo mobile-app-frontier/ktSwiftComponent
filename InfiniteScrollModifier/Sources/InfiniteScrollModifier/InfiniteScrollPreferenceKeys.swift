@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-// PullToRefresh를 요청하기 위해 필요
-// PullToRefreshView가 위치하는 y좌표 값을 저장한다
+/// PullToRefresh를 요청하기 위해 필요
+/// PullToRefreshView가 위치하는 y좌표 값을 저장한다
 struct PullToRefreshKey: PreferenceKey {
     typealias Value = CGFloat
     static var defaultValue = CGFloat.zero
@@ -17,7 +17,7 @@ struct PullToRefreshKey: PreferenceKey {
     }
 }
 
-// 더보기 요청을 위해 필요
+/// 더보기 요청을 위해 필요
 struct ScrollCurrentOffsetKey: PreferenceKey {
     typealias Value = ScrollSet
     static var defaultValue = ScrollSet()

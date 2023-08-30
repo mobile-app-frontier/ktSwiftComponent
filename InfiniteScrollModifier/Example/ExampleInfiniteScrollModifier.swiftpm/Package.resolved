@@ -19,6 +19,15 @@
       }
     },
     {
+      "identity" : "ktswiftcomponent",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mobile-app-frontier/ktSwiftComponent",
+      "state" : {
+        "branch" : "main",
+        "revision" : "ecbbf74d5a607c42f296a9a57c83f5d2197ac70a"
+      }
+    },
+    {
       "identity" : "swift-collections",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-collections.git",

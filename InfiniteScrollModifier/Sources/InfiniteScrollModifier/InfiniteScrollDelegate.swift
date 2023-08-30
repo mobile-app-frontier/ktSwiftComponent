@@ -8,17 +8,28 @@
 import Foundation
 import SwiftUI
 
-/// InfiniteScrollModifier 생성 시에 속성을 정의합니다.
+/// InfiniteScrollModifier에 전달할 콜백 및 뷰, 사용 여부를 결정.
 public struct InfiniteScrollDelegate {
-    /// 상단 새로고침 시 수행할 콜백을 등록합니다. nil이면 새로고침이 실행되지 않습니다.
-    var pullToRefresh: (() async -> Void)?
-    /// 하단 불러오기 시 수행할 콜백을 등록합니다. nil이면 새로고침이 실행되지 않습니다.
-    var fetchMore: (() async -> Void)?
-    /// 상단 새로고침 시 보여질View를 받습니다. 없으면 DefaultProgressView가 표출됩니다.
-    var refreshProgressView: (() -> any View)?
-    /// 하단 불러오기 시 보여질 View를 받습니다. 없으면 DefaultProgressView가 표출됩니다.
-    var infiniteProgressView: (() -> any View)?
     
+    /// pull to refresh 트리거 시 호출할 콜백을 등록.
+    /// > Warning: nil이면 pull to refresh가 호출되지 않습니다.
+    public var pullToRefresh: (() async -> Void)?
+
+    /// infinite scroll 트리거 시 호출할 콜백을 등록.
+    /// > Warning: nil이면 infinite scroll이 호출되지 않습니다.
+    public var fetchMore: (() async -> Void)?
+    
+    /// pull to refresh 호출 시 보여질 View.
+    ///
+    /// nil이면 DefaultProgressView 표출.
+    public var refreshProgressView: (() -> any View)?
+    
+    /// infinite scroll 호출 시 보여질 View.
+    ///
+    /// nil이면 DefaultProgressView 표출.
+    public var infiniteProgressView: (() -> any View)?
+    
+    /// pull to refresh 콜백, infinite scroll 콜백, pull to refresh 호출 후 출력할 프로그래스 뷰, infinite scroll 호출 후 출력할 프로그래스 뷰에 대한 사용자 설정을 받는다.
     public init(
         pullToRefresh: ( () async-> Void)? = nil,
         fetchMore: ( () async-> Void)? = nil,

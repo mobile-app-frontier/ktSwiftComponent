@@ -1,99 +1,30 @@
 # InfiniteScrollModifier
 
-Module description
+View에 modifier 형태로 붙여서 사용할 수 있는 Pull to refresh 및 Infinite scrolling를 제공합니다.
+
+### `Pull To Refresh 또는 Infinite Scrolling 사용하기`
+해당 기능을 추가하고자 하는 SwiftUI View에 InfiniteScrollModifier를 달아줍니다.
+InfiniteScrollModifier가 가지고 있는 InfiniteScrollDelegate를 정의하여 사용할 수 있으며, 아래와 같은 요소들을 정의해줄 수 있습니다.
+- pull To Refresh 또는 Infinite Scrolling 시 트리거 할 동작 정의 (미정의 시 사용하지 않는 것으로 봅니다.)
+- pull To Refresh 또는 Infinite Scrolling 동작 시 화면에 표출할 View 정의 (미정의 시 디폴트 프로그래스 뷰를 사용합니다.)
 
 - [Example](#example)
-- [structure](#structure)
+- [Structure](#structure)
+- [More](#more)
 
 ## Example
-
 ``` Swift
-// Code block
-struct SampleView: View {
-    var body = {
-        VStack {
-
-        }
-    }
+LazyVStack {
+    // content ...
 }
+.modifier(
+    InfiniteScrollModifier(
+        delegate: InfiniteScrollDelegate(
+            pullToRefresh: onRefresh,
+            fetchMore: fetchMore            
+        )
+    )
+)
 ```
 
-## Structure
-
-| name | param | return | Description |
-| :--- | :---: | ---: | --- |
-| getIndex | Void | Int | get index |
-| setIndex | Int | Void | set index |
-
-
-Link [Link](https://google.com)
-
-> **NOTE:** \
-hello note 
-
-
-## [MORE](/Documentation/InfiniteScrollModifier/Home.md)
-
-
-A description of this package.
-
-
-public struct InfiniteScrollExampleView: View {
-    
-    @State var data: [String] = []
-    
-    public init() {}
-    
-    public var body: some View {
-        LazyVStack {
-            ForEach(data, id: \.self) { item in
-                VStack {
-                    Text(item)
-                    Text(item)
-                }
-            }
-        }
-        /// 상단 새로고침 및 하단 불러오기를 트리거하려면 InfiniteScrollModifier를 호출합니다.
-        .modifier(
-            InfiniteScrollModifier(
-                delegate: InfiniteScrollDelegate(
-                    pullToRefresh: onRefresh,
-                    fetchMore: fetchMore
-                )
-            )
-        )
-    }
-    
-    func fetchMore() async {
-        do {
-            try await Task.sleep(nanoseconds: 2_000_000_000)
-            let result = ["4","5","6"]
-            data += result
-        } catch {
-            
-        }
-    }
-    
-    func onRefresh() async {
-        do {
-            try await Task.sleep(nanoseconds: 2_000_000_000)
-            let str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-            var arr: [String] = []
-            (0..<19).forEach { number in
-                arr.append(str.createRandomStr(length: number))
-            }
-            data = arr
-        } catch {
-            
-        }
-    }
-}
-
-extension String {
-    
-    func createRandomStr(length: Int) -> String {
-        let str = (0 ..< length).map{ _ in self.randomElement()! }
-        return String(str)
-    }
-    
-}
+## MORE

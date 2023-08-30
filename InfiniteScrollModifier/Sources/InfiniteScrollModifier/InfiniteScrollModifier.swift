@@ -7,29 +7,44 @@
 
 import SwiftUI
 
-/// modifier 언제 action이 일어나는지 명시 (데이터)
+/// View에 modifier 형태로 붙여서 사용할 수 있는 Pull to refresh 및 Infinite scroll 제공.
+///
+/// 스크롤 높이에 따라 Pull To Refresh 또는 Infinite Scrolling을 실행한다.
+///
+/// ### Notes: ###
+/// - bloc: Pull To Refresh, Infinite Scroll 상태 관리.
+/// - screenTopEdge: 스크롤 뷰 시작 지점 좌표.
+/// - prevOffset: Pull To Refresh 호출 결정에 사용되는 요소.
+/// - refreshingChecked: 스크롤을 한번 당겨서 Pull To Refresh가 호출되었는지 여부.
 public struct InfiniteScrollModifier: ViewModifier {
     
+    /// 스크롤 상태 관리
     @StateObject
-    var bloc: InfiniteScrollerBloc = InfiniteScrollerBloc()
+    private var bloc: InfiniteScrollerBloc = InfiniteScrollerBloc()
     
     @State
-    var screenTopEdge: CGFloat = 0
+    private var screenTopEdge: CGFloat = 0
     
     @State
-    var prevOffset: CGFloat = 0
+    private var prevOffset: CGFloat = 0
     
     @State
-    var refreshingChecked: Bool = false
+    private var refreshingChecked: Bool = false
     
-    let scrollGeometry: String = "scroll"
+    private let scrollGeometry: String = "scroll"
     
-    let delegate: InfiniteScrollDelegate
+    /// Pull To Refresh 및 Infinite Scrolling 정의.
+    public let delegate: InfiniteScrollDelegate
     
+    /// delegate에 사용자가 정의한 동작을 바탕으로 pull to refresh 및 infinite scrolling을 트리거할 수 있는 modifier를 생성.
+    ///
+    /// - 사용자가 스크롤을 일정 높이 이상으로 잡아당기면 pull to refresh 콜백이 호출됩니다.
+    /// - 스크롤이 화면 하단에 도달했을 때, 사용자가 스크롤을 계속 내리면 infinite scroll 콜백이 호출됩니다.
     public init(delegate: InfiniteScrollDelegate) {
         self.delegate = delegate
     }
     
+    /// modifier를 호출한 View가 pull to refresh 및 infinite scroll를 트리거 할 수 있게 만든다.
     public func body(content: Content) -> some View {
         GeometryReader {  screenProxy in
             ScrollView {
@@ -40,7 +55,6 @@ public struct InfiniteScrollModifier: ViewModifier {
                         }
                     }
                     .background(GeometryReader { proxy in
-                        /// 스크롤뷰(scrollGeometry가 스크롤뷰의 좌표평면)에 대해 상대적인 y 좌표의 변화를 관찰한다.
                         Color.clear
                             .preference(
                                 key: PullToRefreshKey.self,
@@ -69,7 +83,6 @@ public struct InfiniteScrollModifier: ViewModifier {
                         .background (
                             GeometryReader { proxy in
                                 Color.clear
-                                /// proxy 가 변할 때마다 값을 ScrollCurrentOffsetKey에 저장한다.
                                     .preference(
                                         key: ScrollCurrentOffsetKey.self,
                                         value: ScrollSet(
