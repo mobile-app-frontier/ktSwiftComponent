@@ -62,6 +62,7 @@ public extension NavRouter {
         
         let viewController = UIHostingController(
             rootView: route.view()
+                .navigationBarHidden(true)
                 .environmentObject(self)
         )
         
@@ -74,6 +75,7 @@ public extension NavRouter {
         
         getNavigationController().setToolbarHidden(true, animated: false)
         getNavigationController().setNavigationBarHidden(true, animated: false)
+        getNavigationController().visibleViewController?.navigationController?.isNavigationBarHidden = true
         
         getNavigationController().pushViewController(viewController, animated: animated)
         
