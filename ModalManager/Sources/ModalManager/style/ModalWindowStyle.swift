@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+/// 모달이 띄워질 window의 스타일을 정의한다.
 public protocol ModalWindowStyle {
     var windowWidth: CGFloat { get }
     var windowHeight: CGFloat { get }
@@ -19,6 +20,7 @@ public protocol ModalWindowStyle {
     var windowFont: Font { get }
 }
 
+/// 기본값으로 사용되는 모달 window 스타일.
 public struct ResizableModalWindowStyle : ModalWindowStyle {
     public var windowWidth: CGFloat = 300
     public var windowHeight: CGFloat = 200
