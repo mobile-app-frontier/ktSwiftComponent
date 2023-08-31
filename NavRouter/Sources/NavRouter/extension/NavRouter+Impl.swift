@@ -39,11 +39,14 @@ public extension NavRouter {
         let viewController = UIHostingController(
             rootView: route.view()
                 .environmentObject(self)
+                .navigationBarHidden(true)
         )
         
         viewController.view.backgroundColor = options.backgroundColor
         viewController.modalTransitionStyle = options.modalTransitionStyle
         viewController.modalPresentationStyle = options.modalPresentationStyle
+        
+        route.applyNavigationOptions(controller: getNavigationController())
         
         getNavigationController().present(viewController, animated: animated)
         didRouteNav(action: .presentRouteSheet(presentedRoute: route))
@@ -72,6 +75,8 @@ public extension NavRouter {
             viewController.modalTransitionStyle = options.modalTransitionStyle
             viewController.modalPresentationStyle = options.modalPresentationStyle
         }
+        
+        route.applyNavigationOptions(controller: getNavigationController())
         
         getNavigationController().setToolbarHidden(true, animated: false)
         getNavigationController().setNavigationBarHidden(true, animated: false)
