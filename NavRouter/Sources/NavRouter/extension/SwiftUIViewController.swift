@@ -17,20 +17,27 @@ import SwiftUI
 
 class SwiftUIViewController<Content: View>: UIHostingController<Content> {
     
-    var onViewDidAppear: ((UINavigationController?)-> Void)?
+    var applyNavigaionOption: ((UINavigationController?)-> Void)?
     
-    convenience init(rootView: Content, onViewDidAppear: @escaping ((UINavigationController?)-> Void)) {
+    convenience init(rootView: Content, applyNavigaionOption: @escaping ((UINavigationController?)-> Void)) {
         self.init(rootView: rootView)
-        self.onViewDidAppear = onViewDidAppear
+        self.applyNavigaionOption = applyNavigaionOption
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        applyNavigaionOption?(self.navigationController)
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // view didloaded
-        onViewDidAppear?(self.navigationController)
+        applyNavigaionOption?(self.navigationController)
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        onViewDidAppear?(self.navigationController)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        applyNavigaionOption?(self.navigationController)
     }
+    
 }
