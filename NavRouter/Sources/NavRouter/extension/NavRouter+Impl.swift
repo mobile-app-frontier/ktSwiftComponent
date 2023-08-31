@@ -186,8 +186,9 @@ public extension NavRouter {
 
 
 class SwiftUIViewController<Content: View>: UIHostingController<Content> {
-    override func viewWillAppear(_ animated: Bool) {
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         navigationController?.isNavigationBarHidden = true
     }
-
 }
