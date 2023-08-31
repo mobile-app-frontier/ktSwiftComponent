@@ -63,6 +63,7 @@ public extension NavRouter {
         let viewController = UIHostingController(
             rootView: route.view()
                 .environmentObject(self)
+                .navigationBarHidden(true)
         )
         
         viewController.restorationIdentifier = route.restorationIdentifier()
