@@ -25,10 +25,13 @@ struct MainScreen: View {
         .onViewDidLoad {
             // start popup banner
             BannerManager.instance.start(present: { popupBanner in
-                navRouter.presentWithOptions(.popupBanner(banner: popupBanner),
-                                             options: NavRoutePresentOptions())
+                navRouter.present(.popupBanner(banner: popupBanner),
+                                  options: NavRoutePresentOptions())
             },
-            dismiss: { navRouter.dismiss(animated: false) })
+                                         dismiss: { navRouter.dismiss(animated: false) },
+                                         popupButtonFont: .system(size: 15, weight: .semibold),
+                                         popupButtonTextColor: Color.gray
+            )
         }
         .onReceive(BannerManager.instance.landingPublisher) { landingType in
             /// landing

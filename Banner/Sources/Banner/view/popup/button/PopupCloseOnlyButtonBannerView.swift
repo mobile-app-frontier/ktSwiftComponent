@@ -22,6 +22,8 @@ internal struct PopupCloseOnlyButtonBannerView: View {
                                             notShowedDate: closeType.notShowedDate)
             } label: {
                 Text("닫기")
+                    .font(BannerManager.instance.popupButtonFont)
+                    .foregroundColor(BannerManager.instance.popupButtonTextColor)
             }
         }
     }

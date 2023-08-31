@@ -14,6 +14,8 @@ internal struct PopupTextContentBannerView: View {
     var body: some View {
         HStack {
             Text(content)
+                .font(BannerManager.instance.popupTextContentFont)
+                .foregroundColor(BannerManager.instance.popupTextContentColor)
                 .padding([.leading, .trailing, .top], 10)
             Spacer()
         }

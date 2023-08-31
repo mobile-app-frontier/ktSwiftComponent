@@ -57,15 +57,15 @@ public struct BannerPolicyItemModel: Codable {
     ///
     /// Popup Banner 는`I(image)`,`T(text)`, `H(html)`.
     ///
-    /// Default Banner 는 `image` 타입만 제공.
+    /// Default Banner 는 `I(image)` 타입만 제공.
     public let contentType: String
     
     /// Banner 내용.
     ///
     /// `contentType`
-    /// - `image`:  imageUrl.
-    /// - `text`:  content 내용.
-    /// - `html`:  HTML 전문.
+    /// - `I`:  imageUrl.
+    /// - `T`:  content 내용.
+    /// - `H`:  HTML 전문.
     public let content: String
     
     /// landing 할 화면 혹은 `web`. landing 하지 않을 경우, nil.

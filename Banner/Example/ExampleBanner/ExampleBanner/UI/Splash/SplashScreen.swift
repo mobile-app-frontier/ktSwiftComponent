@@ -25,7 +25,7 @@ struct SplashScreen: View {
                 case .gotoMain:
                     navRouter.replace(.main)
                 case .exitApp:
-                    ModalManager.instance.show {
+                    ModalManager.getInstance().show {
                         VStack {
                             Text("네트워크 상태가 좋지 않습니다. 잠시 후 다시 앱을 실행해주세요.")
                             HStack {

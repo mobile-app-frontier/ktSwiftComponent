@@ -57,9 +57,12 @@ public final class BannerManager {
     /// Popup
     /// `willShowPopupBannerPolicy`: 보여줄 Popup Banner Policy. PriorityQueue 이므로 이미 보여준 배너는 없음.
     private var willShowPopupBannerPolicy = PopupBannerPolicy()
+    internal var popupButtonFont: Font? = nil
+    internal var popupButtonTextColor: Color? = nil
+    internal var popupTextContentFont: Font? = nil
+    internal var popupTextContentColor: Color? = nil
 
     private init() {}
-    
     
     // BannerManager initializer.
     // BannerManager 는 Singleton 이므로, injection 해줘야 하는 Data 들을 해당 function 호출을 통해 지정함.
@@ -109,8 +112,17 @@ public final class BannerManager {
     /// - Parameters:
     ///   - present: `PopupBannerPolicyItem` 받아 생성한 `PopupBannerView` 를 present 하는 로직.
     ///   - dismiss: App navigator 에서 sheet 를 dismiss 하는 로직.
+    ///   - popupButtonFont: Popup BottomSheet button 의 폰트.
+    ///   - popupButtonTextColor: Popup BottomSheet button Text 의 foreground color.
+    ///   - popupTextContentFont: Popup Banner 의 `contentType` 이 text 일 때 사용되는 text 폰트.
+    ///   - popupTextContentColor: Popup Banner 의 `contentType` 이 text 일 때 사용되는 text 의 foreground color
     public func start(present: @escaping (PopupBannerPolicyItem) -> Void,
-                      dismiss: @escaping () -> Void) {
+                      dismiss: @escaping () -> Void,
+                      popupButtonFont: Font? = nil,
+                      popupButtonTextColor: Color? = nil,
+                      popupTextContentFont: Font? = nil,
+                      popupTextContentColor: Color? = nil
+    ) {
         guard isInitialized else {
             debugPrint("[BannerPolicy] BannerManager 를 initialze 한 후에 사용하세요.")
             return
@@ -123,6 +135,10 @@ public final class BannerManager {
         
         self.present = present
         self.dismiss = dismiss
+        self.popupButtonFont = popupButtonFont
+        self.popupButtonTextColor = popupButtonTextColor
+        self.popupTextContentFont = popupTextContentFont
+        self.popupTextContentColor = popupTextContentColor
         
         Task {
             localBannerPolicy = await localBannerPolicyGetter!()
