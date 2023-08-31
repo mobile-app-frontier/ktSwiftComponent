@@ -12,43 +12,46 @@ import SwiftUI
 public extension NavRouter {
     func start() {
         guard let route = getStartingRoute() else { return }
-        
-        didRouteNav(action: .start)
+     
         push(route)
+        didRouteNav(action: .start)
     }
     
     func present(_ route: Route, animated: Bool = false, isModal: Bool) {
-        let viewController = UIHostingController(
+        let uiHostingController = SwiftUIViewController(
             rootView: route.view()
                 .environmentObject(self)
-        )
+        ) { controller in
+            route.applyNavigationOptions(controller: controller)
+        }
         
         if isModal {
-            viewController.modalPresentationStyle = .fullScreen
-            getNavigationController().present(viewController, animated: animated)
+            uiHostingController.modalPresentationStyle = .fullScreen
+            getNavigationController().present(uiHostingController, animated: animated)
             didRouteNav(action: .presentRouteModal(presentedRoute: route))
         } else {
-            viewController.modalPresentationStyle = .formSheet
-            getNavigationController().present(viewController, animated: animated)
+            uiHostingController.modalPresentationStyle = .formSheet
+            getNavigationController().present(uiHostingController, animated: animated)
             didRouteNav(action: .presentRouteSheet(presentedRoute: route))
         }
     }
     
     func present(_ route: Route, animated: Bool = true, options:NavRoutePresentOptions) {
         
-        let viewController = UIHostingController(
+        let uiHostingController = SwiftUIViewController(
             rootView: route.view()
                 .environmentObject(self)
                 .navigationBarHidden(true)
-        )
+        ) { controller in
+            route.applyNavigationOptions(controller: controller)
+        }
         
-        viewController.view.backgroundColor = options.backgroundColor
-        viewController.modalTransitionStyle = options.modalTransitionStyle
-        viewController.modalPresentationStyle = options.modalPresentationStyle
+        uiHostingController.view.backgroundColor = options.backgroundColor
+        uiHostingController.modalTransitionStyle = options.modalTransitionStyle
+        uiHostingController.modalPresentationStyle = options.modalPresentationStyle
         
-        getNavigationController().present(viewController, animated: animated)
+        getNavigationController().present(uiHostingController, animated: animated)
         
-        route.applyNavigationOptions(controller: getNavigationController())
         didRouteNav(action: .presentRouteSheet(presentedRoute: route))
     }
     
@@ -63,26 +66,27 @@ public extension NavRouter {
     
     func push(_ route: Route, animated: Bool = true, options:NavRoutePresentOptions? = nil) {
         
-        let viewController = SwiftUIViewController(
+        let uiHostingController = SwiftUIViewController(
             rootView: route.view()
                 .environmentObject(self)
                 .navigationBarHidden(true)
-        )
+        ) { controller in
+            route.applyNavigationOptions(controller: controller)
+        }
         
-        viewController.restorationIdentifier = route.restorationIdentifier()
+        uiHostingController.restorationIdentifier = route.restorationIdentifier()
         if let options = options {
-            viewController.view.backgroundColor = options.backgroundColor
-            viewController.modalTransitionStyle = options.modalTransitionStyle
-            viewController.modalPresentationStyle = options.modalPresentationStyle
+            uiHostingController.view.backgroundColor = options.backgroundColor
+            uiHostingController.modalTransitionStyle = options.modalTransitionStyle
+            uiHostingController.modalPresentationStyle = options.modalPresentationStyle
         }
         
         
         getNavigationController().setToolbarHidden(true, animated: false)
         getNavigationController().setNavigationBarHidden(true, animated: false)
         
-        getNavigationController().pushViewController(viewController, animated: animated)
+        getNavigationController().pushViewController(uiHostingController, animated: animated)
         
-        route.applyNavigationOptions(controller: getNavigationController())
         
         didRouteNav(action: .pushRoute(pushedRoute: route))
     }
@@ -120,10 +124,12 @@ public extension NavRouter {
         /// remove last viewcontroller
         _ = viewControllers.popLast()
         
-        let uiHostingController = UIHostingController(
+        let uiHostingController = SwiftUIViewController(
             rootView: route.view()
                 .environmentObject(self)
-        )
+        ) { controller in
+            route.applyNavigationOptions(controller: controller)
+        }
         
         uiHostingController.navigationController?.setToolbarHidden(true, animated: false)
         
@@ -139,7 +145,6 @@ public extension NavRouter {
         
         getNavigationController().setViewControllers(viewControllers, animated: animated)
         
-        route.applyNavigationOptions(controller: getNavigationController())
         didRouteNav(action: .replaceRoute(replaced: route))
     }
     
@@ -154,10 +159,12 @@ public extension NavRouter {
         }
         
         // new Route ViewController
-        let uiHostingController = UIHostingController(
+        let uiHostingController = SwiftUIViewController(
             rootView: route.view()
                 .environmentObject(self)
-        )
+        ) { controller in
+            route.applyNavigationOptions(controller: controller)
+        }
         
         uiHostingController.navigationController?.setToolbarHidden(true, animated: false)
         
@@ -173,7 +180,6 @@ public extension NavRouter {
         
         getNavigationController().setViewControllers(resultViewControllers, animated: animated)
         
-        route.applyNavigationOptions(controller: getNavigationController())
         didRouteNav(action: .replaceRoute(replaced: route))
     }
     
@@ -183,12 +189,3 @@ public extension NavRouter {
 }
 
 
-
-
-class SwiftUIViewController<Content: View>: UIHostingController<Content> {
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        navigationController?.isNavigationBarHidden = true
-    }
-}

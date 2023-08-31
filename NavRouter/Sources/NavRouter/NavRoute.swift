@@ -26,7 +26,7 @@ public protocol NavRoute {
     ///     ...
     /// }
     /// ```
-    func applyNavigationOptions(controller: UINavigationController)
+    func applyNavigationOptions(controller: UINavigationController?)
     
     /// Creates and returns a view of assosiated type
     ///
@@ -40,7 +40,7 @@ extension NavRoute {
         return nil
     }
     
-    func applyNavigationOptions(controller: UINavigationController){
+    func applyNavigationOptions(controller: UINavigationController?){
         
     }
 }
