@@ -29,4 +29,8 @@ class SwiftUIViewController<Content: View>: UIHostingController<Content> {
         // view didloaded
         onViewDidAppear?(self.navigationController)
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        onViewDidAppear?(self.navigationController)
+    }
 }
