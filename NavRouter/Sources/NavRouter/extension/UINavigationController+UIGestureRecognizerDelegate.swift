@@ -11,6 +11,7 @@ extension UINavigationController: ObservableObject, UIGestureRecognizerDelegate 
     override open func viewDidLoad() {
         super.viewDidLoad()
         interactivePopGestureRecognizer?.delegate = self
+        self.isNavigationBarHidden = true
     }
 
     public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
