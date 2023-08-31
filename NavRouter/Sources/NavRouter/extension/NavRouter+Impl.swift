@@ -63,7 +63,7 @@ public extension NavRouter {
     
     func push(_ route: Route, animated: Bool = true, options:NavRoutePresentOptions? = nil) {
         
-        let viewController = UIHostingController(
+        let viewController = SwiftUIViewController(
             rootView: route.view()
                 .environmentObject(self)
                 .navigationBarHidden(true)
@@ -180,4 +180,14 @@ public extension NavRouter {
     func didRouteNav(action: NavRouterAction) {
         // do nothing
     }
+}
+
+
+
+
+class SwiftUIViewController<Content: View>: UIHostingController<Content> {
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
+    }
+
 }
