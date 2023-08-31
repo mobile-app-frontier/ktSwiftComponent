@@ -127,6 +127,7 @@ public extension NavRouter {
         let uiHostingController = SwiftUIViewController(
             rootView: route.view()
                 .environmentObject(self)
+                .navigationBarHidden(true)
         ) { controller in
             route.applyNavigationOptions(controller: controller)
         }
@@ -162,6 +163,7 @@ public extension NavRouter {
         let uiHostingController = SwiftUIViewController(
             rootView: route.view()
                 .environmentObject(self)
+                .navigationBarHidden(true)
         ) { controller in
             route.applyNavigationOptions(controller: controller)
         }
