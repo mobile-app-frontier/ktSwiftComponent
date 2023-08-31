@@ -46,9 +46,9 @@ public extension NavRouter {
         viewController.modalTransitionStyle = options.modalTransitionStyle
         viewController.modalPresentationStyle = options.modalPresentationStyle
         
-        route.applyNavigationOptions(controller: getNavigationController())
-        
         getNavigationController().present(viewController, animated: animated)
+        
+        route.applyNavigationOptions(controller: getNavigationController())
         didRouteNav(action: .presentRouteSheet(presentedRoute: route))
     }
     
@@ -76,12 +76,13 @@ public extension NavRouter {
             viewController.modalPresentationStyle = options.modalPresentationStyle
         }
         
-        route.applyNavigationOptions(controller: getNavigationController())
         
         getNavigationController().setToolbarHidden(true, animated: false)
         getNavigationController().setNavigationBarHidden(true, animated: false)
         
         getNavigationController().pushViewController(viewController, animated: animated)
+        
+        route.applyNavigationOptions(controller: getNavigationController())
         
         didRouteNav(action: .pushRoute(pushedRoute: route))
     }
@@ -137,6 +138,8 @@ public extension NavRouter {
         viewControllers.append(uiHostingController)
         
         getNavigationController().setViewControllers(viewControllers, animated: animated)
+        
+        route.applyNavigationOptions(controller: getNavigationController())
         didRouteNav(action: .replaceRoute(replaced: route))
     }
     
@@ -169,6 +172,8 @@ public extension NavRouter {
         resultViewControllers.append(uiHostingController)
         
         getNavigationController().setViewControllers(resultViewControllers, animated: animated)
+        
+        route.applyNavigationOptions(controller: getNavigationController())
         didRouteNav(action: .replaceRoute(replaced: route))
     }
     
