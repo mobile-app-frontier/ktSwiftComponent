@@ -17,6 +17,7 @@ let package = Package(
             name: "ExampleNavRouter",
             targets: ["AppModule"],
             bundleIdentifier: "com.kt.ExampleNavRouter",
+            teamIdentifier: "V5A3CLRKRX",
             displayVersion: "1.0",
             bundleVersion: "1",
             appIcon: .placeholder(icon: .flower),
@@ -34,7 +35,7 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/mobile-app-frontier/ktSwiftComponent.git", .branch("feature/NavRouter"))
+        .package(url: "https://github.com/mobile-app-frontier/ktSwiftComponent.git", .branch("feature/navRouter_applyNavigationOptions"))
     ],
     targets: [
         .executableTarget(

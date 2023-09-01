@@ -47,13 +47,33 @@ struct SplashScreen: View {
     var router: AppRouter
     
     var body: some View {
-        VStack {
-            Color.blue
-            Button {
-                router.push(.login)
-            } label: {
-                Text("go Login")
+        TabView {
+            VStack {
+                Color.blue
+                Button {
+                    router.push(.login)
+                } label: {
+                    Text("go Login")
+                }
             }
+            .tabItem({
+                Text("login")
+            })
+            .navigationBarHidden(true)
+            
+            VStack {
+                Color.red
+                Button {
+                    router.push(.home)
+                } label: {
+                    Text("go home")
+                }
+            }
+            .tabItem({
+                Text("home")
+            })
+            .navigationBarHidden(true)
         }
+        
     }
 }
