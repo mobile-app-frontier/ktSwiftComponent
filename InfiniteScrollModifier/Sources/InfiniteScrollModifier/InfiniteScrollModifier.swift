@@ -73,10 +73,11 @@ public struct InfiniteScrollModifier: ViewModifier {
                                 bloc.setIdle()
                             }
                         }
-                        prevOffset = $0
-                        if $0 == 0 {
+                        /// iOS 14에서 PullToRefreshKey y 좌표가 점진적으로 감소하지 않는 현상이 있어서 아래의 코드로 변경함.
+                        if refreshingChecked && floor(prevOffset) == 0 && $0 == 0{
                             refreshingChecked = false
                         }
+                        prevOffset = $0
                     }
                     
                     content
