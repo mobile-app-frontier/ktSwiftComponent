@@ -16,6 +16,11 @@ extension UINavigationController: ObservableObject, UIGestureRecognizerDelegate 
     public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         return viewControllers.count > 1
     }
+    
+    override open func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.isNavigationBarHidden = true
+    }
 }
 
 #endif

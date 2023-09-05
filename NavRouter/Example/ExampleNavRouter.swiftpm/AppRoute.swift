@@ -45,4 +45,15 @@ extension AppRoute {
             SplashScreen()
         }
     }
+    
+    func applyNavigationOptions(controller: UINavigationController?) {
+        switch(self) {
+        case .home:
+            controller?.isNavigationBarHidden = true
+        case .login:
+            break
+        case .splash:
+            controller?.isNavigationBarHidden = true
+        }
+    }
 }

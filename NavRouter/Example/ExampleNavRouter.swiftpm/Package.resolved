@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/onevcat/Kingfisher",
       "state" : {
-        "revision" : "c75584ac759cbb16b204d0a7de3ebf53ea6b304d",
-        "version" : "7.9.0"
+        "revision" : "b6f62758f21a8c03cd64f4009c037cfa580a256e",
+        "version" : "7.9.1"
       }
     },
     {
@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mobile-app-frontier/ktSwiftComponent.git",
       "state" : {
-        "branch" : "feature/NavRouter",
-        "revision" : "7c6ab87c8c64ffb00ffc852300c42e10470b89b4"
+        "branch" : "feature/navRouter_applyNavigationOptions",
+        "revision" : "c29dda44f05fd0071ded350ad3b9b6711d0e7ca8"
       }
     },
     {
