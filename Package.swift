@@ -23,9 +23,6 @@ let package = Package(
             name: "ModalManager",
             targets: ["ModalManager"]),
         .library(
-            name: "NetworkManager",
-            targets: ["NetworkManager"]),
-        .library(
             name: "PermissionManager",
             targets: ["PermissionManager"]),
         .library(
@@ -53,8 +50,6 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "https://github.com/Alamofire/Alamofire.git",
-                 .upToNextMajor(from: "5.0.0")),
         .package(
           url: "https://github.com/apple/swift-collections.git",
           .upToNextMajor(from: "1.0.4") // or `.upToNextMinor
@@ -90,11 +85,6 @@ let package = Package(
         .target(
             name: "ModalManager",
             dependencies: [], path: "ModalManager/Sources"),
-        .target(
-            name: "NetworkManager",
-            dependencies: [
-                "Alamofire",
-            ], path: "NetworkManager/Sources"),
         .target(
             name: "PermissionManager",
             dependencies: [],path: "PermissionManager/Sources"),
