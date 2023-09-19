@@ -34,9 +34,9 @@ public protocol NavRouter: ObservableObject {
     func start()
     
     /// present modal or overlay screen
-    func present(_ route: Route, animated: Bool , isModal: Bool)
+    func present(_ route: Route, animated: Bool , isModal: Bool, supportedOrientations: UIInterfaceOrientationMask)
     
-    func present(_ route: Route, animated: Bool, options:NavRoutePresentOptions)
+    func present(_ route: Route, animated: Bool, options: NavRoutePresentOptions, supportedOrientations: UIInterfaceOrientationMask)
     
     /// dismiss present screen
     /// present로 올라온 view만 dismiss 가능
@@ -44,7 +44,7 @@ public protocol NavRouter: ObservableObject {
     func dismiss(animated: Bool )
     
     /// navigation stack에 route를 추가
-    func push(_ route: Route, animated: Bool, options:NavRoutePresentOptions?)
+    func push(_ route: Route, animated: Bool, options: NavRoutePresentOptions?, supportedOrientations: UIInterfaceOrientationMask)
     
     /// navigation stack에서 최 상위 vc를 제거
     func pop(animated: Bool )
@@ -57,10 +57,10 @@ public protocol NavRouter: ObservableObject {
     func popToView(restorationIdentifier: String?, animated: Bool)
     
     /// navigation stack에 최 상위vc를 제거 하고 신규 vc를 추가
-    func replace(_ route: Route, animated: Bool, options:NavRoutePresentOptions?)
+    func replace(_ route: Route, animated: Bool, options: NavRoutePresentOptions?, supportedOrientations: UIInterfaceOrientationMask)
     
     /// navigation stack에 restorationIdentifier vc이후의 stack을 제거 하고 신규 vc를 추가
-    func replaceTo(_ route: Route, animated: Bool, restorationIdentifier: String, options:NavRoutePresentOptions?)
+    func replaceTo(_ route: Route, animated: Bool, restorationIdentifier: String, options:NavRoutePresentOptions?, supportedOrientations: UIInterfaceOrientationMask)
     
     /// NavRouter delegate
     func didRouteNav(action: NavRouterAction)
