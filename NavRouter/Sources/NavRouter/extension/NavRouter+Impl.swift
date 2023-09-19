@@ -17,10 +17,11 @@ public extension NavRouter {
         didRouteNav(action: .start)
     }
     
-    func present(_ route: Route, animated: Bool = false, isModal: Bool) {
+    func present(_ route: Route, animated: Bool = false, isModal: Bool, supportedOrientations: UIInterfaceOrientationMask = .all) {
         let uiHostingController = SwiftUIViewController(
             rootView: route.view()
-                .environmentObject(self)
+                .environmentObject(self),
+            supportedOrientations: supportedOrientations
         ) { controller in
             route.applyNavigationOptions(controller: controller)
         }
@@ -36,12 +37,13 @@ public extension NavRouter {
         }
     }
     
-    func present(_ route: Route, animated: Bool = true, options:NavRoutePresentOptions) {
+    func present(_ route: Route, animated: Bool = true, options:NavRoutePresentOptions, supportedOrientations: UIInterfaceOrientationMask = .all) {
         
         let uiHostingController = SwiftUIViewController(
             rootView: route.view()
                 .environmentObject(self)
-                .navigationBarHidden(true)
+                .navigationBarHidden(true),
+            supportedOrientations: supportedOrientations
         ) { controller in
             route.applyNavigationOptions(controller: controller)
         }
@@ -64,12 +66,13 @@ public extension NavRouter {
     }
     
     
-    func push(_ route: Route, animated: Bool = true, options:NavRoutePresentOptions? = nil) {
+    func push(_ route: Route, animated: Bool = true, options:NavRoutePresentOptions? = nil, supportedOrientations: UIInterfaceOrientationMask = .all) {
         
         let uiHostingController = SwiftUIViewController(
             rootView: route.view()
                 .environmentObject(self)
-                .navigationBarHidden(true)
+                .navigationBarHidden(true),
+            supportedOrientations: supportedOrientations
         ) { controller in
             route.applyNavigationOptions(controller: controller)
         }
@@ -119,7 +122,7 @@ public extension NavRouter {
     }
     
     
-    func replace(_ route: Route, animated: Bool = true, options: NavRoutePresentOptions? = nil) {
+    func replace(_ route: Route, animated: Bool = true, options: NavRoutePresentOptions? = nil, supportedOrientations: UIInterfaceOrientationMask = .all) {
         var viewControllers = getNavigationController().viewControllers
         /// remove last viewcontroller
         _ = viewControllers.popLast()
@@ -127,7 +130,8 @@ public extension NavRouter {
         let uiHostingController = SwiftUIViewController(
             rootView: route.view()
                 .environmentObject(self)
-                .navigationBarHidden(true)
+                .navigationBarHidden(true),
+            supportedOrientations: supportedOrientations
         ) { controller in
             route.applyNavigationOptions(controller: controller)
         }
@@ -149,7 +153,7 @@ public extension NavRouter {
         didRouteNav(action: .replaceRoute(replaced: route))
     }
     
-    func replaceTo(_ route: Route, animated: Bool, restorationIdentifier: String, options:NavRoutePresentOptions? = nil) {
+    func replaceTo(_ route: Route, animated: Bool, restorationIdentifier: String, options:NavRoutePresentOptions? = nil, supportedOrientations: UIInterfaceOrientationMask = .all) {
         var resultViewControllers = [UIViewController]()
         
         getNavigationController().viewControllers.forEach { viewController in
@@ -163,7 +167,8 @@ public extension NavRouter {
         let uiHostingController = SwiftUIViewController(
             rootView: route.view()
                 .environmentObject(self)
-                .navigationBarHidden(true)
+                .navigationBarHidden(true),
+            supportedOrientations: supportedOrientations
         ) { controller in
             route.applyNavigationOptions(controller: controller)
         }

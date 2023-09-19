@@ -18,10 +18,14 @@ import SwiftUI
 class SwiftUIViewController<Content: View>: UIHostingController<Content> {
     
     var applyNavigaionOption: ((UINavigationController?)-> Void)?
+    var supportedOrientations: UIInterfaceOrientationMask?
     
-    convenience init(rootView: Content, applyNavigaionOption: @escaping ((UINavigationController?)-> Void)) {
+    convenience init(rootView: Content, 
+                     supportedOrientations: UIInterfaceOrientationMask,
+                     applyNavigaionOption: @escaping ((UINavigationController?)-> Void)) {
         self.init(rootView: rootView)
         self.applyNavigaionOption = applyNavigaionOption
+        self.supportedOrientations = supportedOrientations
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,6 +42,10 @@ class SwiftUIViewController<Content: View>: UIHostingController<Content> {
     override func viewDidLoad() {
         super.viewDidLoad()
         applyNavigaionOption?(self.navigationController)
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return supportedOrientations ?? .all
     }
     
 }
