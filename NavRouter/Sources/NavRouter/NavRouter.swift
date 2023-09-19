@@ -31,7 +31,7 @@ public protocol NavRouter: ObservableObject {
     func getStartingRoute() -> Route?
     
     /// getStartingRoute()를push해주는 기능.
-    func start()
+    func start(supportedOrientations: UIInterfaceOrientationMask)
     
     /// present modal or overlay screen
     func present(_ route: Route, animated: Bool , isModal: Bool, supportedOrientations: UIInterfaceOrientationMask)

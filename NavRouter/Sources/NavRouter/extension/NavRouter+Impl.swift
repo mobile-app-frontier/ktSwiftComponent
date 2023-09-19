@@ -10,10 +10,10 @@ import SwiftUI
 
 //MARK: - public navigation functions
 public extension NavRouter {
-    func start() {
+    func start(supportedOrientations: UIInterfaceOrientationMask = .all) {
         guard let route = getStartingRoute() else { return }
      
-        push(route)
+        push(route, supportedOrientations: supportedOrientations)
         didRouteNav(action: .start)
     }
     
