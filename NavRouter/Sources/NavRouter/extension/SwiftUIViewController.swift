@@ -18,10 +18,14 @@ import SwiftUI
 class SwiftUIViewController<Content: View>: UIHostingController<Content> {
     
     var applyNavigaionOption: ((UINavigationController?)-> Void)?
+    var statusBarStyle: UIStatusBarStyle?
     
-    convenience init(rootView: Content, applyNavigaionOption: @escaping ((UINavigationController?)-> Void)) {
+    convenience init(rootView: Content,
+                     statusBarStyle: UIStatusBarStyle,
+                     applyNavigaionOption: @escaping ((UINavigationController?) -> Void)) {
         self.init(rootView: rootView)
         self.applyNavigaionOption = applyNavigaionOption
+        self.statusBarStyle = statusBarStyle
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,6 +42,10 @@ class SwiftUIViewController<Content: View>: UIHostingController<Content> {
     override func viewDidLoad() {
         super.viewDidLoad()
         applyNavigaionOption?(self.navigationController)
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return statusBarStyle ?? .default
     }
     
 }

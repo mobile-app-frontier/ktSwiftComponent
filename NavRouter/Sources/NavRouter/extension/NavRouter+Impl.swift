@@ -20,7 +20,8 @@ public extension NavRouter {
     func present(_ route: Route, animated: Bool = false, isModal: Bool) {
         let uiHostingController = SwiftUIViewController(
             rootView: route.view()
-                .environmentObject(self)
+                .environmentObject(self),
+            statusBarStyle: route.statusBarStyle
         ) { controller in
             route.applyNavigationOptions(controller: controller)
         }
@@ -41,7 +42,8 @@ public extension NavRouter {
         let uiHostingController = SwiftUIViewController(
             rootView: route.view()
                 .environmentObject(self)
-                .navigationBarHidden(true)
+                .navigationBarHidden(true),
+            statusBarStyle: route.statusBarStyle
         ) { controller in
             route.applyNavigationOptions(controller: controller)
         }
@@ -69,7 +71,8 @@ public extension NavRouter {
         let uiHostingController = SwiftUIViewController(
             rootView: route.view()
                 .environmentObject(self)
-                .navigationBarHidden(true)
+                .navigationBarHidden(true),
+            statusBarStyle: route.statusBarStyle
         ) { controller in
             route.applyNavigationOptions(controller: controller)
         }
@@ -127,7 +130,8 @@ public extension NavRouter {
         let uiHostingController = SwiftUIViewController(
             rootView: route.view()
                 .environmentObject(self)
-                .navigationBarHidden(true)
+                .navigationBarHidden(true),
+            statusBarStyle: route.statusBarStyle
         ) { controller in
             route.applyNavigationOptions(controller: controller)
         }
@@ -163,7 +167,8 @@ public extension NavRouter {
         let uiHostingController = SwiftUIViewController(
             rootView: route.view()
                 .environmentObject(self)
-                .navigationBarHidden(true)
+                .navigationBarHidden(true),
+            statusBarStyle: route.statusBarStyle
         ) { controller in
             route.applyNavigationOptions(controller: controller)
         }

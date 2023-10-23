@@ -32,6 +32,8 @@ public protocol NavRoute {
     ///
     @ViewBuilder
     func view() -> Destination
+    
+    var statusBarStyle: UIStatusBarStyle { get }
 }
 
 
